@@ -10,7 +10,7 @@ import org.koin.android.viewmodel.dsl.viewModel
 
 val androidComponents = module {
     single { androidContext().resources }
-    single { KeyValueStorageFactory.build(context = androidContext(), name = "memoarr_prefs") }
+    single { KeyValueStorageFactory.build(context = androidContext(), name = "sliceat_prefs") }
 }
 
 val appComponents = module {
