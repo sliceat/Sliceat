@@ -48,9 +48,13 @@ dependencies {
 
     //koin
     implementation "org.koin:koin-android:$version_koin"
+    implementation "org.koin:koin-android-viewmodel:$version_koin"
 
     //multidex
     implementation 'com.android.support:multidex:1.0.3'
+
+    //Timber
+    implementation "com.jakewharton.timber:timber:4.7.1"
 
     // network
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
