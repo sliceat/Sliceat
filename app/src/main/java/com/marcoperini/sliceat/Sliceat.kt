@@ -1,0 +1,41 @@
+package com.marcoperini.sliceat
+
+import androidx.multidex.MultiDexApplication
+import com.marcoperini.sliceat.di.androidComponents
+import com.marcoperini.sliceat.di.appComponents
+import com.marcoperini.sliceat.di.viewModels
+import org.koin.android.BuildConfig
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
+
+const val TAG_LOGGING = "SLICEAT"
+
+class Sliceat : MultiDexApplication() {
+
+    override fun onCreate() {
+        super.onCreate()
+        setupDI()
+    }
+
+    private fun setupDI() {
+        startKoin {
+            androidLogger()
+            androidContext(this@Sliceat)
+
+            val appSetupModule = module {
+                single { BuildConfig.DEBUG }
+            }
+
+            modules(
+                listOf(
+                    appSetupModule,
+                    androidComponents,
+                    appComponents,
+                    viewModels
+                )
+            )
+        }
+    }
+}
