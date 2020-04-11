@@ -2,4 +2,5 @@
     <string name="app_name">Sliceat</string>
     <string name="launchLogo">launchLogo</string>
     <string name="skip_button">skip_button</string>
+    <string name="skip">skip</string>
 </resources>
