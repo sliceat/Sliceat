@@ -2,7 +2,7 @@ package com.marcoperini.sliceat.di
 
 import com.marcoperini.sliceat.ui.AppNavigator
 import com.marcoperini.sliceat.ui.Navigator
-import com.marcoperini.sliceat.ui.launch.LaunchViewModel
+import com.marcoperini.sliceat.ui.launch.LaunchViewModel2
 import com.marcoperini.sliceat.ui.main.MainViewModel
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorageFactory
 import org.koin.android.ext.koin.androidContext
@@ -15,13 +15,13 @@ val androidComponents = module {
 }
 
 val appComponents = module {
-    single<Navigator> { AppNavigator(get(), get(), get()) }
+    single<Navigator> { AppNavigator(get()) }
 }
 
 val viewModels = module {
 
     viewModel {
-        LaunchViewModel(get())
+        LaunchViewModel2(prefs = get())
     }
 
     viewModel {

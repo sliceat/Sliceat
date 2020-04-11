@@ -9,12 +9,13 @@ import org.koin.android.ext.android.inject
 
 class LaunchScreen2 : AppCompatActivity() {
 
-    private val launchViewModel: LaunchViewModel by inject()
+    private val launchViewModel: LaunchViewModel2 by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.launch_screen)
+        setContentView(R.layout.launch_screen2)
 
+        launchViewModel.send(LaunchEvent.Init)
         loading()
     }
 

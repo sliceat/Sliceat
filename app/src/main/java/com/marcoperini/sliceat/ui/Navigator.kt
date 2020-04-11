@@ -15,7 +15,7 @@ interface Navigator {
     fun goToLaunchScreen2()
 }
 
-class AppNavigator(private val context: Context, private val prefs: KeyValueStorage, private val gson: Gson) : Navigator {
+class AppNavigator(private val context: Context) : Navigator {
 
 //    override fun goToSettings() {
 //        ContextCompat.startActivity(context, SettingsActivity.getIntent(context), null)

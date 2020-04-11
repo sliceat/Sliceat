@@ -14,7 +14,7 @@ sealed class LaunchState {
     object OldUser : LaunchState()
 }
 
-class LaunchViewModel(private val prefs: SharedPreferences) : BaseViewModel<LaunchState, LaunchEvent>() {
+class LaunchViewModel2(private val prefs: SharedPreferences) : BaseViewModel<LaunchState, LaunchEvent>() {
     override fun send(event: LaunchEvent) {
 
         when (event) {

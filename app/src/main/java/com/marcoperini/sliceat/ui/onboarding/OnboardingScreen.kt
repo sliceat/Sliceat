@@ -51,15 +51,15 @@ class OnboardingScreen : AppCompatActivity(){
 
     private fun setViews() {
         onboardingViewPager = findViewById(R.id.onboardingViewpager)
-        onboardingAdapter = OnboardingAdapter(supportFragmentManager, resources.getStringArray(R.array.titleArray))
+//        onboardingAdapter = OnboardingAdapter(supportFragmentManager, resources.getStringArray(R.array.titleArray))
         onboardingViewPager.adapter = onboardingAdapter
 
         pageIndicator = findViewById(R.id.pageIndicatorView)
         pageIndicator.setViewPager(onboardingViewPager)
 
-        homeButton = findViewById(R.id.onboardingSkip)
-        previousButton = findViewById(R.id.previous)
-        nextButton = findViewById(R.id.nextButton)
+//        homeButton = findViewById(R.id.onboardingSkip)
+//        previousButton = findViewById(R.id.previous)
+//        nextButton = findViewById(R.id.nextButton)
 
         previousButton.visibility = View.INVISIBLE
         homeButton.visibility = View.VISIBLE
@@ -68,12 +68,10 @@ class OnboardingScreen : AppCompatActivity(){
     private fun setOnClickListeners() {
         previousButton.setOnClickListener { onboardingViewPager.currentItem -= 1 }
         homeButton.setOnClickListener {
-            analyticsService.trackEvent(TrackingEvent.GameRulesSkip)
             exit()
         }
         nextButton.setOnClickListener {
             if (onboardingViewPager.currentItem == onboardingAdapter.count - 1) {
-                analyticsService.trackEvent(TrackingEvent.GameRulesEnd)
                 exit()
             } else
                 onboardingViewPager.currentItem += 1
@@ -81,7 +79,6 @@ class OnboardingScreen : AppCompatActivity(){
     }
 
     private fun exit() {
-        navigator.goToTutorial()
         finish()
     }
 

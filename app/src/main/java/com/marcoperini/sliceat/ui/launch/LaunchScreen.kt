@@ -9,6 +9,7 @@ import org.koin.android.ext.android.inject
 class LaunchScreen : AppCompatActivity() {
 
     private val navigator: Navigator by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.launch_screen)
