@@ -1,4 +1,4 @@
 package com.marcoperini.sliceat.utils.sharedPreferences
 
-class Key {
-}
+//First start
+const val FIRST_START = "sliceat_first_start"
