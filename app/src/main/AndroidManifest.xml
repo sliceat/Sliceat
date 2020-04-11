@@ -18,6 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.main.MainScreen" />
+        <activity android:name=".ui.launch.LaunchScreen2" />
+        <activity android:name=".ui.onboarding.OnboardingScreen" />
     </application>
 
 </manifest>
