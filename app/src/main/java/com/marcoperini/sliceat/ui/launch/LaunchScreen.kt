@@ -19,8 +19,8 @@ class LaunchScreen : AppCompatActivity() {
     }
 
     private fun loading() {
-        launchViewModel.observe(lifecycleScope) {LaunchState ->
-            when(LaunchState) {
+        launchViewModel.observe(lifecycleScope) { LaunchState ->
+            when (LaunchState) {
                 com.marcoperini.sliceat.ui.launch.LaunchState.NewUser -> goToOnBoarding()
                 com.marcoperini.sliceat.ui.launch.LaunchState.OldUser -> goToMainScreen()
             }.exhaustive
@@ -35,5 +35,3 @@ class LaunchScreen : AppCompatActivity() {
 
     }
 }
-
-

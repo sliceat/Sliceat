@@ -3,7 +3,7 @@ package com.marcoperini.sliceat.ui.launch
 import android.content.SharedPreferences
 import com.marcoperini.sliceat.utils.BaseViewModel
 import com.marcoperini.sliceat.utils.exhaustive
-import com.marcoperini.sliceat.utils.sharedPreferences.FIRST_START
+import com.marcoperini.sliceat.utils.sharedpreferences.FIRST_START
 
 sealed class LaunchEvent {
     object Init : LaunchEvent()
@@ -21,6 +21,7 @@ class LaunchViewModel(private val prefs: SharedPreferences) : BaseViewModel<Laun
             LaunchEvent.Init -> init()
         }.exhaustive
     }
+
     private fun init() {
         val newUser = prefs.getBoolean(FIRST_START, true)
         if (newUser) {

@@ -5,8 +5,8 @@ import android.content.Intent
 import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.marcoperini.sliceat.ui.main.MainScreen
-import com.marcoperini.sliceat.ui.onBoarding.OnBoardingScreen
-import com.marcoperini.sliceat.utils.sharedPreferences.KeyValueStorage
+import com.marcoperini.sliceat.ui.onboarding.OnBoardingScreen
+import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 
 interface Navigator {
     fun goToMainScreen()
