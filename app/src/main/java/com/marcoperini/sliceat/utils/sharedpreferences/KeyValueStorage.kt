@@ -1,4 +1,4 @@
-package com.marcoperini.sliceat.utils.sharedPreferences
+package com.marcoperini.sliceat.utils.sharedpreferences
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -69,4 +69,3 @@ class Preferences(private val sharedPreferences: SharedPreferences) : KeyValueSt
         sharedPreferences.edit().putFloat(key, value).apply()
     }
 }
-

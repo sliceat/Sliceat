@@ -34,4 +34,3 @@ abstract class BaseViewModel<S, E> : ViewModel() {
 
     abstract fun send(event: E)
 }
-
