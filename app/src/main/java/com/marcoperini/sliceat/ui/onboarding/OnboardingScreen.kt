@@ -12,16 +12,14 @@ import com.marcoperini.sliceat.ui.Navigator
 import com.rd.PageIndicatorView
 import org.koin.android.ext.android.inject
 
-class OnboardingScreen : AppCompatActivity(){
+class OnboardingScreen : AppCompatActivity() {
 
     private val navigator: Navigator by inject()
 
-    private lateinit var homeButton: TextView
-    private lateinit var nextButton: Button
+    private lateinit var skipButton: Button
     private lateinit var onboardingAdapter: OnboardingAdapter
     private lateinit var onboardingViewPager: LiquidSwipeViewPager
     private lateinit var pageIndicator: PageIndicatorView
-    private lateinit var previousButton: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,12 +34,10 @@ class OnboardingScreen : AppCompatActivity(){
 
                 if (onboardingViewPager.currentItem == 0) {
                     // If first item, set previousButton invisible and nextButton visible
-                    previousButton.visibility = View.INVISIBLE
-                    nextButton.visibility = View.VISIBLE
+                    skipButton.visibility = View.VISIBLE
                 } else {
                     // Else both buttons visible
-                    previousButton.visibility = View.VISIBLE
-                    nextButton.visibility = View.VISIBLE
+                    skipButton.visibility = View.VISIBLE
                 }
             }
         })
@@ -51,34 +47,24 @@ class OnboardingScreen : AppCompatActivity(){
 
     private fun setViews() {
         onboardingViewPager = findViewById(R.id.onboardingViewpager)
-//        onboardingAdapter = OnboardingAdapter(supportFragmentManager, resources.getStringArray(R.array.titleArray))
+        onboardingAdapter = OnboardingAdapter(supportFragmentManager, resources.getStringArray(R.array.titleArray))
         onboardingViewPager.adapter = onboardingAdapter
 
         pageIndicator = findViewById(R.id.pageIndicatorView)
         pageIndicator.setViewPager(onboardingViewPager)
 
-//        homeButton = findViewById(R.id.onboardingSkip)
-//        previousButton = findViewById(R.id.previous)
-//        nextButton = findViewById(R.id.nextButton)
+        skipButton = findViewById(R.id.skipButton)
 
-        previousButton.visibility = View.INVISIBLE
-        homeButton.visibility = View.VISIBLE
     }
 
     private fun setOnClickListeners() {
-        previousButton.setOnClickListener { onboardingViewPager.currentItem -= 1 }
-        homeButton.setOnClickListener {
+        skipButton.setOnClickListener {
             exit()
-        }
-        nextButton.setOnClickListener {
-            if (onboardingViewPager.currentItem == onboardingAdapter.count - 1) {
-                exit()
-            } else
-                onboardingViewPager.currentItem += 1
         }
     }
 
     private fun exit() {
+        navigator.goToMainScreen()
         finish()
     }
 

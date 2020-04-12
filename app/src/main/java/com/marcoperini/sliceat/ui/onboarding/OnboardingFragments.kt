@@ -18,7 +18,6 @@ private const val ARG_TITLE = "text"
 private const val ONBOARDING_SCREEN1 = 0
 private const val ONBOARDING_SCREEN2 = 1
 private const val ONBOARDING_SCREEN3 = 2
-private const val ONBOARDING_SCREEN4 = 3
 
 class OnboardingFragments : Fragment() {
     private var screenIndex: Int = 0
@@ -35,26 +34,21 @@ class OnboardingFragments : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.onboarding_images, container, false).apply {
 
-//            val background = findViewById<ImageView>(R.id.onBoardingImage)
-//            when (screenIndex) {
-//                ONBOARDING_SCREEN1 -> {
-//                    background.setImageDrawable(resources.getDrawable(R.drawable.bg_volcano))
-//                    findViewById<ImageView>(R.id.onboardingPenguin).visibility = View.VISIBLE
-//                    findViewById<ImageView>(R.id.onboardingPenguinBackground).visibility = View.VISIBLE
-//                }
-//                ONBOARDING_SCREEN2 -> {
-//                    Blurry.with(context).from(resources.getDrawable(R.drawable.bg_volcano).toBitmap()).into(background)
-//                    findViewById<RecyclerView>(R.id.gridviewOnboarding).apply {
-//                        layoutManager = GridLayoutManager(context, COLUMNS_NUMBER_OF_GRID)
-//                        adapter = CardAdapter()
-//                        (adapter as CardAdapter).updateData(setUpBillboard())
-//                        visibility = View.VISIBLE
-//                    }
-//                }
-//                ONBOARDING_SCREEN3 -> setScreenImage(this, background, R.drawable.tutorial_positive, R.drawable.tutorial_positive_2)
-//                ONBOARDING_SCREEN4 -> setScreenImage(this, background, R.drawable.tutorial_negative, R.drawable.tutorial_negative_2)
-//            }
-//            findViewById<TextView>(R.id.textOnBoarding).text = screenText
+            val background = findViewById<ImageView>(R.id.onBoardingImage)
+            when (screenIndex) {
+                ONBOARDING_SCREEN1 -> {
+                    background.setImageDrawable(resources.getDrawable(R.drawable.undraw_map))
+                }
+                ONBOARDING_SCREEN2 -> {
+                    background.setImageDrawable(resources.getDrawable(R.drawable.undraw_eating_together))
+                    }
+                ONBOARDING_SCREEN3 ->
+                    background.setImageDrawable(resources.getDrawable(R.drawable.undraw_map))
+                }
+
+//            setScreenImage(this, background, R.drawable.tutorial_positive, R.drawable.tutorial_positive_2)
+
+            findViewById<TextView>(R.id.textOnBoarding).text = screenText
         }
     }
 

@@ -15,6 +15,19 @@
 
     </com.jem.liquidswipe.LiquidSwipeViewPager>
 
+
+    <Button
+        android:id="@+id/skipButton"
+        style="@style/skip_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/skip_button"
+        android:text="@string/skip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.rd.PageIndicatorView
         android:id="@+id/pageIndicatorView"
         android:layout_width="wrap_content"

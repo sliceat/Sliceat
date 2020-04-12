@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 
-private const val ONBOARDING_SCREEN_SIZE = 4
+private const val ONBOARDING_SCREEN_SIZE = 3
 
 class OnboardingAdapter(fm: FragmentManager, private val stringArray: Array<String>) :
     FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
