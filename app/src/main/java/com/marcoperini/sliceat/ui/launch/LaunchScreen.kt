@@ -1,6 +1,7 @@
 package com.marcoperini.sliceat.ui.launch
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
@@ -18,7 +19,6 @@ class LaunchScreen : AppCompatActivity() {
     }
 
     private fun goToLaunchScreen2() {
-        Thread.sleep(1000)
-        navigator.goToLaunchScreen2()
+        Handler().postDelayed({ navigator.goToLaunchScreen2() }, 1500)
     }
 }

@@ -1,9 +1,9 @@
 package com.marcoperini.sliceat.ui.launch
 
-import android.content.SharedPreferences
 import com.marcoperini.sliceat.utils.BaseViewModel
 import com.marcoperini.sliceat.utils.exhaustive
 import com.marcoperini.sliceat.utils.sharedpreferences.FIRST_START
+import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 
 sealed class LaunchEvent {
     object Init : LaunchEvent()
@@ -14,7 +14,7 @@ sealed class LaunchState {
     object OldUser : LaunchState()
 }
 
-class LaunchViewModel2(private val prefs: SharedPreferences) : BaseViewModel<LaunchState, LaunchEvent>() {
+class LaunchViewModel2(private val prefs: KeyValueStorage) : BaseViewModel<LaunchState, LaunchEvent>() {
     override fun send(event: LaunchEvent) {
 
         when (event) {
