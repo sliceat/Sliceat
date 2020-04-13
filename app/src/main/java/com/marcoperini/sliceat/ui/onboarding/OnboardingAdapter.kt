@@ -26,7 +26,7 @@ class OnboardingAdapter(val context: Context) : RecyclerView.Adapter<PagerVH>() 
     override fun onBindViewHolder(holder: PagerVH, position: Int) = holder.itemView.run {
         if(position == 0){
             tvTitle.text = context.getString(R.string.onboardingTitle1)
-            tvTitle.text = context.getString(R.string.onboardingText1)
+            tvAbout.text = context.getString(R.string.onboardingText1)
             ivImage.setImageResource(R.drawable.undraw_map)
         }
         if(position == 1) {
