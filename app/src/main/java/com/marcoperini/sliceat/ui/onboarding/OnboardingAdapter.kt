@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
-import kotlinx.android.synthetic.main.item_page.view.container
 import kotlinx.android.synthetic.main.item_page.view.ivImage
 import kotlinx.android.synthetic.main.item_page.view.tvAbout
 import kotlinx.android.synthetic.main.item_page.view.tvTitle
-import kotlinx.android.synthetic.main.onboarding_container.view.skipButton
 
 private const val ONBOARDING_SCREEN_SIZE = 3
 
