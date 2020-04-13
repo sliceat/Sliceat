@@ -10,7 +10,7 @@
 
     <style name="skip_button">
         <item name="android:fontFamily">monospace</item>
-        <item name="android:textColor">@color/orange_skip</item>
+        <item name="android:textColor">@color/orange</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold|italic</item>
         <item name="fontFamily">@font/montserrat</item>

@@ -1,22 +1,45 @@
 package com.marcoperini.sliceat.ui.onboarding
 
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.marcoperini.sliceat.R
+import kotlinx.android.synthetic.main.item_page.view.container
+import kotlinx.android.synthetic.main.item_page.view.ivImage
+import kotlinx.android.synthetic.main.item_page.view.tvAbout
+import kotlinx.android.synthetic.main.item_page.view.tvTitle
+import kotlinx.android.synthetic.main.onboarding_container.view.skipButton
 
 private const val ONBOARDING_SCREEN_SIZE = 3
 
-class OnboardingAdapter(fm: FragmentManager, private val stringArray: Array<String>) :
-    FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class OnboardingAdapter(val context: Context) : RecyclerView.Adapter<PagerVH>() {
 
-    override fun getItem(position: Int): Fragment {
-        return OnboardingFragments.newInstance(
-            position,
-            stringArray[position]
-        )
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerVH =
+        PagerVH(LayoutInflater.from(parent.context).inflate(R.layout.item_page, parent, false))
 
-    override fun getCount(): Int {
-        return ONBOARDING_SCREEN_SIZE
+    //get the size of color array
+    override fun getItemCount(): Int = 3
+
+    //binding the screen with view
+    override fun onBindViewHolder(holder: PagerVH, position: Int) = holder.itemView.run {
+        if(position == 0){
+            tvTitle.text = "ViewPager2"
+            tvAbout.text = "In this application we will learn about ViewPager2"
+            ivImage.setImageResource(R.drawable.undraw_map)
+        }
+        if(position == 1) {
+            tvTitle.text = "ViewPager2-1"
+            tvAbout.text = "In this application we will learn about ViewPager2-1"
+            ivImage.setImageResource(R.drawable.undraw_eating_together)
+        }
+        if(position == 2) {
+            tvTitle.text = "ViewPager2-2"
+            tvAbout.text = "In this application we will learn about ViewPager2-2"
+            ivImage.setImageResource(R.drawable.undraw_map)
+        }
     }
 }
+
+class PagerVH(itemView: View) : RecyclerView.ViewHolder(itemView)

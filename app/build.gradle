@@ -31,7 +31,7 @@ android {
 ext {
     roomVersion = '2.2.5'
     coroutines = '1.3.2'
-    materialVersion = "1.1.0-beta02"
+    materialVersion = "1.2.0-alpha05"
     version_koin = "2.1.3"
     version_constraint_layout = "1.1.3"
     lifecycle_version = "2.2.0"
@@ -64,6 +64,7 @@ dependencies {
     implementation "com.romandanylyk:pageindicatorview:1.0.3@aar"
     implementation "androidx.viewpager2:viewpager2:1.1.0-alpha01"
     implementation "com.airbnb.android:lottie:3.4.0"
+    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
 
     //Timber
     implementation "com.jakewharton.timber:timber:4.7.1"

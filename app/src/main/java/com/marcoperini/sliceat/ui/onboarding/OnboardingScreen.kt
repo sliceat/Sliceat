@@ -2,14 +2,14 @@ package com.marcoperini.sliceat.ui.onboarding
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
-import com.jem.liquidswipe.LiquidSwipeViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
-import com.rd.PageIndicatorView
+import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+import kotlinx.android.synthetic.main.onboarding_container.view_pager2
 import org.koin.android.ext.android.inject
 
 class OnboardingScreen : AppCompatActivity() {
@@ -17,44 +17,37 @@ class OnboardingScreen : AppCompatActivity() {
     private val navigator: Navigator by inject()
 
     private lateinit var skipButton: Button
-    private lateinit var onboardingAdapter: OnboardingAdapter
-    private lateinit var onboardingViewPager: LiquidSwipeViewPager
-    private lateinit var pageIndicator: PageIndicatorView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         setContentView(R.layout.onboarding_container)
 
-        setViews()
+        view_pager2.adapter = OnboardingAdapter(this)
+        skipButton = findViewById(R.id.skipButton)
         setOnClickListeners()
 
-        onboardingViewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+        view_pager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-
-                if (onboardingViewPager.currentItem == 0) {
-                    // If first item, set previousButton invisible and nextButton visible
-                    skipButton.visibility = View.VISIBLE
+                if (view_pager2.currentItem == 2) {
+                    skipButton.isClickable = false
+                    skipButton.setTextColor(resources.getColor(R.color.white))
                 } else {
-                    // Else both buttons visible
-                    skipButton.visibility = View.VISIBLE
+                    skipButton.isClickable = true
+                    skipButton.setTextColor(resources.getColor(R.color.orange))
                 }
             }
         })
-
-        onboardingViewPager.setCurrentItem(0, true)
+//        val dotsIndicator = findViewById<WormDotsIndicator>(R.id.dots_indicator)
+//        dotsIndicator.setViewPager2(view_pager2)
     }
 
-    private fun setViews() {
-        onboardingViewPager = findViewById(R.id.onboardingViewpager)
-        onboardingAdapter = OnboardingAdapter(supportFragmentManager, resources.getStringArray(R.array.titleArray))
-        onboardingViewPager.adapter = onboardingAdapter
-
-        pageIndicator = findViewById(R.id.pageIndicatorView)
-        pageIndicator.setViewPager(onboardingViewPager)
-
-        skipButton = findViewById(R.id.skipButton)
-
+    fun hideButtonSkip() {
+        skipButton.visibility = View.GONE
     }
 
     private fun setOnClickListeners() {
@@ -67,5 +60,4 @@ class OnboardingScreen : AppCompatActivity() {
         navigator.goToMainScreen()
         finish()
     }
-
 }

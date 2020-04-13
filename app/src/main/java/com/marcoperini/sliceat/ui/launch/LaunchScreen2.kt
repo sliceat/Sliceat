@@ -1,6 +1,7 @@
 package com.marcoperini.sliceat.ui.launch
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.marcoperini.sliceat.R
@@ -27,7 +28,7 @@ class LaunchScreen2 : AppCompatActivity() {
                 com.marcoperini.sliceat.ui.launch.LaunchState.OldUser -> goToMainScreen()
             }.exhaustive
         }
-        launchViewModel.send(LaunchEvent.Init)
+        Handler().postDelayed({ launchViewModel.send(LaunchEvent.Init) }, 1500)
     }
 
     private fun goToMainScreen() {
