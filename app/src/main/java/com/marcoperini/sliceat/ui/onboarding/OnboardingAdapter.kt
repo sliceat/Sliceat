@@ -25,17 +25,17 @@ class OnboardingAdapter(val context: Context) : RecyclerView.Adapter<PagerVH>() 
     //binding the screen with view
     override fun onBindViewHolder(holder: PagerVH, position: Int) = holder.itemView.run {
         if(position == 0){
-            tvTitle.text = "ViewPager2"
-            tvAbout.text = "In this application we will learn about ViewPager2"
+            tvTitle.text = context.getString(R.string.onboardingTitle1)
+            tvTitle.text = context.getString(R.string.onboardingText1)
             ivImage.setImageResource(R.drawable.undraw_map)
         }
         if(position == 1) {
-            tvTitle.text = "ViewPager2-1"
+            tvTitle.text = context.getString(R.string.onboardingTitle2)
             tvAbout.text = "In this application we will learn about ViewPager2-1"
             ivImage.setImageResource(R.drawable.undraw_eating_together)
         }
         if(position == 2) {
-            tvTitle.text = "ViewPager2-2"
+            tvTitle.text = context.getString(R.string.onboardingTitle3)
             tvAbout.text = "In this application we will learn about ViewPager2-2"
             ivImage.setImageResource(R.drawable.undraw_map)
         }

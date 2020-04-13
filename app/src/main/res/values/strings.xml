@@ -4,11 +4,11 @@
     <string name="skip_button">skip_button</string>
     <string name="skip">skip</string>
     <string name="onboardingimage">onBoardingImage</string>
-    <string-array name="titleArray">
-        <item>As soon as you put the money in your pocket, suddenly the ground starts to shake.\n
-            The lava flows into the sea covering the island with dense clouds of vapor!\n
-            Now it\'s time to escape with the treasure!</item>
-        <item>At the beginning of each turn, the player selects 1 card and uncovers it.</item>
-        <item>The card has to contain the same character or the same background with the card uncovered in the previous turn!</item>
-    </string-array>
+    <string name="onboardingTitle1">Tutto sotto controllo</string>
+    <string name="onboardingTitle2">Loro hanno la precedenza</string>
+    <string name="onboardingTitle3">Pagina in lavorazione</string>
+    <string name="onboardingText1">La mappa è la tua home.\nApri Sliceat e scegli subito \ndove mangiare, modifica i filtri \ndi ricerca e molto altro.\n
+        Semplicità è la parola d’ordine</string>
+    <string name="onboardingText2">Loro hanno la precedenza</string>
+    <string name="onboardingText3">Pagina in lavorazione</string>
 </resources>
