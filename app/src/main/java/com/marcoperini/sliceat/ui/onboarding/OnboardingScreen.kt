@@ -6,9 +6,9 @@ import android.view.WindowManager
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
+import com.hellmund.viewpager2indicator.ViewPager2Indicator
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
-import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import kotlinx.android.synthetic.main.onboarding_container.view_pager2
 import org.koin.android.ext.android.inject
 
@@ -17,6 +17,7 @@ class OnboardingScreen : AppCompatActivity() {
     private val navigator: Navigator by inject()
 
     private lateinit var skipButton: Button
+    private lateinit var pageIndicator: ViewPager2Indicator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +29,8 @@ class OnboardingScreen : AppCompatActivity() {
 
         view_pager2.adapter = OnboardingAdapter(this)
         skipButton = findViewById(R.id.skipButton)
+        pageIndicator = findViewById(R.id.indicator)
+        pageIndicator.attachTo(view_pager2)
         setOnClickListeners()
 
         view_pager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
