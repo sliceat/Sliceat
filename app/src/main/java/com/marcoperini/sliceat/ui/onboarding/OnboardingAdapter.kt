@@ -31,13 +31,13 @@ class OnboardingAdapter(val context: Context) : RecyclerView.Adapter<PagerVH>() 
         }
         if(position == 1) {
             tvTitle.text = context.getString(R.string.onboardingTitle2)
-            tvAbout.text = "In this application we will learn about ViewPager2-1"
+            tvAbout.text = context.getString(R.string.onboardingText2)
             ivImage.setImageResource(R.drawable.undraw_eating_together)
         }
         if(position == 2) {
             tvTitle.text = context.getString(R.string.onboardingTitle3)
-            tvAbout.text = "In this application we will learn about ViewPager2-2"
-            ivImage.setImageResource(R.drawable.undraw_map)
+            tvAbout.text = context.getString(R.string.onboardingText3)
+            ivImage.setImageResource(R.drawable.undraw_eating_together)
         }
     }
 }
