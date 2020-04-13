@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">Sliceat</string>
     <string name="launchLogo">launchLogo</string>
+    <string name="skip_button">skip_button</string>
+    <string name="skip">skip</string>
+    <string name="entry">entry</string>
+    <string name="onboardingimage">onBoardingImage</string>
+    <string name="onboardingTitle1">Tutto sotto controllo</string>
+    <string name="onboardingTitle2">Loro hanno la precedenza</string>
+    <string name="onboardingTitle3">Pagina in lavorazione</string>
+    <string name="onboardingText1">La mappa è la tua home.\nApri Sliceat e scegli subito \ndove mangiare, modifica i filtri \ndi ricerca e molto altro.\n
+        Semplicità è la parola d’ordine</string>
+    <string name="onboardingText2">Premessa: SlicEat è pensata \nper tutti. Ma il nostro piatto \nforte è dedicato a chi ha \nproblemi di allergia o \n
+    intolleranza alimentare.</string>
+    <string name="onboardingText3">Bla bla bla Bla bla bla Bla bla\n bla Bla bla bla Bla bla bla Bla\n bla bla Bla bla bla Bla\n bla bla Bla bla bla Bla\n
+        bla bla Bla bla bla.</string>
 </resources>

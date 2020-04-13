@@ -4,20 +4,30 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.content.ContextCompat
 import com.google.gson.Gson
+import com.marcoperini.sliceat.ui.launch.LaunchScreen2
 import com.marcoperini.sliceat.ui.main.MainScreen
-import com.marcoperini.sliceat.ui.onboarding.OnBoardingScreen
+import com.marcoperini.sliceat.ui.onboarding.OnboardingScreen
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 
 interface Navigator {
     fun goToMainScreen()
     fun goToOnBoarding()
+    fun goToLaunchScreen2()
 }
 
-class AppNavigator(private val context: Context, private val prefs: KeyValueStorage, private val gson: Gson) : Navigator {
+class AppNavigator(private val context: Context) : Navigator {
 
 //    override fun goToSettings() {
 //        ContextCompat.startActivity(context, SettingsActivity.getIntent(context), null)
 //    }
+
+    override fun goToLaunchScreen2() {
+        ContextCompat.startActivity(
+            context,
+            Intent(context, LaunchScreen2::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+            null
+        )
+    }
 
     override fun goToMainScreen() {
         ContextCompat.startActivity(
@@ -30,7 +40,7 @@ class AppNavigator(private val context: Context, private val prefs: KeyValueStor
     override fun goToOnBoarding() {
         ContextCompat.startActivity(
             context,
-            Intent(context, OnBoardingScreen::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+            Intent(context, OnboardingScreen::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
             null
         )
     }
