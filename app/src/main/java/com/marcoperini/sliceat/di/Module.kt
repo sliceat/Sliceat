@@ -1,5 +1,8 @@
 package com.marcoperini.sliceat.di
 
+import androidx.room.Room
+import com.marcoperini.sliceat.database.UsersDatabase
+import com.marcoperini.sliceat.database.UsersRepository
 import com.marcoperini.sliceat.ui.AppNavigator
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.authentication.AuthenticationViewModel
@@ -17,6 +20,12 @@ val androidComponents = module {
 
 val appComponents = module {
     single<Navigator> { AppNavigator(get()) }
+}
+
+val databaseComponents = module {
+    single { Room.databaseBuilder(androidContext(), UsersDatabase::class.java, "users_database").build() }
+    factory { get<UsersDatabase>().userDao() }
+    single { UsersRepository(get()) }
 }
 
 val viewModels = module {

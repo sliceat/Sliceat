@@ -3,6 +3,7 @@ package com.marcoperini.sliceat
 import androidx.multidex.MultiDexApplication
 import com.marcoperini.sliceat.di.androidComponents
 import com.marcoperini.sliceat.di.appComponents
+import com.marcoperini.sliceat.di.databaseComponents
 import com.marcoperini.sliceat.di.viewModels
 import org.koin.android.BuildConfig
 import org.koin.android.ext.koin.androidContext
@@ -33,6 +34,7 @@ class Sliceat : MultiDexApplication() {
                     appSetupModule,
                     androidComponents,
                     appComponents,
+                    databaseComponents,
                     viewModels
                 )
             )
