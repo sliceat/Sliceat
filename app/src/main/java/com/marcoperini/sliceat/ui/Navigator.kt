@@ -3,12 +3,10 @@ package com.marcoperini.sliceat.ui
 import android.content.Context
 import android.content.Intent
 import androidx.core.content.ContextCompat
-import com.google.gson.Gson
-import com.marcoperini.sliceat.ui.authentication.AuthenticationScreen1
+import com.marcoperini.sliceat.ui.authentication.AuthenticationScreen
 import com.marcoperini.sliceat.ui.launch.LaunchScreen2
 import com.marcoperini.sliceat.ui.main.MainScreen
 import com.marcoperini.sliceat.ui.onboarding.OnboardingScreen
-import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 
 interface Navigator {
     fun goToMainScreen()
@@ -34,7 +32,7 @@ class AppNavigator(private val context: Context) : Navigator {
     override fun goToAuthenticationScreen1() {
         ContextCompat.startActivity(
             context,
-            Intent(context, AuthenticationScreen1::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK),
+            Intent(context, AuthenticationScreen::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK),
             null
         )
     }

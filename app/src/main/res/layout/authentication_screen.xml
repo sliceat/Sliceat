@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/accedi"
+        android:id="@+id/access"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
@@ -18,7 +18,7 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <Button
-        android:id="@+id/registrati"
+        android:id="@+id/signIn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="@color/orange"
@@ -28,10 +28,10 @@
         android:layout_margin="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/accedi" />
+        app:layout_constraintBottom_toTopOf="@id/access" />
 
     <TextView
-        android:id="@+id/authenticationText1"
+        android:id="@+id/authenticationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/authenticationText"
@@ -40,18 +40,18 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/registrati"
+        app:layout_constraintBottom_toTopOf="@+id/signIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/authenticationTitle1"
+        android:id="@+id/authenticationTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/authenticationTitle1"
         android:text="@string/authenticationTitle1"
         android:layout_margin="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/authenticationText1"
+        app:layout_constraintBottom_toTopOf="@+id/authenticationText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -59,16 +59,16 @@
         android:id="@+id/authenticationImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="32dp"
+        android:layout_margin="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/authenticationTitle1"
+        app:layout_constraintBottom_toTopOf="@+id/authenticationTitle"
         app:srcCompat="@drawable/undraw_celebration"
         android:contentDescription="@string/authenticationImage" />
 
 
     <Button
-        android:id="@+id/vaiAllaMappa"
+        android:id="@+id/goToMap"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="@color/graySoft"
