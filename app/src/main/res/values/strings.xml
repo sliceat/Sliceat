@@ -14,4 +14,16 @@
     intolleranza alimentare.</string>
     <string name="onboardingText3">Bla bla bla Bla bla bla Bla bla\n bla Bla bla bla Bla bla bla Bla\n bla bla Bla bla bla Bla\n bla bla Bla bla bla Bla\n
         bla bla Bla bla bla.</string>
+    <string name="accedi">Accedi</string>
+    <string name="registrati">Registrati</string>
+    <string name="authenticationText">Accedi o registrati per iniziare ad \nutilizzare tutte le funzionalità di SlicEat.\nGratis. Senza pubblicità.</string>
+    <string name="authenticationTitle1">Sentiti libero \ncon SlicEat+.</string>
+    <string name="authenticationImage">authenticationImage</string>
+    <string name="vaiAllaMappa">VaiAllaMappa</string>
+    <string name="prosegui">Prosegui</string>
+    <string name="accediConFb">Accedi Con Facebook</string>
+    <string name="accediConGoogle">Accedi Con Google</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="scrivi_qui">Scrivi Qui</string>
 </resources>

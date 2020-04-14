@@ -67,7 +67,7 @@ class OnboardingScreen : AppCompatActivity() {
     }
 
     private fun exit() {
-        navigator.goToMainScreen()
+        navigator.goToAuthenticationScreen()
         prefs.putBoolean(FIRST_START, false)
         finish()
     }

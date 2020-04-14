@@ -2,6 +2,7 @@ package com.marcoperini.sliceat.di
 
 import com.marcoperini.sliceat.ui.AppNavigator
 import com.marcoperini.sliceat.ui.Navigator
+import com.marcoperini.sliceat.ui.authentication.AuthenticationViewModel
 import com.marcoperini.sliceat.ui.launch.LaunchViewModel2
 import com.marcoperini.sliceat.ui.main.MainViewModel
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorageFactory
@@ -22,6 +23,10 @@ val viewModels = module {
 
     viewModel {
         LaunchViewModel2(prefs = get())
+    }
+
+    viewModel {
+        AuthenticationViewModel()
     }
 
     viewModel {

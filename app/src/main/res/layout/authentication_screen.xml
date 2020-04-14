@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/access"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        style="@style/authenticationButton"
+        android:text="@string/accedi"
+        android:layout_margin="16dp"
+        android:background="@drawable/accedi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/signIn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/orange"
+        android:background="@android:color/transparent"
+        style="@style/authenticationButton"
+        android:text="@string/registrati"
+        android:layout_margin="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/access" />
+
+    <TextView
+        android:id="@+id/authenticationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/authenticationText"
+        android:text="@string/authenticationText"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/signIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/authenticationTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/authenticationTitle1"
+        android:text="@string/authenticationTitle1"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/authenticationText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/authenticationImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/authenticationTitle"
+        app:srcCompat="@drawable/undraw_celebration"
+        android:contentDescription="@string/authenticationImage" />
+
+
+    <Button
+        android:id="@+id/goToMap"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/graySoft"
+        android:background="@android:color/transparent"
+        style="@style/authenticationButton"
+        android:text="@string/vaiAllaMappa"
+        android:layout_margin="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

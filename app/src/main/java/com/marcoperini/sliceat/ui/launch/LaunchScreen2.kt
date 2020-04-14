@@ -32,10 +32,12 @@ class LaunchScreen2 : AppCompatActivity() {
     }
 
     private fun goToMainScreen() {
-        navigator.goToMainScreen()
+        navigator.goToAuthenticationScreen()
+        finish()
     }
 
     private fun goToOnBoarding() {
         navigator.goToOnBoarding()
+        finish()
     }
 }
