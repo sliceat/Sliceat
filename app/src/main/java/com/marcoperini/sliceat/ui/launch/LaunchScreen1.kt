@@ -7,6 +7,8 @@ import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import org.koin.android.ext.android.inject
 
+const val DELAY_START_SCREEN = 1500
+
 class LaunchScreen1 : AppCompatActivity() {
 
     private val navigator: Navigator by inject()
@@ -23,6 +25,6 @@ class LaunchScreen1 : AppCompatActivity() {
             navigator.goToLaunchScreen2()
             finish()
         }
-        Handler().postDelayed(goToLaunchScreen2, 1500)
+        Handler().postDelayed(goToLaunchScreen2, DELAY_START_SCREEN.toLong())
     }
 }

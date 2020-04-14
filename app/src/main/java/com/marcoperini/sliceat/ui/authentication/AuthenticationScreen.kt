@@ -2,7 +2,6 @@ package com.marcoperini.sliceat.ui.authentication
 
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
@@ -10,7 +9,7 @@ import org.koin.android.ext.android.inject
 
 class AuthenticationScreen : AppCompatActivity() {
 
-    private val authenticationViewModel: AuthenticationViewModel by inject()
+//    private val authenticationViewModel: AuthenticationViewModel by inject()
     private val navigator: Navigator by inject()
 
     private lateinit var access: Button

@@ -16,9 +16,10 @@ class AccessScreen : AppCompatActivity() {
     private val navigator: Navigator by inject()
 
     companion object {
-        fun getIntent (startingActivityContext: Context) = Intent(startingActivityContext, AccessScreen::class.java)
-        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, AccessScreen::class.java)
+            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.access_screen)
