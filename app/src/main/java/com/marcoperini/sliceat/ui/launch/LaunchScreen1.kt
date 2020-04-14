@@ -7,13 +7,13 @@ import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import org.koin.android.ext.android.inject
 
-class LaunchScreen : AppCompatActivity() {
+class LaunchScreen1 : AppCompatActivity() {
 
     private val navigator: Navigator by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.launch_screen)
+        setContentView(R.layout.launch_screen1)
 
         goToLaunchScreen2()
     }

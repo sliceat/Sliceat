@@ -32,7 +32,7 @@ class LaunchScreen2 : AppCompatActivity() {
     }
 
     private fun goToMainScreen() {
-        navigator.goToMainScreen()
+        navigator.goToAuthenticationScreen1()
     }
 
     private fun goToOnBoarding() {

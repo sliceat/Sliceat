@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.content.ContextCompat
 import com.google.gson.Gson
+import com.marcoperini.sliceat.ui.authentication.AuthenticationScreen1
 import com.marcoperini.sliceat.ui.launch.LaunchScreen2
 import com.marcoperini.sliceat.ui.main.MainScreen
 import com.marcoperini.sliceat.ui.onboarding.OnboardingScreen
@@ -13,6 +14,7 @@ interface Navigator {
     fun goToMainScreen()
     fun goToOnBoarding()
     fun goToLaunchScreen2()
+    fun goToAuthenticationScreen1()
 }
 
 class AppNavigator(private val context: Context) : Navigator {
@@ -25,6 +27,14 @@ class AppNavigator(private val context: Context) : Navigator {
         ContextCompat.startActivity(
             context,
             Intent(context, LaunchScreen2::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+            null
+        )
+    }
+
+    override fun goToAuthenticationScreen1() {
+        ContextCompat.startActivity(
+            context,
+            Intent(context, AuthenticationScreen1::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK),
             null
         )
     }

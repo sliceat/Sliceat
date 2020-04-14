@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.launch.LaunchScreen">
+        <activity android:name=".ui.launch.LaunchScreen1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,6 +20,7 @@
         <activity android:name=".ui.main.MainScreen" />
         <activity android:name=".ui.launch.LaunchScreen2" />
         <activity android:name=".ui.onboarding.OnboardingScreen" />
+        <activity android:name=".ui.authentication.AuthenticationScreen1" />
 
         <meta-data
             android:name="preloaded_fonts"
