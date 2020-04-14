@@ -16,6 +16,5 @@ data class UsersTable(
     val lastName: String,
     val email: String,
     val password: String,
-    val gender: Char,
-    val dateOfBirth: Date
+    val gender: Char
 )
