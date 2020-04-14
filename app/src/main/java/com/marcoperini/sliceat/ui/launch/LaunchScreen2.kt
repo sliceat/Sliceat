@@ -28,7 +28,7 @@ class LaunchScreen2 : AppCompatActivity() {
                 com.marcoperini.sliceat.ui.launch.LaunchState.OldUser -> goToMainScreen()
             }.exhaustive
         }
-        Handler().postDelayed({ launchViewModel.send(LaunchEvent.Init) }, 1500)
+        Handler().postDelayed({ launchViewModel.send(LaunchEvent.Init) }, DELAY_START_SCREEN.toLong())
     }
 
     private fun goToMainScreen() {

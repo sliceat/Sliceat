@@ -3,7 +3,7 @@ package com.marcoperini.sliceat.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.*
+import java.util.Date
 
 /*id - firstName - lastName... */
 
