@@ -5,11 +5,13 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.marcoperini.sliceat.R
+import com.marcoperini.sliceat.ui.Navigator
 import org.koin.android.ext.android.inject
 
 class AuthenticationScreen : AppCompatActivity() {
 
     private val authenticationViewModel: AuthenticationViewModel by inject()
+    private val navigator: Navigator by inject()
 
     private lateinit var access: Button
     private lateinit var signIn: Button
@@ -29,10 +31,9 @@ class AuthenticationScreen : AppCompatActivity() {
         goToMap = findViewById(R.id.goToMap)
     }
 
-
     private fun clickListner() {
-        access.setOnClickListener{Toast.makeText(this, "Conditions not implemented!", Toast.LENGTH_LONG).show()}
-        signIn.setOnClickListener{Toast.makeText(this, "Conditions not implemented!", Toast.LENGTH_LONG).show()}
-        goToMap.setOnClickListener{Toast.makeText(this, "Conditions not implemented!", Toast.LENGTH_LONG).show()}
+        access.setOnClickListener { navigator.goToAccessScreen() }
+        signIn.setOnClickListener { navigator.goToSignInScreen() }
+        goToMap.setOnClickListener { navigator.goToMap() }
     }
 }

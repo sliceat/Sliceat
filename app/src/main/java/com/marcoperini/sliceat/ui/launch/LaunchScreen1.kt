@@ -19,6 +19,10 @@ class LaunchScreen1 : AppCompatActivity() {
     }
 
     private fun goToLaunchScreen2() {
-        Handler().postDelayed({ navigator.goToLaunchScreen2() }, 1500)
+        val goToLaunchScreen2 = Runnable {
+            navigator.goToLaunchScreen2()
+            finish()
+        }
+        Handler().postDelayed(goToLaunchScreen2, 1500)
     }
 }
