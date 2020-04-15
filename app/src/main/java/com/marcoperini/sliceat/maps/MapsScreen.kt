@@ -4,7 +4,6 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.location.Address
@@ -15,13 +14,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.LocationSettingsRequest
-import com.google.android.gms.location.LocationSettingsStatusCodes
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -38,7 +31,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import com.marcoperini.sliceat.R
 import java.io.IOException
-import java.util.Locale
+import java.util.*
 
 const val TIME_UPDATE_LOCALIZATION = 10000L
 const val TIME_UPDATE_LOCALIZATION_FAST = 2000L
@@ -54,6 +47,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
 
     private lateinit var googleMap: GoogleMap
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var location: Location
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +56,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         fusedLocationProviderClient = FusedLocationProviderClient(this)
+        location = Location(this)
     }
 
     // Initializes contents of Activity's standard options menu. Only called the first time options
@@ -100,22 +95,11 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
             googleMap.isMyLocationEnabled = true
             googleMap.uiSettings.isMyLocationButtonEnabled = true
             googleMap.uiSettings.isZoomControlsEnabled = true
-            getCurrentLocation()
-            setPoiClick(googleMap)
+            getLocation(location)
+            location.setMapLongClick(googleMap)
+            location.setPoiClick(googleMap)
         } else {
             givePermission()
-        }
-    }
-
-    // Places a marker on the map and displays an info window that contains POI name.
-    private fun setPoiClick(map: GoogleMap) {
-        map.setOnPoiClickListener { poi ->
-            val poiMarker = map.addMarker(
-                MarkerOptions()
-                    .position(poi.latLng)
-                    .title(poi.name)
-            )
-            poiMarker.showInfoWindow()
         }
     }
 
@@ -131,7 +115,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
     }
 
     override fun onPermissionGranted(response: PermissionGrantedResponse?) {
-        getCurrentLocation()
+        getLocation(location)
     }
 
     override fun onPermissionRationaleShouldBeShown(
@@ -144,39 +128,6 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
     override fun onPermissionDenied(response: PermissionDeniedResponse?) {
         Toast.makeText(this, "Permission required for showing location", Toast.LENGTH_LONG).show()
         finish()
-    }
-
-    private fun getCurrentLocation() {
-
-        val locationRequest = LocationRequest()
-        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        locationRequest.interval = TIME_UPDATE_LOCALIZATION
-        locationRequest.fastestInterval = TIME_UPDATE_LOCALIZATION_FAST
-
-        val builder = LocationSettingsRequest.Builder()
-        builder.addLocationRequest(locationRequest)
-        val locationSettingsRequest = builder.build()
-
-        val result = LocationServices.getSettingsClient(this).checkLocationSettings(locationSettingsRequest)
-        result.addOnCompleteListener { task ->
-            try {
-                val response = task.getResult(ApiException::class.java)
-                if (response!!.locationSettingsStates.isLocationPresent) {
-                    getLastLocation()
-                }
-            } catch (exception: ApiException) {
-                when (exception.statusCode) {
-                    LocationSettingsStatusCodes.RESOLUTION_REQUIRED -> try {
-                        val resolvable = exception as ResolvableApiException
-                        resolvable.startResolutionForResult(this, REQUEST_LOCATION_PERMISSION)
-
-                    } catch (e: IntentSender.SendIntentException) { /*empty block*/
-                    }
-                    LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> {
-                    }
-                }
-            }
-        }
     }
 
     private fun getLastLocation() {
@@ -213,10 +164,18 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
         when (requestCode) {
             REQUEST_LOCATION_PERMISSION -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    getCurrentLocation()
+                    getLocation(location)
                 }
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun getLocation(location: Location) {
+        location.getCurrentLocation(object : Location.LocationService {
+            override fun getLastLocationInterface() {
+                getLastLocation()
+            }
+        })
     }
 }
