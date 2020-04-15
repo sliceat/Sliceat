@@ -51,7 +51,7 @@ class AppNavigator(private val context: Context) : Navigator {
     }
 
     override fun goToMap() {
-        Toast.makeText(context, "Conditions not implemented!", Toast.LENGTH_LONG).show()
+        ContextCompat.startActivity(context, MapsScreen.getIntent(context), null)
     }
 
     override fun goToMainScreen() {
