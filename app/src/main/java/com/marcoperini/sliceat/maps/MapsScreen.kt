@@ -168,9 +168,8 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
                 when (exception.statusCode) {
                     LocationSettingsStatusCodes.RESOLUTION_REQUIRED -> try {
                         val resolvable = exception as ResolvableApiException
-                        resolvable.startResolutionForResult(this,
-                            REQUEST_LOCATION_PERMISSION
-                        )
+                        resolvable.startResolutionForResult(this, REQUEST_LOCATION_PERMISSION)
+
                     } catch (e: IntentSender.SendIntentException) { /*empty block*/
                     }
                     LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> {
