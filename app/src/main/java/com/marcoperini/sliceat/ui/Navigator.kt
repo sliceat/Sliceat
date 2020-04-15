@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.marcoperini.sliceat.maps.MapsScreen
 import com.marcoperini.sliceat.ui.authentication.AccessScreen
 import com.marcoperini.sliceat.ui.authentication.AuthenticationScreen
 import com.marcoperini.sliceat.ui.launch.LaunchScreen2

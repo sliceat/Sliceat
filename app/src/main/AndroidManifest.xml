@@ -32,7 +32,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".ui.MapsScreen"
+            android:name=".maps.MapsScreen"
             android:label="@string/title_activity_maps_screen" />
         <activity android:name=".ui.authentication.AccessScreen" />
         <activity android:name=".ui.launch.LaunchScreen1">

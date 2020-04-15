@@ -1,4 +1,4 @@
-package com.marcoperini.sliceat.ui
+package com.marcoperini.sliceat.maps
 
 import android.Manifest
 import android.app.Activity
@@ -9,11 +9,11 @@ import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.location.Address
 import android.location.Geocoder
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
@@ -22,7 +22,6 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationSettingsStatusCodes
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -38,9 +37,12 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import com.marcoperini.sliceat.R
-import com.marcoperini.sliceat.ui.authentication.AuthenticationScreen
 import java.io.IOException
-import java.util.*
+import java.util.Locale
+
+const val TIME_UPDATE_LOCALIZATION = 10000L
+const val TIME_UPDATE_LOCALIZATION_FAST = 2000L
+const val ZOOM_CAMERA = 17f
 
 class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
 
@@ -92,15 +94,6 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
         else -> super.onOptionsItemSelected(item)
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(map: GoogleMap?) {
         googleMap = map ?: return
         if (isPermissionGiven()) {
@@ -108,8 +101,21 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
             googleMap.uiSettings.isMyLocationButtonEnabled = true
             googleMap.uiSettings.isZoomControlsEnabled = true
             getCurrentLocation()
+            setPoiClick(googleMap)
         } else {
             givePermission()
+        }
+    }
+
+    // Places a marker on the map and displays an info window that contains POI name.
+    private fun setPoiClick(map: GoogleMap) {
+        map.setOnPoiClickListener { poi ->
+            val poiMarker = map.addMarker(
+                MarkerOptions()
+                    .position(poi.latLng)
+                    .title(poi.name)
+            )
+            poiMarker.showInfoWindow()
         }
     }
 
@@ -144,8 +150,8 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
 
         val locationRequest = LocationRequest()
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        locationRequest.interval = (10 * 1000).toLong()
-        locationRequest.fastestInterval = 2000
+        locationRequest.interval = TIME_UPDATE_LOCALIZATION
+        locationRequest.fastestInterval = TIME_UPDATE_LOCALIZATION_FAST
 
         val builder = LocationSettingsRequest.Builder()
         builder.addLocationRequest(locationRequest)
@@ -162,11 +168,11 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
                 when (exception.statusCode) {
                     LocationSettingsStatusCodes.RESOLUTION_REQUIRED -> try {
                         val resolvable = exception as ResolvableApiException
-                        resolvable.startResolutionForResult(this, REQUEST_LOCATION_PERMISSION)
-                    } catch (e: IntentSender.SendIntentException) {
-                    } catch (e: ClassCastException) {
+                        resolvable.startResolutionForResult(this,
+                            REQUEST_LOCATION_PERMISSION
+                        )
+                    } catch (e: IntentSender.SendIntentException) { /*empty block*/
                     }
-
                     LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> {
                     }
                 }
@@ -175,42 +181,32 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
     }
 
     private fun getLastLocation() {
-        fusedLocationProviderClient.lastLocation
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful && task.result != null) {
-                    val mLastLocation = task.result
+        fusedLocationProviderClient.lastLocation.addOnCompleteListener(this) { task ->
+            if (task.isSuccessful && task.result != null) {
+                val mLastLocation = task.result
+                var address = "No known address"
+                val gcd = Geocoder(this, Locale.getDefault())
+                val addresses: List<Address>
 
-                    var address = "No known address"
-
-                    val gcd = Geocoder(this, Locale.getDefault())
-                    val addresses: List<Address>
-                    try {
-                        addresses = gcd.getFromLocation(mLastLocation!!.latitude, mLastLocation.longitude, 1)
-                        if (addresses.isNotEmpty()) {
-                            address = addresses[0].getAddressLine(0)
-                        }
-                    } catch (e: IOException) {
-                        e.printStackTrace()
+                try {
+                    addresses = gcd.getFromLocation(mLastLocation!!.latitude, mLastLocation.longitude, 1)
+                    if (addresses.isNotEmpty()) {
+                        address = addresses[0].getAddressLine(0)
                     }
-
-                    val icon = BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(this.resources, R.drawable.ic_pickup))
-                    googleMap.addMarker(
-                        MarkerOptions()
-                            .position(LatLng(mLastLocation!!.latitude, mLastLocation.longitude))
-                            .title("Current Location")
-                            .snippet(address)
-                            .icon(icon)
-                    )
-
-                    val cameraPosition = CameraPosition.Builder()
-                        .target(LatLng(mLastLocation.latitude, mLastLocation.longitude))
-                        .zoom(17f)
-                        .build()
-                    googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
-                } else {
-                    Toast.makeText(this, "No current location found", Toast.LENGTH_LONG).show()
+                } catch (e: IOException) {
+                    e.printStackTrace()
                 }
+                val icon = BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(this.resources, R.drawable.ic_pickup))
+                googleMap.addMarker(
+                    MarkerOptions().position(LatLng(mLastLocation!!.latitude, mLastLocation.longitude)).title("Current Location").snippet(address).icon(icon)
+                )
+                val cameraPosition = CameraPosition.Builder()
+                    .target(LatLng(mLastLocation.latitude, mLastLocation.longitude)).zoom(ZOOM_CAMERA).build()
+                googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+            } else {
+                Toast.makeText(this, "No current location found", Toast.LENGTH_LONG).show()
             }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -223,6 +219,5 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
-
     }
 }
