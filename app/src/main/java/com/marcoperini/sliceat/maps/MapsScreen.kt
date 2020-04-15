@@ -31,7 +31,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import com.marcoperini.sliceat.R
 import java.io.IOException
-import java.util.*
+import java.util.Locale
 
 const val TIME_UPDATE_LOCALIZATION = 10000L
 const val TIME_UPDATE_LOCALIZATION_FAST = 2000L
