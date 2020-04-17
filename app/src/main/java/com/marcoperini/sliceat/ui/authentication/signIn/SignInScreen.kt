@@ -60,12 +60,8 @@ class SignInScreen : AppCompatActivity() {
         if (TextUtils.isEmpty(firstName.text.toString())) {
             firstName.text = "ERROR"
         } else {
-            inputxt_notes.error = resources.getString(R.string.error_notes)
-            uiHelper.showSnackBar(rootView_add_birds, resources.getString(R.string.error_notes))
-        }
-        else {
-            inputxt_name.error = resources.getString(R.string.error_bird_name)
-            uiHelper.showSnackBar(rootView_add_birds, resources.getString(R.string.error_bird_name))
+//            inputxt_notes.error = resources.getString(R.string.error_notes)
+//            uiHelper.showSnackBar(rootView_add_birds, resources.getString(R.string.error_notes))
         }
     }
 }
