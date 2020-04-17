@@ -8,25 +8,27 @@ import com.marcoperini.sliceat.utils.exhaustive
 import kotlinx.coroutines.launch
 
 sealed class SignInEvent {
-    data class Name(val name: String, val lastName: String, val eMail: String) : SignInEvent()
+    data class Name(val user: UsersTable) : SignInEvent()
 
 }
 
 sealed class SignInState {
-    data class SaveUser(val name: String) : SignInState()
+    object CheckUserField : SignInState()
+    object SaveUser : SignInState()
 }
 
 class SignInViewModel(private val repository: UsersRepository) : BaseViewModel<SignInState, SignInEvent>() {
 
     override fun send(event: SignInEvent) {
         when (event) {
-            is SignInEvent.Name -> loadName(event.name, event.lastName, event.eMail)
+            is SignInEvent.Name -> loadName(event.user)
         }.exhaustive
     }
 
-    private fun loadName(name: String, lastName: String, eMail: String) {
+    private fun loadName(user: UsersTable) {
         viewModelScope.launch {
-            repository.insert(UsersTable(name, lastName, eMail))
+            repository.insert(user)
         }
+        post(SignInState.CheckUserField)
     }
 }

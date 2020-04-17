@@ -5,9 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.marcoperini.sliceat.utils.Constants.Companion.E_MAIL
 import com.marcoperini.sliceat.utils.Constants.Companion.FIRST_NAME
-import com.marcoperini.sliceat.utils.Constants.Companion.GENDER
 import com.marcoperini.sliceat.utils.Constants.Companion.LAST_NAME
-import com.marcoperini.sliceat.utils.Constants.Companion.PASSWORD
 import com.marcoperini.sliceat.utils.Constants.Companion.TABLE_NAME
 
 /*id - firstName - lastName... */
