@@ -8,7 +8,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.hellmund.viewpager2indicator.ViewPager2Indicator
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
-import com.marcoperini.sliceat.utils.sharedpreferences.FIRST_START
+import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.FIRST_START
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import kotlinx.android.synthetic.main.onboarding_container.view_pager2
 import org.koin.android.ext.android.inject

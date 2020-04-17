@@ -13,6 +13,8 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.MarkerOptions
 import com.marcoperini.sliceat.R
+import com.marcoperini.sliceat.utils.Constants.Companion.TIME_UPDATE_LOCALIZATION
+import com.marcoperini.sliceat.utils.Constants.Companion.TIME_UPDATE_LOCALIZATION_FAST
 import java.util.*
 
 class Location(private val context: Context) {

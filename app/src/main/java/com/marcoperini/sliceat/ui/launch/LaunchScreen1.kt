@@ -5,9 +5,8 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
+import com.marcoperini.sliceat.utils.Constants.Companion.DELAY_START_SCREEN
 import org.koin.android.ext.android.inject
-
-const val DELAY_START_SCREEN = 1500
 
 class LaunchScreen1 : AppCompatActivity() {
 

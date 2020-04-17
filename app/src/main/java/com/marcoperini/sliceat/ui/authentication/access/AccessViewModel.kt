@@ -1,4 +1,4 @@
-package com.marcoperini.sliceat.ui.authentication
+package com.marcoperini.sliceat.ui.authentication.access
 
 import com.marcoperini.sliceat.ui.launch.LaunchEvent
 import com.marcoperini.sliceat.ui.launch.LaunchState

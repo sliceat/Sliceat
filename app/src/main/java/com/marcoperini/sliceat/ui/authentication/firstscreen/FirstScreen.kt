@@ -1,4 +1,4 @@
-package com.marcoperini.sliceat.ui.authentication
+package com.marcoperini.sliceat.ui.authentication.firstscreen
 
 import android.os.Bundle
 import android.widget.Button
@@ -7,7 +7,7 @@ import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import org.koin.android.ext.android.inject
 
-class AuthenticationScreen : AppCompatActivity() {
+class FirstScreen : AppCompatActivity() {
 
 //    private val authenticationViewModel: AuthenticationViewModel by inject()
     private val navigator: Navigator by inject()

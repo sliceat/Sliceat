@@ -5,8 +5,8 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.marcoperini.sliceat.maps.MapsScreen
-import com.marcoperini.sliceat.ui.authentication.AccessScreen
-import com.marcoperini.sliceat.ui.authentication.AuthenticationScreen
+import com.marcoperini.sliceat.ui.authentication.access.AccessScreen
+import com.marcoperini.sliceat.ui.authentication.firstscreen.FirstScreen
 import com.marcoperini.sliceat.ui.launch.LaunchScreen2
 import com.marcoperini.sliceat.ui.main.MainScreen
 import com.marcoperini.sliceat.ui.onboarding.OnboardingScreen
@@ -38,7 +38,7 @@ class AppNavigator(private val context: Context) : Navigator {
     override fun goToAuthenticationScreen() {
         ContextCompat.startActivity(
             context,
-            Intent(context, AuthenticationScreen::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK),
+            Intent(context, FirstScreen::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK),
             null
         )
     }

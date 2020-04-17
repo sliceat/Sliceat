@@ -30,12 +30,9 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import com.marcoperini.sliceat.R
+import com.marcoperini.sliceat.utils.Constants.Companion.ZOOM_CAMERA
 import java.io.IOException
 import java.util.Locale
-
-const val TIME_UPDATE_LOCALIZATION = 10000L
-const val TIME_UPDATE_LOCALIZATION_FAST = 2000L
-const val ZOOM_CAMERA = 17f
 
 class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
 

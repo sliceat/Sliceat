@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
+import com.marcoperini.sliceat.utils.Constants.Companion.DELAY_START_SCREEN
 import com.marcoperini.sliceat.utils.exhaustive
 import org.koin.android.ext.android.inject
 

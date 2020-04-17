@@ -1,4 +1,4 @@
-package com.marcoperini.sliceat.ui.authentication
+package com.marcoperini.sliceat.ui.authentication.access
 
 import android.content.Context
 import android.content.Intent
