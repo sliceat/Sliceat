@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -54,6 +54,10 @@
     </style>
 
     <style name="authenticationButton">
+        <item name="android:background">@drawable/ic_accedi_fb</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_horizontal|center_vertical</item>
         <item name="android:textSize">15sp</item>
         <item name="android:lineSpacingExtra">1.9sp</item>

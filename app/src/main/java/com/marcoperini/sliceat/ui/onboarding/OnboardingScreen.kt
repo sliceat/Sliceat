@@ -60,6 +60,9 @@ class OnboardingScreen : AppCompatActivity() {
     }
 
     private fun setOnClickListeners() {
+        entryButton.setOnClickListener {
+            exit()
+        }
         skipButton.setOnClickListener {
             exit()
         }

@@ -12,11 +12,11 @@ import com.marcoperini.sliceat.utils.Constants.Companion.TABLE_NAME
 
 @Entity(tableName = TABLE_NAME)
 data class UsersTable(
-    @ColumnInfo(name = FIRST_NAME) val firstName: String,
-    @ColumnInfo(name = LAST_NAME) val lastName: String,
-    @ColumnInfo(name = E_MAIL) val email: String
+    @ColumnInfo(name = FIRST_NAME) var firstName: String,
+    @ColumnInfo(name = LAST_NAME) var lastName: String,
+    @ColumnInfo(name = E_MAIL) var email: String
 //    @ColumnInfo(name = PASSWORD) val password: String,
 //    @ColumnInfo(name = GENDER) val gender: Char
 ) {
-    @PrimaryKey(autoGenerate = true) val id: Int = 0
+    @PrimaryKey(autoGenerate = true) var id: Int = 0
 }

@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import com.marcoperini.sliceat.maps.MapsScreen
 import com.marcoperini.sliceat.ui.authentication.access.AccessScreen
 import com.marcoperini.sliceat.ui.authentication.firstscreen.FirstScreen
+import com.marcoperini.sliceat.ui.authentication.signIn.SignInScreen
 import com.marcoperini.sliceat.ui.launch.LaunchScreen2
 import com.marcoperini.sliceat.ui.main.MainScreen
 import com.marcoperini.sliceat.ui.onboarding.OnboardingScreen
@@ -48,7 +49,7 @@ class AppNavigator(private val context: Context) : Navigator {
     }
 
     override fun goToSignInScreen() {
-        Toast.makeText(context, "Conditions not implemented!", Toast.LENGTH_LONG).show()
+        ContextCompat.startActivity(context, SignInScreen.getIntent(context), null)
     }
 
     override fun goToMap() {

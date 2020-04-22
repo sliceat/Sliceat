@@ -6,26 +6,20 @@
 
     <Button
         android:id="@+id/access"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:textColor="@color/white"
+        android:backgroundTint="@color/orange"
         style="@style/authenticationButton"
         android:text="@string/accedi"
-        android:layout_margin="16dp"
-        android:background="@drawable/accedi"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <Button
         android:id="@+id/signIn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:textColor="@color/orange"
         android:background="@android:color/transparent"
         style="@style/authenticationButton"
         android:text="@string/registrati"
-        android:layout_margin="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/access" />

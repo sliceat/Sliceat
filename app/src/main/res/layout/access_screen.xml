@@ -9,36 +9,26 @@
     <Button
         android:id="@+id/goOn"
         style="@style/authenticationButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@color/graySoft"
-        android:text="@string/prosegui"
+        android:backgroundTint="@color/graySoft"
+        android:text="@string/accedi"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/signInFacebook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/signInGoogle"
         style="@style/authenticationButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@color/white"
+        android:background="@drawable/ic_accedi_google"
         android:text="@string/accediConGoogle"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/goOn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/signInFacebook"
         style="@style/authenticationButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@color/white"
         android:text="@string/accediConFb"
         android:textColor="@color/blue"
         app:layout_constraintBottom_toTopOf="@id/signInGoogle"
