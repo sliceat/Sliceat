@@ -9,14 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
-import com.marcoperini.sliceat.ui.authentication.signIn.signin1.SignInViewModel
+import com.marcoperini.sliceat.ui.authentication.signIn.signin1.SignIn2ViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 
 class SignInScreen2 : AppCompatActivity() {
 
     private val navigator: Navigator by inject()
-    private val signInViewModel2: SignInViewModel by inject()
+    private val signIn2ViewModel: SignIn2ViewModel by inject()
 
     private lateinit var insertEmail: EditText
     private lateinit var backButton: Button
@@ -47,17 +47,16 @@ class SignInScreen2 : AppCompatActivity() {
             navigator.goToSignInScreen1()
         }
         continua.setOnClickListener {
-//            navigator.goToSignInScreen3()
+            navigator.goToSignInScreen3()
         }
     }
 
     @ExperimentalCoroutinesApi
     private fun observer() {
-        signInViewModel2.observe(lifecycleScope) { state ->
+//        signIn2ViewModel.observe(lifecycleScope) { state ->
 //            when (state) {
 //
 //            }.exhaustive
-
-        }
+//        }
     }
 }

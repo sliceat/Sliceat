@@ -17,7 +17,7 @@ import org.koin.android.ext.android.inject
 class SignInScreen1 : AppCompatActivity() {
 
     private val navigator: Navigator by inject()
-    private val signInViewModel: SignInViewModel by inject()
+    private val signIn1ViewModel: SignInViewModel by inject()
 
     private lateinit var inserFirstName: EditText
     private lateinit var insertLastName: EditText
@@ -53,7 +53,7 @@ class SignInScreen1 : AppCompatActivity() {
             insertLastName.text.toString(),
             "prova@gmail.com"
         )
-        signInViewModel.send(SignIn1Event.Name(user))
+        signIn1ViewModel.send(SignIn1Event.Name(user))
     }
 
     private fun setOnClickListener() {
@@ -67,7 +67,7 @@ class SignInScreen1 : AppCompatActivity() {
 
     @ExperimentalCoroutinesApi
     private fun observer() {
-        signInViewModel.observe(lifecycleScope) { state ->
+        signIn1ViewModel.observe(lifecycleScope) { state ->
             when (state) {
                 is SignIn1State.CheckUserField -> validateInputData()
                 SignIn1State.SaveUser -> TODO()

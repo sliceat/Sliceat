@@ -47,7 +47,7 @@
         android:layout_margin="16dp"
         android:background="@null"
         android:hint="@string/password"
-        android:textColor="@color/graySoft"
+        android:textColorHint="@color/graySoft"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/choise_password" />
 
@@ -57,7 +57,7 @@
         android:layout_margin="16dp"
         android:background="@null"
         android:hint="@string/repeatPassword"
-        android:textColor="@color/graySoft"
+        android:textColorHint="@color/graySoft"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/insertPassword" />
 

@@ -9,17 +9,18 @@ import android.widget.EditText
 import androidx.lifecycle.lifecycleScope
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
+import com.marcoperini.sliceat.ui.authentication.signIn.signin1.SignIn2ViewModel
 import com.marcoperini.sliceat.ui.authentication.signIn.signin1.SignInViewModel
-import com.marcoperini.sliceat.ui.authentication.signIn.signin2.SignInScreen2
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 
 class SignInScreen3 : AppCompatActivity() {
 
     private val navigator: Navigator by inject()
-    private val signInViewModel2: SignInViewModel by inject()
+    private val signIn3ViewModel: SignIn3ViewModel by inject()
 
-    private lateinit var insertEmail: EditText
+    private lateinit var insertPassword: EditText
+    private lateinit var repeatPassword: EditText
     private lateinit var backButton: Button
     private lateinit var continua: Button
 
@@ -38,7 +39,8 @@ class SignInScreen3 : AppCompatActivity() {
     }
 
     private fun setupView() {
-        insertEmail = findViewById(R.id.insertEmail)
+        insertPassword = findViewById(R.id.insertPassword)
+        repeatPassword = findViewById(R.id.repeatPassword)
         backButton = findViewById(R.id.backButton)
         continua = findViewById(R.id.continua)
     }
@@ -48,17 +50,16 @@ class SignInScreen3 : AppCompatActivity() {
             navigator.goToSignInScreen2()
         }
         continua.setOnClickListener {
-            navigator.goToSignInScreen3()
+//            navigator.goToSignInScreen4()
         }
     }
 
     @ExperimentalCoroutinesApi
     private fun observer() {
-        signInViewModel2.observe(lifecycleScope) { state ->
+//        signIn3ViewModel.observe(lifecycleScope) { state ->
 //            when (state) {
 //
 //            }.exhaustive
-
-        }
+//        }
     }
 }
