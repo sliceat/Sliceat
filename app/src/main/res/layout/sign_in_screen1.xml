@@ -4,39 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.authentication.signIn.SignInScreen">
+    tools:context=".ui.authentication.signIn.SignInScreen1">
 
     <ImageView
         android:id="@+id/bologna"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bologna_sliceat"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/sliceat_is_in_rome"
         style="@style/textTitle"
         android:layout_margin="16dp"
         android:text="@string/sliceat_is_in_rome"
-        app:layout_constraintStart_toStartOf="@id/bologna"
+        app:layout_constraintBottom_toBottomOf="@id/bologna"
         app:layout_constraintEnd_toEndOf="@id/bologna"
-        app:layout_constraintTop_toTopOf="@id/bologna"
-        app:layout_constraintBottom_toBottomOf="@id/bologna"/>
+        app:layout_constraintStart_toStartOf="@id/bologna"
+        app:layout_constraintTop_toTopOf="@id/bologna" />
 
     <TextView
         android:id="@+id/signIn"
         style="@style/big_title"
-        android:textColor="@color/white"
         android:text="@string/registrati"
-        app:layout_constraintStart_toStartOf="@id/bologna"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/bologna"
         app:layout_constraintEnd_toEndOf="@id/bologna"
-        app:layout_constraintBottom_toBottomOf="@id/bologna"/>
+        app:layout_constraintStart_toStartOf="@id/bologna" />
 
     <Button
         android:id="@+id/backButton"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_margin="16dp"
         android:background="@drawable/back_button_white"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,24 +63,23 @@
         app:layout_constraintTop_toBottomOf="@id/insertName" />
 
     <Button
-        android:id="@+id/continua"
+        android:id="@+id/continua1"
         style="@style/authenticationButton"
         android:backgroundTint="@color/graySoft"
         android:text="@string/continua"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/insertLastName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/insertLastName" />
 
     <TextView
         android:id="@+id/ops_forgotten_password"
         style="@style/text"
         android:layout_margin="16dp"
         android:text="@string/ops_forgotten_password"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/continua" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/continua1" />
 
     <Button
         android:id="@+id/signInFacebook"

@@ -32,7 +32,7 @@ class FirstScreen : AppCompatActivity() {
 
     private fun clickListner() {
         access.setOnClickListener { navigator.goToAccessScreen() }
-        signIn.setOnClickListener { navigator.goToSignInScreen() }
+        signIn.setOnClickListener { navigator.goToSignInScreen1() }
         goToMap.setOnClickListener { navigator.goToMap() }
     }
 }

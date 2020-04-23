@@ -11,27 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bologna_sliceat"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/sliceat_is_in_bologna"
         style="@style/textTitle"
         android:layout_margin="16dp"
         android:text="@string/sliceat_is_in_bologna"
-        app:layout_constraintStart_toStartOf="@id/bologna"
+        app:layout_constraintBottom_toBottomOf="@id/bologna"
         app:layout_constraintEnd_toEndOf="@id/bologna"
-        app:layout_constraintTop_toTopOf="@id/bologna"
-        app:layout_constraintBottom_toBottomOf="@id/bologna"/>
+        app:layout_constraintStart_toStartOf="@id/bologna"
+        app:layout_constraintTop_toTopOf="@id/bologna" />
 
     <TextView
         android:id="@+id/access"
         style="@style/big_title"
-        android:textColor="@color/white"
         android:text="@string/accedi"
-        app:layout_constraintStart_toStartOf="@id/bologna"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/bologna"
         app:layout_constraintEnd_toEndOf="@id/bologna"
-        app:layout_constraintBottom_toBottomOf="@id/bologna"/>
+        app:layout_constraintStart_toStartOf="@id/bologna" />
 
     <Button
         android:id="@+id/backButton"
@@ -68,17 +68,17 @@
         android:backgroundTint="@color/graySoft"
         android:text="@string/accedi"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/insertPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/insertPassword" />
 
     <TextView
         android:id="@+id/ops_forgotten_password"
         style="@style/text"
         android:layout_margin="16dp"
         android:text="@string/ops_forgotten_password"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/goOn" />
 
 

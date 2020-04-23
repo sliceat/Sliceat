@@ -39,4 +39,9 @@
     <string name="sliceat_is_in_bologna">#sliceatèabologna</string>
     <string name="continua">Continua</string>
     <string name="sliceat_is_in_rome">#sliceatèaroma</string>
+    <string name="sliceat_is_in_verona">#sliceatèaverona</string>
+    <string name="mood_music">Il tuo mood sceglie che musica \nascoltare, cosa leggere e \ncosa indossare. Perchè non \nfarlo con quello che mangi?</string>
+    <string name="your_email">La tua e-mail?</string>
+    <string name="never_sell">Non venderemo la tua e-mail per\npubblicità.</string>
+    <string name="page_two">2/5</string>
 </resources>
