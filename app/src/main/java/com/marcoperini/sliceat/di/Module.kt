@@ -6,7 +6,7 @@ import com.marcoperini.sliceat.database.UsersRepository
 import com.marcoperini.sliceat.ui.AppNavigator
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.authentication.firstscreen.AuthenticationViewModel
-import com.marcoperini.sliceat.ui.authentication.signIn.SignInViewModel
+import com.marcoperini.sliceat.ui.authentication.signIn.signin1.SignInViewModel
 import com.marcoperini.sliceat.ui.launch.LaunchViewModel2
 import com.marcoperini.sliceat.ui.main.MainViewModel
 import com.marcoperini.sliceat.utils.Constants.Companion.USER_DATABASE_NAME

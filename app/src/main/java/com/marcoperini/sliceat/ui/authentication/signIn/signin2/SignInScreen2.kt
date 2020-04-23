@@ -1,4 +1,4 @@
-package com.marcoperini.sliceat.ui.authentication.signIn
+package com.marcoperini.sliceat.ui.authentication.signIn.signin2
 
 import android.content.Context
 import android.content.Intent
@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
+import com.marcoperini.sliceat.ui.authentication.signIn.signin1.SignInViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 
@@ -19,7 +20,7 @@ class SignInScreen2 : AppCompatActivity() {
 
     private lateinit var insertEmail: EditText
     private lateinit var backButton: Button
-    private lateinit var continua2: Button
+    private lateinit var continua: Button
 
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, SignInScreen2::class.java)
@@ -38,14 +39,14 @@ class SignInScreen2 : AppCompatActivity() {
     private fun setupView() {
         insertEmail = findViewById(R.id.insertEmail)
         backButton = findViewById(R.id.backButton)
-        continua2 = findViewById(R.id.continua2)
+        continua = findViewById(R.id.continua)
     }
 
     private fun setOnClickListener() {
         backButton.setOnClickListener {
             navigator.goToSignInScreen1()
         }
-        continua2.setOnClickListener {
+        continua.setOnClickListener {
 //            navigator.goToSignInScreen3()
         }
     }

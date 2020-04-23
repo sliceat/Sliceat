@@ -1,4 +1,4 @@
-package com.marcoperini.sliceat.ui.authentication.signIn
+package com.marcoperini.sliceat.ui.authentication.signIn.signin1
 
 import android.content.Context
 import android.content.Intent
@@ -23,7 +23,7 @@ class SignInScreen1 : AppCompatActivity() {
     private lateinit var insertLastName: EditText
     private lateinit var user: UsersTable
     private lateinit var backButton: Button
-    private lateinit var continua1: Button
+    private lateinit var continua: Button
 
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, SignInScreen1::class.java)
@@ -44,7 +44,7 @@ class SignInScreen1 : AppCompatActivity() {
         inserFirstName = findViewById(R.id.insertName)
         insertLastName = findViewById(R.id.insertLastName)
         backButton = findViewById(R.id.backButton)
-        continua1 = findViewById(R.id.continua1)
+        continua = findViewById(R.id.continua)
     }
 
     private fun saveUser() {
@@ -53,14 +53,14 @@ class SignInScreen1 : AppCompatActivity() {
             insertLastName.text.toString(),
             "prova@gmail.com"
         )
-        signInViewModel.send(SignInEvent.Name(user))
+        signInViewModel.send(SignIn1Event.Name(user))
     }
 
     private fun setOnClickListener() {
         backButton.setOnClickListener {
             navigator.goToAuthenticationScreen()
         }
-        continua1.setOnClickListener {
+        continua.setOnClickListener {
             navigator.goToSignInScreen2()
         }
     }
@@ -69,8 +69,8 @@ class SignInScreen1 : AppCompatActivity() {
     private fun observer() {
         signInViewModel.observe(lifecycleScope) { state ->
             when (state) {
-                is SignInState.CheckUserField -> validateInputData()
-                SignInState.SaveUser -> TODO()
+                is SignIn1State.CheckUserField -> validateInputData()
+                SignIn1State.SaveUser -> TODO()
             }.exhaustive
 
         }

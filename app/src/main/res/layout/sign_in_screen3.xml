@@ -16,40 +16,50 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/page_two"
+        android:id="@+id/page_three"
         style="@style/title"
         android:layout_margin="16dp"
-        android:text="@string/page_two"
+        android:text="@string/page_three"
         app:layout_constraintBottom_toBottomOf="@id/backButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/backButton" />
 
     <TextView
-        android:id="@+id/your_email"
+        android:id="@+id/your_password"
         style="@style/title"
         android:layout_margin="16dp"
-        android:text="@string/your_email"
+        android:text="@string/your_password"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/backButton" />
 
     <TextView
-        android:id="@+id/never_sell"
+        android:id="@+id/choise_password"
         style="@style/text"
         android:layout_margin="16dp"
-        android:text="@string/never_sell"
+        android:text="@string/choise_password"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/your_email" />
+        app:layout_constraintTop_toBottomOf="@id/your_password" />
 
     <EditText
-        android:id="@+id/insertEmail"
+        android:id="@+id/insertPassword"
         style="@style/title"
         android:layout_margin="16dp"
         android:background="@null"
-        android:hint="@string/email"
+        android:hint="@string/password"
         android:textColor="@color/graySoft"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/never_sell" />
+        app:layout_constraintTop_toBottomOf="@id/choise_password" />
+
+    <EditText
+        android:id="@+id/repeatPassword"
+        style="@style/title"
+        android:layout_margin="16dp"
+        android:background="@null"
+        android:hint="@string/repeatPassword"
+        android:textColor="@color/graySoft"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/insertPassword" />
 
     <Button
         android:id="@+id/continua"
@@ -59,36 +69,37 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/insertEmail" />
+        app:layout_constraintTop_toBottomOf="@id/repeatPassword" />
 
     <TextView
-        android:id="@+id/sliceat_is_in_verona"
+        android:id="@+id/sliceat_is_in_firenze"
         style="@style/textTitle"
         android:layout_margin="16dp"
         android:elevation="1dp"
-        android:text="@string/sliceat_is_in_verona"
-        app:layout_constraintEnd_toEndOf="@id/verona"
-        app:layout_constraintStart_toStartOf="@id/verona"
-        app:layout_constraintTop_toTopOf="@id/verona" />
+        android:text="@string/sliceat_is_in_firenze"
+        app:layout_constraintEnd_toEndOf="@id/firenze"
+        app:layout_constraintStart_toStartOf="@id/firenze"
+        app:layout_constraintTop_toTopOf="@id/firenze" />
 
     <TextView
-        android:id="@+id/moodMusic"
+        android:id="@+id/intolleranze"
         style="@style/textTitle"
         android:elevation="1dp"
-        android:text="@string/mood_music"
+        android:text="@string/intolleranze"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/sliceat_is_in_verona"
-        app:layout_constraintStart_toStartOf="@id/sliceat_is_in_verona"
-        app:layout_constraintTop_toBottomOf="@id/sliceat_is_in_verona" />
+        app:layout_constraintEnd_toEndOf="@id/sliceat_is_in_firenze"
+        app:layout_constraintStart_toStartOf="@id/sliceat_is_in_firenze"
+        app:layout_constraintTop_toBottomOf="@id/sliceat_is_in_firenze" />
 
     <ImageView
-        android:id="@+id/verona"
+        android:id="@+id/firenze"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/verona_sliceat"
+        android:background="@drawable/firenze_sliceat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

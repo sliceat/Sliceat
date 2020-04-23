@@ -44,4 +44,10 @@
     <string name="your_email">La tua e-mail?</string>
     <string name="never_sell">Non venderemo la tua e-mail per\npubblicità.</string>
     <string name="page_two">2/5</string>
+    <string name="page_three">3/5</string>
+    <string name="your_password">La tua password?</string>
+    <string name="choise_password">Scegli almeno una lettere maiuscola e\nun carattere speciale, ad esempio (-!%$).</string>
+    <string name="repeatPassword">Ripeti password</string>
+    <string name="sliceat_is_in_firenze">#sliceatèafirenze</string>
+    <string name="intolleranze">Sono 18 le intolleranze\no allergie che puoi\nscegliere all’interno dei filtri.</string>
 </resources>
