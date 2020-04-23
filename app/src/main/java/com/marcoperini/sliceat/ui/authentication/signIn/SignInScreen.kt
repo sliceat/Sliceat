@@ -2,11 +2,8 @@ package com.marcoperini.sliceat.ui.authentication.signIn
 
 import android.content.Context
 import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
-import android.text.TextUtils
 import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.marcoperini.sliceat.R
@@ -22,9 +19,7 @@ class SignInScreen : AppCompatActivity() {
     private val signInViewModel: SignInViewModel by inject()
 
     private lateinit var firstName: EditText
-    private lateinit var checkName: TextView
     private lateinit var lastName: EditText
-    private lateinit var email: EditText
     private lateinit var user: UsersTable
 
     companion object {
@@ -42,17 +37,15 @@ class SignInScreen : AppCompatActivity() {
     }
 
     private fun setupView() {
-        firstName = findViewById(R.id.first_name)
-        lastName = findViewById(R.id.last_name)
-        email = findViewById(R.id.e_mail)
-        checkName = findViewById(R.id.check_name)
+        firstName = findViewById(R.id.insertName)
+        lastName = findViewById(R.id.insertLastName)
     }
 
     private fun saveUser() {
         user = UsersTable(
             firstName.text.toString(),
             lastName.text.toString(),
-            email.text.toString()
+                    "prova@gmail.com"
         )
         signInViewModel.send(SignInEvent.Name(user))
     }
@@ -70,12 +63,11 @@ class SignInScreen : AppCompatActivity() {
 
     private fun validateInputData() {
 
-        if (TextUtils.isEmpty(firstName.text.toString())) {
-            checkName.text = "error"
-        } else {
-            checkName.text = "correct"
+//        if (TextUtils.isEmpty(firstName.text.toString())) {
+//            checkName.text = "error"
+//        } else {
+//            checkName.text = "correct"
 //            inputxt_notes.error = resources.getString(R.string.error_notes)
 //            uiHelper.showSnackBar(rootView_add_birds, resources.getString(R.string.error_notes))
-        }
     }
 }

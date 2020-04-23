@@ -18,8 +18,6 @@
     <Button
         android:id="@+id/skipButton"
         style="@style/skip_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:contentDescription="@string/skip_button"
         android:textColor="@color/orange"
@@ -31,8 +29,6 @@
     <Button
         android:id="@+id/entry"
         style="@style/skip_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:contentDescription="@string/entry"
         android:textColor="@color/orange"

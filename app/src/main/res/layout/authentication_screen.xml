@@ -26,8 +26,6 @@
 
     <TextView
         android:id="@+id/authenticationText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         style="@style/authenticationText"
         android:text="@string/authenticationText"
         android:layout_marginTop="16dp"
@@ -40,8 +38,6 @@
 
     <TextView
         android:id="@+id/authenticationTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         style="@style/authenticationTitle1"
         android:text="@string/authenticationTitle1"
         android:layout_margin="16dp"
@@ -63,8 +59,6 @@
 
     <Button
         android:id="@+id/goToMap"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:textColor="@color/graySoft"
         android:background="@android:color/transparent"
         style="@style/authenticationButton"
