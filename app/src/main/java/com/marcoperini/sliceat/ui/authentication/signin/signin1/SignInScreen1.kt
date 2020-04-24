@@ -3,8 +3,12 @@ package com.marcoperini.sliceat.ui.authentication.signin.signin1
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.text.TextUtils
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.marcoperini.sliceat.R
@@ -14,16 +18,19 @@ import com.marcoperini.sliceat.utils.exhaustive
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 
+const val DELAY_HIDE_ERROR = 2000L
 class SignInScreen1 : AppCompatActivity() {
 
     private val navigator: Navigator by inject()
     private val signIn1ViewModel: SignInViewModel by inject()
 
-    private lateinit var inserFirstName: EditText
+    private lateinit var insertFirstName: EditText
     private lateinit var insertLastName: EditText
     private lateinit var user: UsersTable
     private lateinit var backButton: Button
     private lateinit var continua: Button
+    private lateinit var nameEmpty: TextView
+    private lateinit var lastNameEmpty: TextView
 
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, SignInScreen1::class.java)
@@ -35,25 +42,17 @@ class SignInScreen1 : AppCompatActivity() {
         setContentView(R.layout.sign_in_screen1)
 
         setupView()
-        saveUser()
         setOnClickListener()
         observer()
     }
 
     private fun setupView() {
-        inserFirstName = findViewById(R.id.insertName)
+        insertFirstName = findViewById(R.id.insertName)
         insertLastName = findViewById(R.id.insertLastName)
         backButton = findViewById(R.id.backButton)
         continua = findViewById(R.id.continua)
-    }
-
-    private fun saveUser() {
-        user = UsersTable(
-            inserFirstName.text.toString(),
-            insertLastName.text.toString(),
-            "prova@gmail.com"
-        )
-        signIn1ViewModel.send(SignIn1Event.Name(user))
+        nameEmpty = findViewById(R.id.name_empty)
+        lastNameEmpty = findViewById(R.id.last_name_empty)
     }
 
     private fun setOnClickListener() {
@@ -61,8 +60,17 @@ class SignInScreen1 : AppCompatActivity() {
             navigator.goToAuthenticationScreen()
         }
         continua.setOnClickListener {
-            navigator.goToSignInScreen2()
+            saveUser()
         }
+    }
+
+    private fun saveUser() {
+        user = UsersTable(
+            insertFirstName.text.toString(),
+            insertLastName.text.toString(),
+            "prova@gmail.com"
+        )
+        signIn1ViewModel.send(SignIn1Event.Name(user))
     }
 
     @ExperimentalCoroutinesApi
@@ -70,19 +78,26 @@ class SignInScreen1 : AppCompatActivity() {
         signIn1ViewModel.observe(lifecycleScope) { state ->
             when (state) {
                 is SignIn1State.CheckUserField -> validateInputData()
-                SignIn1State.SaveUser -> TODO()
+                is SignIn1State.SaveUser -> TODO()
             }.exhaustive
 
         }
     }
 
     private fun validateInputData() {
+        if (TextUtils.isEmpty(insertFirstName.text.toString())){
+            nameEmpty.visibility = View.VISIBLE
+            Handler().postDelayed({ nameEmpty.visibility = View.GONE }, DELAY_HIDE_ERROR)
+        }
 
-//        if (TextUtils.isEmpty(firstName.text.toString())) {
-//            checkName.text = "error"
-//        } else {
-//            checkName.text = "correct"
-//            inputxt_notes.error = resources.getString(R.string.error_notes)
-//            uiHelper.showSnackBar(rootView_add_birds, resources.getString(R.string.error_notes))
+
+        else {
+            if (TextUtils.isEmpty(insertLastName.text.toString())) {
+                lastNameEmpty.visibility = View.VISIBLE
+                Handler().postDelayed({ lastNameEmpty.visibility = View.GONE }, DELAY_HIDE_ERROR)
+            } else {
+                navigator.goToSignInScreen2()
+            }
+        }
     }
 }

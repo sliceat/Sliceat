@@ -26,7 +26,7 @@ val appComponents = module {
 
 val databaseComponents = module {
     single { Room.databaseBuilder(androidContext(), UsersDatabase::class.java, USER_DATABASE_NAME).build() }
-    single { get<UsersDatabase>().userDao() }
+    single { get<UsersDatabase>().userDao() } //UsersTableDao()
     single { UsersRepository(get()) }
 }
 

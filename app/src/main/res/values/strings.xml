@@ -57,4 +57,6 @@
     <string name="invita_un_locale">Invita un locale che offre\nprodotti senza glutine.\nAiutare gli altri non è mai\nstato così semplice.</string>
     <string name="page_five">5/5</string>
     <string name="smile">Fai un bel sorriso!</string>
+    <string name="name_empty">Il campo nome è obbligatorio!</string>
+    <string name="last_name_empty">Il campo cognome è obbligatorio!</string>
 </resources>
