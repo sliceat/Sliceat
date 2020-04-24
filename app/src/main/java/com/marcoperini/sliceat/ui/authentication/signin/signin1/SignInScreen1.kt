@@ -1,4 +1,4 @@
-package com.marcoperini.sliceat.ui.authentication.signIn.signin1
+package com.marcoperini.sliceat.ui.authentication.signin.signin1
 
 import android.content.Context
 import android.content.Intent

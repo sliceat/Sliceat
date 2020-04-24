@@ -1,4 +1,4 @@
-package com.marcoperini.sliceat.ui.authentication.signIn.signin3
+package com.marcoperini.sliceat.ui.authentication.signin.signin3
 
 import androidx.lifecycle.viewModelScope
 import com.marcoperini.sliceat.database.UsersRepository

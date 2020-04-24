@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.authentication.signIn.signin2.SignInScreen2">
+    tools:context=".ui.authentication.signin.signin2.SignInScreen2">
 
     <Button
         android:id="@+id/backButton"
@@ -69,7 +69,8 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/repeatPassword" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/sliceat_is_in_firenze"
@@ -102,4 +103,3 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

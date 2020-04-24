@@ -1,4 +1,4 @@
-package com.marcoperini.sliceat.ui.authentication.signIn.signin2
+package com.marcoperini.sliceat.ui.authentication.signin.signin2
 
 import android.content.Context
 import android.content.Intent
@@ -6,10 +6,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
-import com.marcoperini.sliceat.ui.authentication.signIn.signin1.SignIn2ViewModel
+import com.marcoperini.sliceat.ui.authentication.signin.signin1.SignIn2ViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 

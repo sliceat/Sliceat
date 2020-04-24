@@ -50,4 +50,11 @@
     <string name="repeatPassword">Ripeti password</string>
     <string name="sliceat_is_in_firenze">#sliceatèafirenze</string>
     <string name="intolleranze">Sono 18 le intolleranze\no allergie che puoi\nscegliere all’interno dei filtri.</string>
+    <string name="page_four">4/5</string>
+    <string name="your_years">Quanti anni hai?</string>
+    <string name="insertData">31/08/1985</string>
+    <string name="sliceat_is_in_milano">#sliceatèamilano</string>
+    <string name="invita_un_locale">Invita un locale che offre\nprodotti senza glutine.\nAiutare gli altri non è mai\nstato così semplice.</string>
+    <string name="page_five">5/5</string>
+    <string name="smile">Fai un bel sorriso!</string>
 </resources>

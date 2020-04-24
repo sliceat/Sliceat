@@ -1,4 +1,4 @@
-package com.marcoperini.sliceat.ui.authentication.signIn.signin3
+package com.marcoperini.sliceat.ui.authentication.signin.signin3
 
 import android.content.Context
 import android.content.Intent
@@ -6,11 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import androidx.lifecycle.lifecycleScope
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
-import com.marcoperini.sliceat.ui.authentication.signIn.signin1.SignIn2ViewModel
-import com.marcoperini.sliceat.ui.authentication.signIn.signin1.SignInViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 
@@ -50,7 +47,7 @@ class SignInScreen3 : AppCompatActivity() {
             navigator.goToSignInScreen2()
         }
         continua.setOnClickListener {
-//            navigator.goToSignInScreen4()
+            navigator.goToSignInScreen4()
         }
     }
 

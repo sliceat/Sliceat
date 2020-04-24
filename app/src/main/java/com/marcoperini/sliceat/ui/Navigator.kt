@@ -6,9 +6,10 @@ import androidx.core.content.ContextCompat
 import com.marcoperini.sliceat.maps.MapsScreen
 import com.marcoperini.sliceat.ui.authentication.access.AccessScreen
 import com.marcoperini.sliceat.ui.authentication.firstscreen.FirstScreen
-import com.marcoperini.sliceat.ui.authentication.signIn.signin1.SignInScreen1
-import com.marcoperini.sliceat.ui.authentication.signIn.signin2.SignInScreen2
-import com.marcoperini.sliceat.ui.authentication.signIn.signin3.SignInScreen3
+import com.marcoperini.sliceat.ui.authentication.signin.signin4.SignInScreen4
+import com.marcoperini.sliceat.ui.authentication.signin.signin1.SignInScreen1
+import com.marcoperini.sliceat.ui.authentication.signin.signin2.SignInScreen2
+import com.marcoperini.sliceat.ui.authentication.signin.signin3.SignInScreen3
 import com.marcoperini.sliceat.ui.launch.LaunchScreen2
 import com.marcoperini.sliceat.ui.main.MainScreen
 import com.marcoperini.sliceat.ui.onboarding.OnboardingScreen
@@ -22,6 +23,7 @@ interface Navigator {
     fun goToSignInScreen1()
     fun goToSignInScreen2()
     fun goToSignInScreen3()
+    fun goToSignInScreen4()
     fun goToMap()
 }
 
@@ -61,6 +63,10 @@ class AppNavigator(private val context: Context) : Navigator {
 
     override fun goToSignInScreen3() {
         ContextCompat.startActivity(context, SignInScreen3.getIntent(context), null)
+    }
+
+    override fun goToSignInScreen4() {
+        ContextCompat.startActivity(context, SignInScreen4.getIntent(context), null)
     }
 
     override fun goToMap() {
