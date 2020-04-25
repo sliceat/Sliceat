@@ -37,6 +37,7 @@ class SignInScreen1 : AppCompatActivity() {
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
 
+    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_in_screen1)
@@ -60,7 +61,8 @@ class SignInScreen1 : AppCompatActivity() {
             navigator.goToAuthenticationScreen()
         }
         continua.setOnClickListener {
-            saveUser()
+//            saveUser()
+            validateInputData()
         }
     }
 
@@ -68,35 +70,43 @@ class SignInScreen1 : AppCompatActivity() {
         user = UsersTable(
             insertFirstName.text.toString(),
             insertLastName.text.toString(),
-            "prova@gmail.com"
+            "prova@gmail.com",
+            "noPass",
+            "31/08/1985",
+            "CL",
+            "noPhoto"
         )
-        signIn1ViewModel.send(SignIn1Event.Name(user))
+        validateInputData()
+
     }
 
     @ExperimentalCoroutinesApi
     private fun observer() {
         signIn1ViewModel.observe(lifecycleScope) { state ->
             when (state) {
-                is SignIn1State.CheckUserField -> validateInputData()
-                is SignIn1State.SaveUser -> TODO()
+//                is SignIn1State.SaveUser -> navigator.goToSignInScreen2()
+                is SignIn1State.SavedFirstAndLastName -> navigator.goToSignInScreen2()
             }.exhaustive
 
         }
     }
 
     private fun validateInputData() {
-        if (TextUtils.isEmpty(insertFirstName.text.toString())){
+        val name = insertFirstName.text.toString()
+        if (TextUtils.isEmpty(name)){
             nameEmpty.visibility = View.VISIBLE
             Handler().postDelayed({ nameEmpty.visibility = View.GONE }, DELAY_HIDE_ERROR)
         }
 
 
         else {
-            if (TextUtils.isEmpty(insertLastName.text.toString())) {
+            val lastName = insertLastName.text.toString()
+            if (TextUtils.isEmpty(lastName)) {
                 lastNameEmpty.visibility = View.VISIBLE
                 Handler().postDelayed({ lastNameEmpty.visibility = View.GONE }, DELAY_HIDE_ERROR)
             } else {
-                navigator.goToSignInScreen2()
+                signIn1ViewModel.send(SignIn1Event.SaveFirstAndLastName(name, lastName))
+//                signIn1ViewModel.send(SignIn1Event.SaveUser(user))
             }
         }
     }

@@ -14,10 +14,12 @@ class Constants {
         //Database
         const val TABLE_NAME : String = "UserTable"
         const val USER_DATABASE_NAME : String = "Users.db"
-        const val FIRST_NAME : String = "firstName"
-        const val LAST_NAME : String = "lastName"
-        const val E_MAIL : String = "email"
-        const val PASSWORD : String = "password"
-        const val GENDER : String = "gender"
+        const val NOME : String = "Nome"
+        const val COGNOME : String = "Cognome"
+        const val E_MAIL : String = "Email"
+        const val PASSWORD : String = "Password"
+        const val DATA_DI_NASCITA: String = "DataDiNascita"
+        const val REGISTRAZIONE: String = "Registrazione"
+        const val PERCORSO_FOTO : String = "PercorsoFoto"
     }
 }

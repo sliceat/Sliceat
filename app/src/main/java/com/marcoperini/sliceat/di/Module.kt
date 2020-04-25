@@ -45,6 +45,6 @@ val viewModels = module {
     }
 
     viewModel {
-        SignInViewModel(repository = get())
+        SignInViewModel(repository = get(), prefs = get())
     }
 }
