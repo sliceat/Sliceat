@@ -18,7 +18,7 @@ sealed class SignIn1State {
 //    object SaveUser : SignIn1State()
 }
 
-class SignInViewModel(private val repository: UsersRepository, val prefs: KeyValueStorage) : BaseViewModel<SignIn1State, SignIn1Event>() {
+class SignIn1ViewModel(private val repository: UsersRepository, val prefs: KeyValueStorage) : BaseViewModel<SignIn1State, SignIn1Event>() {
 
     override fun send(event: SignIn1Event) {
         when (event) {

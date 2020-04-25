@@ -6,7 +6,8 @@ import com.marcoperini.sliceat.database.UsersRepository
 import com.marcoperini.sliceat.ui.AppNavigator
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.authentication.firstscreen.AuthenticationViewModel
-import com.marcoperini.sliceat.ui.authentication.signin.signin1.SignInViewModel
+import com.marcoperini.sliceat.ui.authentication.signin.signin1.SignIn1ViewModel
+import com.marcoperini.sliceat.ui.authentication.signin.signin2.SignIn2ViewModel
 import com.marcoperini.sliceat.ui.launch.LaunchViewModel2
 import com.marcoperini.sliceat.ui.main.MainViewModel
 import com.marcoperini.sliceat.utils.Constants.Companion.USER_DATABASE_NAME
@@ -32,19 +33,13 @@ val databaseComponents = module {
 
 val viewModels = module {
 
-    viewModel {
-        LaunchViewModel2(prefs = get())
-    }
+    viewModel { LaunchViewModel2(prefs = get()) }
 
-    viewModel {
-        AuthenticationViewModel()
-    }
+    viewModel { AuthenticationViewModel() }
 
-    viewModel {
-        MainViewModel()
-    }
+    viewModel { MainViewModel() }
 
-    viewModel {
-        SignInViewModel(repository = get(), prefs = get())
-    }
+    viewModel { SignIn1ViewModel(repository = get(), prefs = get()) }
+
+    viewModel { SignIn2ViewModel(prefs = get()) }
 }

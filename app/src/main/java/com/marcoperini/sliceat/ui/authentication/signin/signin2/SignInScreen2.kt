@@ -14,9 +14,6 @@ import androidx.lifecycle.lifecycleScope
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.authentication.signin.signin1.DELAY_HIDE_ERROR
-import com.marcoperini.sliceat.ui.authentication.signin.signin1.SignIn2Event
-import com.marcoperini.sliceat.ui.authentication.signin.signin1.SignIn2State
-import com.marcoperini.sliceat.ui.authentication.signin.signin1.SignIn2ViewModel
 import com.marcoperini.sliceat.utils.exhaustive
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
@@ -29,7 +26,8 @@ class SignInScreen2 : AppCompatActivity() {
     private lateinit var insertEmail: EditText
     private lateinit var backButton: Button
     private lateinit var continua: Button
-    private lateinit var emailWrong: TextView
+    private lateinit var wrongEmail: TextView
+    private lateinit var emptyEmail: TextView
 
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, SignInScreen2::class.java)
@@ -50,7 +48,8 @@ class SignInScreen2 : AppCompatActivity() {
         insertEmail = findViewById(R.id.insertEmail)
         backButton = findViewById(R.id.backButton)
         continua = findViewById(R.id.continua)
-        emailWrong = findViewById(R.id.email_wrong)
+        wrongEmail = findViewById(R.id.wrong_email)
+        emptyEmail = findViewById(R.id.empty_email)
     }
 
     private fun setOnClickListener() {
@@ -75,11 +74,14 @@ class SignInScreen2 : AppCompatActivity() {
     private fun validateInputData() {
         val email = insertEmail.text.toString()
         if (TextUtils.isEmpty(email)) {
-            emailWrong.visibility = View.VISIBLE
-            Handler().postDelayed({ emailWrong.visibility = View.GONE }, DELAY_HIDE_ERROR)
-        } else {
-            signIn2ViewModel.send(SignIn2Event.SaveEmail(email))
+            emptyEmail.visibility = View.VISIBLE
+            Handler().postDelayed({ emptyEmail.visibility = View.GONE }, DELAY_HIDE_ERROR)
+            if (!email.contains("@")) {
+                wrongEmail.visibility = View.VISIBLE
+                Handler().postDelayed({ wrongEmail.visibility = View.GONE }, DELAY_HIDE_ERROR)
+            } else {
+                signIn2ViewModel.send(SignIn2Event.SaveEmail(email))
+            }
         }
     }
 }
-

@@ -22,7 +22,7 @@ const val DELAY_HIDE_ERROR = 2000L
 class SignInScreen1 : AppCompatActivity() {
 
     private val navigator: Navigator by inject()
-    private val signIn1ViewModel: SignInViewModel by inject()
+    private val signIn1ViewModel: SignIn1ViewModel by inject()
 
     private lateinit var insertFirstName: EditText
     private lateinit var insertLastName: EditText

@@ -59,5 +59,6 @@
     <string name="smile">Fai un bel sorriso!</string>
     <string name="name_empty">Il campo nome è obbligatorio!</string>
     <string name="last_name_empty">Il campo cognome è obbligatorio!</string>
-    <string name="email_wrong">E-mail errata!</string>
+    <string name="empty_email">Il campo E-mail è obbligatorio!</string>
+    <string name="wrong_email">E-mail errata!</string>
 </resources>
