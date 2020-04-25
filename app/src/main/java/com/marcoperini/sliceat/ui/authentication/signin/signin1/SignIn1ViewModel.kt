@@ -1,12 +1,9 @@
 package com.marcoperini.sliceat.ui.authentication.signin.signin1
 
-import androidx.lifecycle.viewModelScope
 import com.marcoperini.sliceat.database.UsersRepository
-import com.marcoperini.sliceat.database.UsersTable
 import com.marcoperini.sliceat.utils.BaseViewModel
 import com.marcoperini.sliceat.utils.exhaustive
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
-import kotlinx.coroutines.launch
 
 sealed class SignIn1Event {
     data class SaveFirstAndLastName(val firstName: String, val lastName: String) : SignIn1Event()
