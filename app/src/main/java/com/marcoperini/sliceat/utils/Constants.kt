@@ -23,6 +23,6 @@ class Constants {
         const val PERCORSO_FOTO : String = "PercorsoFoto"
 
         //password Rule
-        const val PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,24}$"
+        const val PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!£])(?=\\S+$).{4,}$"
     }
 }

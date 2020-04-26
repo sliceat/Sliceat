@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.textfield.TextInputLayout
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.authentication.signin.signin1.DELAY_HIDE_ERROR
@@ -78,7 +79,7 @@ class SignInScreen3 : AppCompatActivity() {
     private fun validateInputData() {
         val password = insertPassword.text.toString()
         Timber.d("password %s" , password.length)
-        if (password.length < 8 && !isValidPassword(password)) {
+        if (password.length < 8 || !isValidPassword(password)) {
             specialCharacter.visibility = View.VISIBLE
             Handler().postDelayed({ specialCharacter.visibility = View.GONE }, DELAY_HIDE_ERROR)
         } else {

@@ -41,49 +41,75 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/your_password" />
 
-    <EditText
-        android:id="@+id/insertPassword"
-        style="@style/title"
-        android:layout_margin="16dp"
-        android:background="@null"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:textColorHint="@color/graySoft"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/insertPasswordLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/choise_password" />
+        app:layout_constraintTop_toBottomOf="@id/choise_password"
+        app:passwordToggleEnabled="true">
 
-    <EditText
-        android:id="@+id/repeatPassword"
-        style="@style/title"
-        android:layout_margin="16dp"
-        android:background="@null"
-        android:hint="@string/repeatPassword"
-        android:inputType="textPassword"
-        android:textColorHint="@color/graySoft"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/insertPassword"
+            style="@style/title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/graySoft"
+            android:background="@null"
+            android:hint="@string/password"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/insertRepeatPasswordLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/insertPassword" />
+        app:layout_constraintTop_toBottomOf="@id/insertPasswordLayout"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/repeatPassword"
+            style="@style/title"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/graySoft"
+            android:hint="@string/repeatPassword"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/spacial_character"
         style="@style/text"
-        android:visibility="gone"
-        android:textColor="@color/orange"
         android:layout_margin="16dp"
         android:text="@string/spacial_character"
+        android:textColor="@color/orange"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/insertRepeatPasswordLayout"
+        app:layout_constraintBottom_toTopOf="@id/continua"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/continua" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/same_password"
         style="@style/text"
-        android:visibility="gone"
-        android:textColor="@color/orange"
         android:layout_margin="16dp"
         android:text="@string/same_password"
+        android:textColor="@color/orange"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/insertRepeatPasswordLayout"
+        app:layout_constraintBottom_toTopOf="@id/continua"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/continua" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/continua"
@@ -91,9 +117,9 @@
         android:backgroundTint="@color/graySoft"
         android:text="@string/continua"
         android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
