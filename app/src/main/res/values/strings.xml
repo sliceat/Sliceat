@@ -61,4 +61,6 @@
     <string name="last_name_empty">Il campo cognome è obbligatorio!</string>
     <string name="empty_email">Il campo E-mail è obbligatorio!</string>
     <string name="wrong_email">E-mail errata!</string>
+    <string name="spacial_character">La password non risponde a tutti\ni requisiti richiesti!</string>
+    <string name="same_password">Le password non coincidono!</string>
 </resources>

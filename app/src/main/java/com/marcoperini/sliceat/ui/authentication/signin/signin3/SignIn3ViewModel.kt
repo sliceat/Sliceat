@@ -1,34 +1,28 @@
 package com.marcoperini.sliceat.ui.authentication.signin.signin3
 
-import androidx.lifecycle.viewModelScope
-import com.marcoperini.sliceat.database.UsersRepository
-import com.marcoperini.sliceat.database.UsersTable
 import com.marcoperini.sliceat.utils.BaseViewModel
 import com.marcoperini.sliceat.utils.exhaustive
-import kotlinx.coroutines.launch
+import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 
 sealed class SignIn3Event {
-    data class Name(val user: UsersTable) : SignIn3Event()
+    data class SavePassword(val password: String) : SignIn3Event()
 
 }
 
 sealed class SignIn3State {
-    object CheckUserField : SignIn3State()
-    object SaveUser : SignIn3State()
+    object SavedPassword : SignIn3State()
 }
 
-class SignIn3ViewModel(private val repository: UsersRepository) : BaseViewModel<SignIn3State, SignIn3Event>() {
+class SignIn3ViewModel(private val prefs: KeyValueStorage) : BaseViewModel<SignIn3State, SignIn3Event>() {
 
     override fun send(event: SignIn3Event) {
         when (event) {
-            is SignIn3Event.Name -> loadName(event.user)
+            is SignIn3Event.SavePassword -> savePassword(event.password)
         }.exhaustive
     }
 
-    private fun loadName(user: UsersTable) {
-        viewModelScope.launch {
-            repository.insert(user)
-        }
-        post(SignIn3State.CheckUserField)
+    private fun savePassword(email: String) {
+        prefs.putString("save_email", email)
+        post(SignIn3State.SavedPassword)
     }
 }

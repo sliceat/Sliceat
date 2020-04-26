@@ -21,5 +21,8 @@ class Constants {
         const val DATA_DI_NASCITA: String = "DataDiNascita"
         const val REGISTRAZIONE: String = "Registrazione"
         const val PERCORSO_FOTO : String = "PercorsoFoto"
+
+        //password Rule
+        const val PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,24}$"
     }
 }

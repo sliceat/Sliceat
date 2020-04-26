@@ -19,6 +19,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 
 const val DELAY_HIDE_ERROR = 2000L
+
 class SignInScreen1 : AppCompatActivity() {
 
     private val navigator: Navigator by inject()
@@ -93,13 +94,10 @@ class SignInScreen1 : AppCompatActivity() {
 
     private fun validateInputData() {
         val name = insertFirstName.text.toString()
-        if (TextUtils.isEmpty(name)){
+        if (TextUtils.isEmpty(name)) {
             nameEmpty.visibility = View.VISIBLE
             Handler().postDelayed({ nameEmpty.visibility = View.GONE }, DELAY_HIDE_ERROR)
-        }
-
-
-        else {
+        } else {
             val lastName = insertLastName.text.toString()
             if (TextUtils.isEmpty(lastName)) {
                 lastNameEmpty.visibility = View.VISIBLE

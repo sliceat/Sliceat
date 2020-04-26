@@ -76,12 +76,11 @@ class SignInScreen2 : AppCompatActivity() {
         if (TextUtils.isEmpty(email)) {
             emptyEmail.visibility = View.VISIBLE
             Handler().postDelayed({ emptyEmail.visibility = View.GONE }, DELAY_HIDE_ERROR)
-            if (!email.contains("@")) {
-                wrongEmail.visibility = View.VISIBLE
-                Handler().postDelayed({ wrongEmail.visibility = View.GONE }, DELAY_HIDE_ERROR)
-            } else {
-                signIn2ViewModel.send(SignIn2Event.SaveEmail(email))
-            }
+        } else if (!email.contains("@")) {
+            wrongEmail.visibility = View.VISIBLE
+            Handler().postDelayed({ wrongEmail.visibility = View.GONE }, DELAY_HIDE_ERROR)
+        } else {
+            signIn2ViewModel.send(SignIn2Event.SaveEmail(email))
         }
     }
 }
