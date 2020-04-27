@@ -3,6 +3,11 @@ package com.marcoperini.sliceat.utils
 class Constants {
 
     companion object {
+
+        //Camera
+        const val PICK_PHOTO_REQUEST = 2
+        const val TAKE_PHOTO_REQUEST = 1
+
         // Launch Screen
         const val DELAY_START_SCREEN = 1500
 
@@ -23,6 +28,6 @@ class Constants {
         const val PERCORSO_FOTO : String = "PercorsoFoto"
 
         //password Rule
-        const val PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!£])(?=\\S+$).{4,}$"
+        const val PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$%^&+=!£])(?=\\S+$).{4,}$"
     }
 }

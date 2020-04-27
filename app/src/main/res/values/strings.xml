@@ -63,4 +63,8 @@
     <string name="wrong_email">E-mail errata!</string>
     <string name="spacial_character">La password non soddisfa tutti i requisiti!</string>
     <string name="same_password">Le password non coincidono!</string>
+    <string name="take_or_select">Scatta o\n Scegli</string>
+    <string name="choise_photo_gallery">Scegli se scattare una foto o\nrecuperarla dalla galleria</string>
+    <string name="take_photo">Scatta una foto</string>
+    <string name="choise_photo">Scegli foto</string>
 </resources>

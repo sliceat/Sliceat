@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
+import com.marcoperini.sliceat.ui.authentication.signin.signin5.SignInScreen5
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 
@@ -44,7 +45,7 @@ class SignInScreen4 : AppCompatActivity() {
             navigator.goToSignInScreen3()
         }
         continua.setOnClickListener {
-//            navigator.goToSignInScreen4()
+            navigator.goToSignInScreen5()
         }
     }
 

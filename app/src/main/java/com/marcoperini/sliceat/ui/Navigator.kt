@@ -10,6 +10,7 @@ import com.marcoperini.sliceat.ui.authentication.signin.signin4.SignInScreen4
 import com.marcoperini.sliceat.ui.authentication.signin.signin1.SignInScreen1
 import com.marcoperini.sliceat.ui.authentication.signin.signin2.SignInScreen2
 import com.marcoperini.sliceat.ui.authentication.signin.signin3.SignInScreen3
+import com.marcoperini.sliceat.ui.authentication.signin.signin5.SignInScreen5
 import com.marcoperini.sliceat.ui.launch.LaunchScreen2
 import com.marcoperini.sliceat.ui.main.MainScreen
 import com.marcoperini.sliceat.ui.onboarding.OnboardingScreen
@@ -24,6 +25,7 @@ interface Navigator {
     fun goToSignInScreen2()
     fun goToSignInScreen3()
     fun goToSignInScreen4()
+    fun goToSignInScreen5()
     fun goToMap()
 }
 
@@ -67,6 +69,10 @@ class AppNavigator(private val context: Context) : Navigator {
 
     override fun goToSignInScreen4() {
         ContextCompat.startActivity(context, SignInScreen4.getIntent(context), null)
+    }
+
+    override fun goToSignInScreen5() {
+        ContextCompat.startActivity(context, SignInScreen5.getIntent(context), null)
     }
 
     override fun goToMap() {
