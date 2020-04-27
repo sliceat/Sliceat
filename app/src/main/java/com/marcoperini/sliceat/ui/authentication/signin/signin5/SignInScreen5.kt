@@ -9,10 +9,12 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -32,6 +34,7 @@ class SignInScreen5 : AppCompatActivity() {
     private lateinit var backButton: Button
     private lateinit var takeAPhoto: Button
     private lateinit var photo: ImageView
+    private lateinit var cardPhoto: CardView
 
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, SignInScreen5::class.java)
@@ -51,6 +54,7 @@ class SignInScreen5 : AppCompatActivity() {
         backButton = findViewById(R.id.backButton)
         takeAPhoto = findViewById(R.id.take_a_photo)
         photo = findViewById(R.id.photo)
+        cardPhoto = findViewById(R.id.card_photo)
     }
 
     private fun setOnClickListener() {
@@ -97,15 +101,6 @@ class SignInScreen5 : AppCompatActivity() {
                     }
                 }
 
-                /**
-                 * Method called whenever Android asks the application to inform the user of the need for the
-                 * requested permissions. The request process won't continue until the token is properly used
-                 *
-                 * @param permissions The permissions that has been requested. Collections of values found in
-                 * [android.Manifest.permission]
-                 * @param token Token used to continue or cancel the permission request process. The permission
-                 * request process will remain blocked until one of the token methods is called
-                 */
                 override fun onPermissionRationaleShouldBeShown(
                     permissions: MutableList<com.karumi.dexter.listener.PermissionRequest>?,
                     token: PermissionToken?
@@ -151,11 +146,15 @@ class SignInScreen5 : AppCompatActivity() {
             //photo from camera
             //display the photo on the  photo
             photo.setImageURI(fileUri)
+            cardPhoto.visibility = View.VISIBLE
+            takeAPhoto.visibility = View.GONE
         }else if(resultCode == Activity.RESULT_OK
             && requestCode == Constants.PICK_PHOTO_REQUEST){
             //photo from gallery
             fileUri = data?.data
             photo.setImageURI(fileUri)
+            cardPhoto.visibility = View.VISIBLE
+            takeAPhoto.visibility = View.GONE
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
