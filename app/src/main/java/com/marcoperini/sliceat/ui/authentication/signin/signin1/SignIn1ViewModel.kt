@@ -3,6 +3,8 @@ package com.marcoperini.sliceat.ui.authentication.signin.signin1
 import com.marcoperini.sliceat.database.UsersRepository
 import com.marcoperini.sliceat.utils.BaseViewModel
 import com.marcoperini.sliceat.utils.exhaustive
+import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_FIRST_NAME
+import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_LAST_NAME
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 
 sealed class SignIn1Event {
@@ -30,8 +32,8 @@ class SignIn1ViewModel(private val repository: UsersRepository, val prefs: KeyVa
     }
 
     private fun saveFirstAndLAstName(firstName: String, lastName: String) {
-        prefs.putString("save_first_name", firstName)
-        prefs.putString("save_last_name", lastName)
+        prefs.putString(SAVE_FIRST_NAME, firstName)
+        prefs.putString(SAVE_LAST_NAME, lastName)
 
 //        viewModelScope.launch {
 //            repository.insert(user)

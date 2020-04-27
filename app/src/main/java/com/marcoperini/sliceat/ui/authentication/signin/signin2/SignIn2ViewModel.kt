@@ -2,6 +2,7 @@ package com.marcoperini.sliceat.ui.authentication.signin.signin2
 
 import com.marcoperini.sliceat.utils.BaseViewModel
 import com.marcoperini.sliceat.utils.exhaustive
+import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_E_MAIL
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 
 sealed class SignIn2Event {
@@ -22,7 +23,7 @@ class SignIn2ViewModel(private val prefs: KeyValueStorage) : BaseViewModel<SignI
     }
 
     private fun saveEmail(email: String) {
-        prefs.putString("save_email", email)
+        prefs.putString(SAVE_E_MAIL, email)
         post(SignIn2State.SavedEmail)
     }
 }

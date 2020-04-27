@@ -8,12 +8,10 @@ import com.marcoperini.sliceat.utils.exhaustive
 import kotlinx.coroutines.launch
 
 sealed class SignIn5Event {
-    data class Name(val user: UsersTable) : SignIn5Event()
-
+    data class User(val user: UsersTable) : SignIn5Event()
 }
 
 sealed class SignIn5State {
-    object CheckUserField : SignIn5State()
     object SaveUser : SignIn5State()
 }
 
@@ -21,7 +19,7 @@ class SignIn5ViewModel(private val repository: UsersRepository) : BaseViewModel<
 
     override fun send(event: SignIn5Event) {
         when (event) {
-            is SignIn5Event.Name -> loadName(event.user)
+            is SignIn5Event.User -> loadName(event.user)
         }.exhaustive
     }
 
@@ -29,6 +27,6 @@ class SignIn5ViewModel(private val repository: UsersRepository) : BaseViewModel<
         viewModelScope.launch {
             repository.insert(user)
         }
-        post(SignIn5State.CheckUserField)
+        post(SignIn5State.SaveUser)
     }
 }

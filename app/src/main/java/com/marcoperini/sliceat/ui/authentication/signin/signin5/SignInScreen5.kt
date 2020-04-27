@@ -15,13 +15,22 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.lifecycleScope
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.marcoperini.sliceat.R
+import com.marcoperini.sliceat.database.UsersTable
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.utils.Constants
+import com.marcoperini.sliceat.utils.exhaustive
+import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_E_MAIL
+import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_FIRST_NAME
+import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_LAST_NAME
+import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_PASSWORD
+import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_URI_PHOTO
+import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 
@@ -29,12 +38,14 @@ class SignInScreen5 : AppCompatActivity() {
 
     private val navigator: Navigator by inject()
     private val signIn5ViewModel: SignIn5ViewModel by inject()
-    private var fileUri: Uri? = null
+    private val prefs: KeyValueStorage by inject()
 
+    private var fileUri: Uri? = null
     private lateinit var backButton: Button
     private lateinit var takeAPhoto: Button
     private lateinit var photo: ImageView
     private lateinit var cardPhoto: CardView
+    private lateinit var access: Button
 
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, SignInScreen5::class.java)
@@ -45,6 +56,7 @@ class SignInScreen5 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_in_screen5)
 
+        prefs.putString(SAVE_URI_PHOTO, " ")
         setupView()
         setOnClickListener()
         observer()
@@ -55,6 +67,7 @@ class SignInScreen5 : AppCompatActivity() {
         takeAPhoto = findViewById(R.id.take_a_photo)
         photo = findViewById(R.id.photo)
         cardPhoto = findViewById(R.id.card_photo)
+        access = findViewById(R.id.access)
     }
 
     private fun setOnClickListener() {
@@ -66,15 +79,26 @@ class SignInScreen5 : AppCompatActivity() {
 //            askCameraPermission()
 //            navigator.goToSignInScreen4()
         }
+        access.setOnClickListener {
+            signIn5ViewModel.send(SignIn5Event.User(UsersTable(
+                prefs.getString(SAVE_FIRST_NAME, ""),
+                prefs.getString(SAVE_LAST_NAME, ""),
+                prefs.getString(SAVE_E_MAIL, ""),
+                prefs.getString(SAVE_PASSWORD, ""),
+                "11/11/1111",
+                "CL",
+                prefs.getString(SAVE_URI_PHOTO, "")
+            )))
+        }
     }
 
     @ExperimentalCoroutinesApi
     private fun observer() {
-//        signIn3ViewModel.observe(lifecycleScope) { state ->
-//            when (state) {
-//
-//            }.exhaustive
-//        }
+        signIn5ViewModel.observe(lifecycleScope) { state ->
+            when (state) {
+                SignIn5State.SaveUser -> navigator.goToMainScreen()
+            }.exhaustive
+        }
     }
 
     //pick a photo from gallery
@@ -146,12 +170,14 @@ class SignInScreen5 : AppCompatActivity() {
             //photo from camera
             //display the photo on the  photo
             photo.setImageURI(fileUri)
+            prefs.putString(SAVE_URI_PHOTO, fileUri.toString())
             cardPhoto.visibility = View.VISIBLE
             takeAPhoto.visibility = View.GONE
         }else if(resultCode == Activity.RESULT_OK
             && requestCode == Constants.PICK_PHOTO_REQUEST){
             //photo from gallery
             fileUri = data?.data
+            prefs.putString(SAVE_URI_PHOTO, fileUri.toString())
             photo.setImageURI(fileUri)
             cardPhoto.visibility = View.VISIBLE
             takeAPhoto.visibility = View.GONE

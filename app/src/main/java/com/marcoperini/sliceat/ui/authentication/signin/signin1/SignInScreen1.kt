@@ -85,7 +85,6 @@ class SignInScreen1 : AppCompatActivity() {
     private fun observer() {
         signIn1ViewModel.observe(lifecycleScope) { state ->
             when (state) {
-//                is SignIn1State.SaveUser -> navigator.goToSignInScreen2()
                 is SignIn1State.SavedFirstAndLastName -> navigator.goToSignInScreen2()
             }.exhaustive
 

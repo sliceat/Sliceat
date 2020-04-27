@@ -21,8 +21,8 @@ class SignIn3ViewModel(private val prefs: KeyValueStorage) : BaseViewModel<SignI
         }.exhaustive
     }
 
-    private fun savePassword(email: String) {
-        prefs.putString("save_email", email)
+    private fun savePassword(password: String) {
+        prefs.putString("save_password", password)
         post(SignIn3State.SavedPassword)
     }
 }

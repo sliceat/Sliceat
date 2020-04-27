@@ -18,13 +18,13 @@ VALUES ('\(nomeVar)', '\(cognomeVar)', '\(emailVar)', '\(passwordVar)', '\(dataN
 */
 @Entity(tableName = TABLE_NAME)
 data class UsersTable(
-    @ColumnInfo(name = NOME) var firstName: String,
-    @ColumnInfo(name = COGNOME) var lastName: String,
-    @ColumnInfo(name = E_MAIL) var email: String,
-    @ColumnInfo(name = PASSWORD) val password: String,
-    @ColumnInfo(name = DATA_DI_NASCITA) val dataOfBirth: String,
-    @ColumnInfo(name = REGISTRAZIONE) val typeAuthentication: String,
-    @ColumnInfo(name = PERCORSO_FOTO) val urlFoto: String
+    @ColumnInfo(name = NOME) var firstName: String?,
+    @ColumnInfo(name = COGNOME) var lastName: String?,
+    @ColumnInfo(name = E_MAIL) var email: String?,
+    @ColumnInfo(name = PASSWORD) val password: String?,
+    @ColumnInfo(name = DATA_DI_NASCITA) val dataOfBirth: String?,
+    @ColumnInfo(name = REGISTRAZIONE) val typeAuthentication: String?,
+    @ColumnInfo(name = PERCORSO_FOTO) val urlFoto: String?
 ) {
     @PrimaryKey(autoGenerate = true) var id: Int = 0
 }
