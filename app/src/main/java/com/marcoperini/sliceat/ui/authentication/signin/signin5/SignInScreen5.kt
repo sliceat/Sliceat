@@ -25,6 +25,7 @@ import com.marcoperini.sliceat.database.UsersTable
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.utils.Constants
 import com.marcoperini.sliceat.utils.exhaustive
+import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_DATA
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_E_MAIL
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_FIRST_NAME
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_LAST_NAME
@@ -76,8 +77,6 @@ class SignInScreen5 : AppCompatActivity() {
         }
         takeAPhoto.setOnClickListener {
             alertForPhoto()
-//            askCameraPermission()
-//            navigator.goToSignInScreen4()
         }
         access.setOnClickListener {
             signIn5ViewModel.send(SignIn5Event.User(UsersTable(
@@ -85,7 +84,7 @@ class SignInScreen5 : AppCompatActivity() {
                 prefs.getString(SAVE_LAST_NAME, ""),
                 prefs.getString(SAVE_E_MAIL, ""),
                 prefs.getString(SAVE_PASSWORD, ""),
-                "11/11/1111",
+                prefs.getString(SAVE_DATA, ""),
                 "CL",
                 prefs.getString(SAVE_URI_PHOTO, "")
             )))
@@ -145,15 +144,12 @@ class SignInScreen5 : AppCompatActivity() {
                         .show()
                 }
             }).check()
-
     }
 
     private fun launchCamera() {
         val values = ContentValues(1)
         values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpg")
-        fileUri = contentResolver
-            .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                values)
+        fileUri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if(intent.resolveActivity(packageManager) != null) {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri)

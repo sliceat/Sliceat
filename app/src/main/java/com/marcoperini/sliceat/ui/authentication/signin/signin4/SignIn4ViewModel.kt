@@ -9,27 +9,24 @@ import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import kotlinx.coroutines.launch
 
 sealed class SignIn4Event {
-    data class Name(val user: UsersTable) : SignIn4Event()
+    data class Data(val data: String) : SignIn4Event()
 
 }
 
 sealed class SignIn4State {
-    object CheckUserField : SignIn4State()
-    object SaveUser : SignIn4State()
+    object SavedData : SignIn4State()
 }
 
 class SignIn4ViewModel(private val prefs: KeyValueStorage) : BaseViewModel<SignIn4State, SignIn4Event>() {
 
     override fun send(event: SignIn4Event) {
         when (event) {
-            is SignIn4Event.Name -> loadName(event.user)
+            is SignIn4Event.Data -> loadName(event.data)
         }.exhaustive
     }
 
-    private fun loadName(user: UsersTable) {
-//        viewModelScope.launch {
-//            repository.insert(user)
-//        }
-        post(SignIn4State.CheckUserField)
+    private fun loadName(data: String) {
+        prefs.putString("save_password", data)
+        post(SignIn4State.SavedData)
     }
 }

@@ -38,6 +38,7 @@
         style="@style/title"
         android:layout_margin="16dp"
         android:background="@null"
+        android:focusable="false"
         android:hint="@string/insertData"
         android:textColorHint="@color/graySoft"
         app:layout_constraintStart_toStartOf="parent"

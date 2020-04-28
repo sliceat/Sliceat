@@ -10,6 +10,7 @@ class Key {
         const val SAVE_LAST_NAME = "save_last_name"
         const val SAVE_E_MAIL = "save_email"
         const val SAVE_PASSWORD = "save_password"
+        const val SAVE_DATA = "save_data"
         const val SAVE_URI_PHOTO = "save_uri_photo"
 
     }
