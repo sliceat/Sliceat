@@ -10,13 +10,13 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
+import com.android.volley.VolleyLog
+import com.android.volley.toolbox.JsonObjectRequest
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.database.UsersTable
 import com.marcoperini.sliceat.ui.Navigator
@@ -29,7 +29,7 @@ import com.marcoperini.sliceat.utils.Constants.Companion.DATA_REGISTRAZIONE
 import com.marcoperini.sliceat.utils.Constants.Companion.E_MAIL
 import com.marcoperini.sliceat.utils.Constants.Companion.NOME
 import com.marcoperini.sliceat.utils.Constants.Companion.PASSWORD
-import com.marcoperini.sliceat.utils.Constants.Companion.REGISTRAZIONE
+import com.marcoperini.sliceat.utils.Constants.Companion.TIPO_REGISTRAZIONE
 import com.marcoperini.sliceat.utils.Constants.Companion.URL
 import com.marcoperini.sliceat.utils.VolleyRequest
 import com.marcoperini.sliceat.utils.exhaustive
@@ -44,6 +44,7 @@ import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.json.JSONObject
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -98,6 +99,19 @@ class SignInScreen5 : AppCompatActivity() {
             currentDateAndTime = simpleDateFormat.format(Date())
             prefs.putString(SAVE_DATA_REGISTRATION, currentDateAndTime)
 
+            val params = JSONObject()
+            params.put(NOME, prefs.getString(SAVE_FIRST_NAME, ""))
+            params.put(COGNOME, prefs.getString(SAVE_LAST_NAME, ""))
+            params.put(E_MAIL, prefs.getString(SAVE_E_MAIL, ""))
+            params.put(PASSWORD, prefs.getString(SAVE_PASSWORD, ""))
+            params.put(DATA_DI_NASCITA, prefs.getString(SAVE_DATA, ""))
+            params.put(TIPO_REGISTRAZIONE, "CL")
+            params.put(CODICE_RECUPERO, "123456")
+            params.put(DATA_REGISTRAZIONE, prefs.getString(SAVE_DATA_REGISTRATION, ""))
+            sendDataVolley(params)  {
+                // Parse the result
+            }
+
             signIn5ViewModel.send(
                 SignIn5Event.User(
                     UsersTable(
@@ -112,7 +126,6 @@ class SignInScreen5 : AppCompatActivity() {
                     )
                 )
             )
-            sendDataVolley()
         }
     }
 
@@ -193,32 +206,23 @@ class SignInScreen5 : AppCompatActivity() {
         photo.setImageURI(fileUri)
     }
 
-    private fun sendDataVolley() {
-        val request = object : StringRequest(Method.POST, URL, Response.Listener { response ->
-            // Process the json
-            try {
-                val obj = JSONObject(response)
-                Toast.makeText(applicationContext, obj.getString("ci sei riuscito!!"), Toast.LENGTH_SHORT).show()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-
-        }, Response.ErrorListener { }) {
+    private fun sendDataVolley(params: JSONObject, completionHandler: (response: JSONObject?) -> Unit) {
+        val jsonObjReq = object : JsonObjectRequest(Method.POST, URL, params,
+            Response.Listener<JSONObject> { response ->
+                Timber.i("TAG %s", "/post request OK! Response: $response")
+                completionHandler(response)
+            },
+            Response.ErrorListener { error ->
+                VolleyLog.e("TAG", "/post request fail! Error: ${error.message}")
+                completionHandler(null)
+            }) {
             @Throws(AuthFailureError::class)
-            override fun getParams(): Map<String, String> {
-                val parameters = HashMap<String, String>()
-                parameters[NOME] = prefs.getString(SAVE_LAST_NAME, " ").toString()
-                parameters[COGNOME] = prefs.getString(SAVE_LAST_NAME, "").toString()
-                parameters[E_MAIL] = prefs.getString(SAVE_E_MAIL, "").toString()
-                parameters[PASSWORD] = prefs.getString(SAVE_PASSWORD, "").toString()
-                parameters[DATA_DI_NASCITA] = prefs.getString(SAVE_DATA, "").toString()
-                parameters[REGISTRAZIONE] = "CL"
-                parameters[CODICE_RECUPERO] = "123456"
-                parameters[DATA_REGISTRAZIONE] = prefs.getString(SAVE_DATA_REGISTRATION, "").toString()
-
-                return parameters
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers.put("Content-Type", "application/json")
+                return headers
             }
         }
-        volleyRequest.addToRequestQueue(request)
+        volleyRequest.addToRequestQueue(jsonObjReq)
     }
 }

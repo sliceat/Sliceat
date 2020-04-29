@@ -10,8 +10,7 @@ import com.marcoperini.sliceat.utils.Constants.Companion.NOME
 import com.marcoperini.sliceat.utils.Constants.Companion.COGNOME
 import com.marcoperini.sliceat.utils.Constants.Companion.DATA_REGISTRAZIONE
 import com.marcoperini.sliceat.utils.Constants.Companion.PASSWORD
-import com.marcoperini.sliceat.utils.Constants.Companion.PERCORSO_FOTO
-import com.marcoperini.sliceat.utils.Constants.Companion.REGISTRAZIONE
+import com.marcoperini.sliceat.utils.Constants.Companion.TIPO_REGISTRAZIONE
 import com.marcoperini.sliceat.utils.Constants.Companion.TABLE_NAME
 
 /*(nome, cognome, email, password, datanascita,registrazione,percorsofoto,libero1,uscita,privacy )
@@ -25,7 +24,7 @@ data class UsersTable(
     @ColumnInfo(name = E_MAIL) var email: String?,
     @ColumnInfo(name = PASSWORD) val password: String?,
     @ColumnInfo(name = DATA_DI_NASCITA) val dataOfBirth: String?,
-    @ColumnInfo(name = REGISTRAZIONE) val typeAuthentication: String?,
+    @ColumnInfo(name = TIPO_REGISTRAZIONE) val typeAuthentication: String?,
     @ColumnInfo(name = CODICE_RECUPERO) val recovery_code: String?,
     @ColumnInfo(name = DATA_REGISTRAZIONE) val dateOfRegistration: String?
 ) {

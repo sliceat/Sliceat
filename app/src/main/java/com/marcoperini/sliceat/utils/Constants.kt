@@ -24,7 +24,7 @@ class Constants {
         const val E_MAIL : String = "Email"
         const val PASSWORD : String = "Password"
         const val DATA_DI_NASCITA: String = "DataDiNascita"
-        const val REGISTRAZIONE: String = "Registrazione"
+        const val TIPO_REGISTRAZIONE: String = "TipoRegistrazione"
         const val CODICE_RECUPERO: String = "CodideRecupero"
         const val DATA_REGISTRAZIONE: String = "DataRegistrazione"
 
@@ -35,6 +35,6 @@ class Constants {
         const val PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$%^&+=!£])(?=\\S+$).{4,}$"
 
         //URL SERVER
-        const val URL = "http://www.sliceat.it/WebService/inseriscoUtente.php?"
+        const val URL = "https://www.sliceat.it/WebService/inseriscoUtente.php"
     }
 }
