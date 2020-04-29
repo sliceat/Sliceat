@@ -3,10 +3,12 @@ package com.marcoperini.sliceat.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.marcoperini.sliceat.utils.Constants.Companion.CODICE_RECUPERO
 import com.marcoperini.sliceat.utils.Constants.Companion.DATA_DI_NASCITA
 import com.marcoperini.sliceat.utils.Constants.Companion.E_MAIL
 import com.marcoperini.sliceat.utils.Constants.Companion.NOME
 import com.marcoperini.sliceat.utils.Constants.Companion.COGNOME
+import com.marcoperini.sliceat.utils.Constants.Companion.DATA_REGISTRAZIONE
 import com.marcoperini.sliceat.utils.Constants.Companion.PASSWORD
 import com.marcoperini.sliceat.utils.Constants.Companion.PERCORSO_FOTO
 import com.marcoperini.sliceat.utils.Constants.Companion.REGISTRAZIONE
@@ -24,7 +26,8 @@ data class UsersTable(
     @ColumnInfo(name = PASSWORD) val password: String?,
     @ColumnInfo(name = DATA_DI_NASCITA) val dataOfBirth: String?,
     @ColumnInfo(name = REGISTRAZIONE) val typeAuthentication: String?,
-    @ColumnInfo(name = PERCORSO_FOTO) val urlFoto: String?
+    @ColumnInfo(name = CODICE_RECUPERO) val recovery_code: String?,
+    @ColumnInfo(name = DATA_REGISTRAZIONE) val dateOfRegistration: String?
 ) {
     @PrimaryKey(autoGenerate = true) var id: Int = 0
 }

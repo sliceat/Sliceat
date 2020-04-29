@@ -5,6 +5,7 @@ import com.marcoperini.sliceat.di.androidComponents
 import com.marcoperini.sliceat.di.appComponents
 import com.marcoperini.sliceat.di.databaseComponents
 import com.marcoperini.sliceat.di.viewModels
+import com.marcoperini.sliceat.di.volleyComponents
 import org.koin.android.BuildConfig
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -37,7 +38,8 @@ class Sliceat : MultiDexApplication() {
                     androidComponents,
                     appComponents,
                     databaseComponents,
-                    viewModels
+                    viewModels,
+                    volleyComponents
                 )
             )
         }

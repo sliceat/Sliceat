@@ -14,6 +14,7 @@ import com.marcoperini.sliceat.ui.authentication.signin.signin5.SignIn5ViewModel
 import com.marcoperini.sliceat.ui.launch.LaunchViewModel2
 import com.marcoperini.sliceat.ui.main.MainViewModel
 import com.marcoperini.sliceat.utils.Constants.Companion.USER_DATABASE_NAME
+import com.marcoperini.sliceat.utils.VolleyRequest
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorageFactory
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
@@ -43,4 +44,8 @@ val viewModels = module {
     viewModel { SignIn3ViewModel(prefs = get()) }
     viewModel { SignIn4ViewModel(prefs = get()) }
     viewModel { SignIn5ViewModel(repository = get()) }
+}
+
+val volleyComponents = module {
+    single { VolleyRequest(context = androidContext())}
 }

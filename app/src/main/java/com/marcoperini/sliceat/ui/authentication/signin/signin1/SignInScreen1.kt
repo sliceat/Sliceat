@@ -12,7 +12,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.marcoperini.sliceat.R
-import com.marcoperini.sliceat.database.UsersTable
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.utils.exhaustive
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -27,7 +26,6 @@ class SignInScreen1 : AppCompatActivity() {
 
     private lateinit var insertFirstName: EditText
     private lateinit var insertLastName: EditText
-    private lateinit var user: UsersTable
     private lateinit var backButton: Button
     private lateinit var continua: Button
     private lateinit var nameEmpty: TextView
@@ -62,23 +60,8 @@ class SignInScreen1 : AppCompatActivity() {
             navigator.goToAuthenticationScreen()
         }
         continua.setOnClickListener {
-//            saveUser()
             validateInputData()
         }
-    }
-
-    private fun saveUser() {
-        user = UsersTable(
-            insertFirstName.text.toString(),
-            insertLastName.text.toString(),
-            "prova@gmail.com",
-            "noPass",
-            "31/08/1985",
-            "CL",
-            "noPhoto"
-        )
-        validateInputData()
-
     }
 
     @ExperimentalCoroutinesApi
@@ -87,7 +70,6 @@ class SignInScreen1 : AppCompatActivity() {
             when (state) {
                 is SignIn1State.SavedFirstAndLastName -> navigator.goToSignInScreen2()
             }.exhaustive
-
         }
     }
 
@@ -103,7 +85,6 @@ class SignInScreen1 : AppCompatActivity() {
                 Handler().postDelayed({ lastNameEmpty.visibility = View.GONE }, DELAY_HIDE_ERROR)
             } else {
                 signIn1ViewModel.send(SignIn1Event.SaveFirstAndLastName(name, lastName))
-//                signIn1ViewModel.send(SignIn1Event.SaveUser(user))
             }
         }
     }

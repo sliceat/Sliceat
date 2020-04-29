@@ -95,4 +95,7 @@ dependencies {
     //material design
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.github.androdocs:Android-Circle-ImageView:0.1.0'
+
+    //Volley Request server PHP
+    implementation 'com.android.volley:volley:1.1.1'
 }
