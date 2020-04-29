@@ -188,7 +188,7 @@ class SignInScreen5 : AppCompatActivity() {
                 askCameraPermission()
             }
 
-            override fun choisePhoto() {
+            override fun choosePhoto() {
                 pickPhotoFromGallery()
             }
         })

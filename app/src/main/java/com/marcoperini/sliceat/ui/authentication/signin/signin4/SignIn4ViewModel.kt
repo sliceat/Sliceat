@@ -1,12 +1,9 @@
 package com.marcoperini.sliceat.ui.authentication.signin.signin4
 
-import androidx.lifecycle.viewModelScope
-import com.marcoperini.sliceat.database.UsersRepository
-import com.marcoperini.sliceat.database.UsersTable
 import com.marcoperini.sliceat.utils.BaseViewModel
 import com.marcoperini.sliceat.utils.exhaustive
+import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_DATA
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
-import kotlinx.coroutines.launch
 
 sealed class SignIn4Event {
     data class Data(val data: String) : SignIn4Event()
@@ -26,7 +23,7 @@ class SignIn4ViewModel(private val prefs: KeyValueStorage) : BaseViewModel<SignI
     }
 
     private fun loadName(data: String) {
-        prefs.putString("save_password", data)
+        prefs.putString(SAVE_DATA, data)
         post(SignIn4State.SavedData)
     }
 }

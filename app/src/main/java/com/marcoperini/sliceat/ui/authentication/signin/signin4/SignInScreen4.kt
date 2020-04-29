@@ -3,13 +3,17 @@ package com.marcoperini.sliceat.ui.authentication.signin.signin4
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.text.TextUtils
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
-import com.marcoperini.sliceat.utils.EditTextDatePicker
+import com.marcoperini.sliceat.ui.authentication.signin.signin1.DELAY_HIDE_ERROR
 import com.marcoperini.sliceat.utils.exhaustive
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -23,6 +27,7 @@ class SignInScreen4 : AppCompatActivity() {
     private lateinit var insertData: EditText
     private lateinit var backButton: Button
     private lateinit var continua: Button
+    private lateinit var emptyData: TextView
 
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, SignInScreen4::class.java)
@@ -45,6 +50,7 @@ class SignInScreen4 : AppCompatActivity() {
         insertData = findViewById(R.id.insertData)
         backButton = findViewById(R.id.backButton)
         continua = findViewById(R.id.continua)
+        emptyData = findViewById(R.id.empty_data)
     }
 
     private fun setOnClickListener() {
@@ -52,7 +58,7 @@ class SignInScreen4 : AppCompatActivity() {
             navigator.goToSignInScreen3()
         }
         continua.setOnClickListener {
-            navigator.goToSignInScreen5()
+            validateInputData()
         }
     }
 
@@ -62,6 +68,16 @@ class SignInScreen4 : AppCompatActivity() {
             when (state) {
                 SignIn4State.SavedData -> navigator.goToSignInScreen5()
             }.exhaustive
+        }
+    }
+
+    private fun validateInputData() {
+        val data = insertData.text.toString()
+        if (TextUtils.isEmpty(data)) {
+            emptyData.visibility = View.VISIBLE
+            Handler().postDelayed({ emptyData.visibility = View.GONE }, DELAY_HIDE_ERROR)
+        } else {
+            signIn4ViewModel.send(SignIn4Event.Data(data))
         }
     }
 }

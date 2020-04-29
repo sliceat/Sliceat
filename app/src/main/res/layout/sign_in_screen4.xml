@@ -44,6 +44,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/your_years" />
 
+    <TextView
+        android:id="@+id/empty_data"
+        style="@style/text"
+        android:visibility="gone"
+        android:textColor="@color/orange"
+        android:layout_margin="16dp"
+        android:text="@string/empty_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/continua" />
+
     <Button
         android:id="@+id/continua"
         style="@style/authenticationButton"

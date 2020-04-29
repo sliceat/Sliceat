@@ -4,13 +4,14 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.view.Gravity
 import android.widget.Button
 import com.marcoperini.sliceat.R
 
 class DialogPhoto  {
     interface ResultReceiver {
         fun takePhoto()
-        fun choisePhoto()
+        fun choosePhoto()
     }
 
     fun start(pActivity: Activity, callback: ResultReceiver) {
@@ -21,7 +22,8 @@ class DialogPhoto  {
 
         val alertDialog = dialog.setView(dialogLayout).create()
 
-        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        alertDialog.window?.setGravity(Gravity.BOTTOM)
         alertDialog.setCancelable(false)
         alertDialog.setCanceledOnTouchOutside(true)
         alertDialog.show()
@@ -33,7 +35,7 @@ class DialogPhoto  {
 
         choisePhoto.setOnClickListener {
             alertDialog.dismiss()
-            callback.choisePhoto()
+            callback.choosePhoto()
         }
     }
 }
