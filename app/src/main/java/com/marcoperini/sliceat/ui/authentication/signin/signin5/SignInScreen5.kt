@@ -12,11 +12,14 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import com.android.volley.AuthFailureError
+import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyLog
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.database.UsersTable
 import com.marcoperini.sliceat.ui.Navigator
@@ -31,6 +34,7 @@ import com.marcoperini.sliceat.utils.Constants.Companion.NOME
 import com.marcoperini.sliceat.utils.Constants.Companion.PASSWORD
 import com.marcoperini.sliceat.utils.Constants.Companion.TIPO_REGISTRAZIONE
 import com.marcoperini.sliceat.utils.Constants.Companion.URL
+import com.marcoperini.sliceat.utils.HashClass
 import com.marcoperini.sliceat.utils.VolleyRequest
 import com.marcoperini.sliceat.utils.exhaustive
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_DATA
@@ -42,6 +46,7 @@ import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_PASSWO
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_URI_PHOTO
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.json.JSONException
 import org.json.JSONObject
 import org.koin.android.ext.android.inject
 import timber.log.Timber
@@ -98,19 +103,18 @@ class SignInScreen5 : AppCompatActivity() {
             simpleDateFormat = SimpleDateFormat("dd MM yyyy", Locale.ITALY)
             currentDateAndTime = simpleDateFormat.format(Date())
             prefs.putString(SAVE_DATA_REGISTRATION, currentDateAndTime)
+            val hashPassword = prefs.getString(SAVE_PASSWORD, "")?.let { it1 -> HashClass.transformStringToHash(it1) }
 
             val params = JSONObject()
             params.put(NOME, prefs.getString(SAVE_FIRST_NAME, ""))
             params.put(COGNOME, prefs.getString(SAVE_LAST_NAME, ""))
             params.put(E_MAIL, prefs.getString(SAVE_E_MAIL, ""))
-            params.put(PASSWORD, prefs.getString(SAVE_PASSWORD, ""))
+            params.put(PASSWORD, hashPassword)
             params.put(DATA_DI_NASCITA, prefs.getString(SAVE_DATA, ""))
             params.put(TIPO_REGISTRAZIONE, "CL")
             params.put(CODICE_RECUPERO, "123456")
             params.put(DATA_REGISTRAZIONE, prefs.getString(SAVE_DATA_REGISTRATION, ""))
-            sendDataVolley(params)  {
-                // Parse the result
-            }
+            sendDataVolley(params) {}
 
             signIn5ViewModel.send(
                 SignIn5Event.User(
