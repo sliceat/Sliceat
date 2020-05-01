@@ -4,6 +4,7 @@ import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.marcoperini.sliceat.utils.Constants
+import com.marcoperini.sliceat.utils.HashClass
 import com.marcoperini.sliceat.utils.VolleyRequest
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_PASSWORD
 import org.json.JSONException
@@ -35,7 +36,8 @@ class APIController constructor(private val volleyRequest: VolleyRequest, val pr
                 params[Constants.NOME] = prefs.getString(Key.SAVE_FIRST_NAME, "").toString()
                 params[Constants.COGNOME] = prefs.getString(Key.SAVE_LAST_NAME, "").toString()
                 params[Constants.E_MAIL] = prefs.getString(Key.SAVE_E_MAIL, "").toString()
-                params[Constants.PASSWORD] = prefs.getString(SAVE_PASSWORD, "").toString()
+                val hashPassword = HashClass.transformStringToHash(prefs.getString(SAVE_PASSWORD, "")!!)
+                params[Constants.PASSWORD] = hashPassword.toString()
                 params[Constants.DATA_DI_NASCITA] = prefs.getString(Key.SAVE_DATA, "").toString()
                 params[Constants.TIPO_REGISTRAZIONE] = "CL"
                 params[Constants.CODICE_RECUPERO] = "123456"

@@ -1,7 +1,5 @@
 package com.marcoperini.sliceat.ui.authentication.signin.signin5
 
-import android.R.attr.name
-import android.R.attr.password
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
@@ -14,31 +12,13 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
-import com.android.volley.AuthFailureError
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.VolleyLog
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.database.UsersTable
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.authentication.signin.signin5.StartCamera.StartCameraReceiver
 import com.marcoperini.sliceat.utils.Constants
-import com.marcoperini.sliceat.utils.Constants.Companion.CODICE_RECUPERO
-import com.marcoperini.sliceat.utils.Constants.Companion.COGNOME
-import com.marcoperini.sliceat.utils.Constants.Companion.DATA_DI_NASCITA
-import com.marcoperini.sliceat.utils.Constants.Companion.DATA_REGISTRAZIONE
-import com.marcoperini.sliceat.utils.Constants.Companion.E_MAIL
-import com.marcoperini.sliceat.utils.Constants.Companion.NOME
-import com.marcoperini.sliceat.utils.Constants.Companion.PASSWORD
-import com.marcoperini.sliceat.utils.Constants.Companion.POST_USER_REQUEST
-import com.marcoperini.sliceat.utils.Constants.Companion.TIPO_REGISTRAZIONE
-import com.marcoperini.sliceat.utils.Constants.Companion.URL
 import com.marcoperini.sliceat.utils.HashClass
-import com.marcoperini.sliceat.utils.VolleyRequest
 import com.marcoperini.sliceat.utils.exhaustive
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_DATA
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_DATA_REGISTRATION
@@ -50,10 +30,7 @@ import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_URI_PH
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import com.marcoperini.sliceat.utils.sharedpreferences.ServiceInterface
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.json.JSONException
-import org.json.JSONObject
 import org.koin.android.ext.android.inject
-import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -62,7 +39,6 @@ class SignInScreen5 : AppCompatActivity() {
     private val navigator: Navigator by inject()
     private val signIn5ViewModel: SignIn5ViewModel by inject()
     private val prefs: KeyValueStorage by inject()
-    private val volleyRequest: VolleyRequest by inject()
     private val serviceInterface: ServiceInterface by inject()
 
     private var fileUri: Uri? = null
@@ -108,8 +84,6 @@ class SignInScreen5 : AppCompatActivity() {
             simpleDateFormat = SimpleDateFormat("dd MM yyyy", Locale.ITALY)
             currentDateAndTime = simpleDateFormat.format(Date())
             prefs.putString(SAVE_DATA_REGISTRATION, currentDateAndTime)
-            val hashPassword = HashClass.transformStringToHash(prefs.getString(SAVE_PASSWORD, "")!!)
-            prefs.putString(SAVE_PASSWORD, hashPassword!!)
 
             //send data to PHPserver
             serviceInterface.post()
