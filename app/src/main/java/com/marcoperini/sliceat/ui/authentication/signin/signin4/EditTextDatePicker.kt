@@ -40,7 +40,7 @@ class EditTextDatePicker(context: Context, editTextViewID: Int, val prefs: KeyVa
     }
 
     private fun updateDisplay() {
-        val myFormat = "dd/MM/yy" //In which you need put here
+        val myFormat = "dd/MM/yyyy" //In which you need put here
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         editText.setText(sdf.format(calendar.time))
         prefs.putString(SAVE_DATA, editText.toString())

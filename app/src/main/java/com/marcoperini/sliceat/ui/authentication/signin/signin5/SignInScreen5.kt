@@ -1,5 +1,7 @@
 package com.marcoperini.sliceat.ui.authentication.signin.signin5
 
+import android.R.attr.name
+import android.R.attr.password
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
@@ -32,6 +34,7 @@ import com.marcoperini.sliceat.utils.Constants.Companion.DATA_REGISTRAZIONE
 import com.marcoperini.sliceat.utils.Constants.Companion.E_MAIL
 import com.marcoperini.sliceat.utils.Constants.Companion.NOME
 import com.marcoperini.sliceat.utils.Constants.Companion.PASSWORD
+import com.marcoperini.sliceat.utils.Constants.Companion.POST_USER_REQUEST
 import com.marcoperini.sliceat.utils.Constants.Companion.TIPO_REGISTRAZIONE
 import com.marcoperini.sliceat.utils.Constants.Companion.URL
 import com.marcoperini.sliceat.utils.HashClass
@@ -45,6 +48,7 @@ import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_LAST_N
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_PASSWORD
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_URI_PHOTO
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
+import com.marcoperini.sliceat.utils.sharedpreferences.ServiceInterface
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.json.JSONException
 import org.json.JSONObject
@@ -59,6 +63,7 @@ class SignInScreen5 : AppCompatActivity() {
     private val signIn5ViewModel: SignIn5ViewModel by inject()
     private val prefs: KeyValueStorage by inject()
     private val volleyRequest: VolleyRequest by inject()
+    private val serviceInterface: ServiceInterface by inject()
 
     private var fileUri: Uri? = null
     private lateinit var backButton: Button
@@ -103,18 +108,11 @@ class SignInScreen5 : AppCompatActivity() {
             simpleDateFormat = SimpleDateFormat("dd MM yyyy", Locale.ITALY)
             currentDateAndTime = simpleDateFormat.format(Date())
             prefs.putString(SAVE_DATA_REGISTRATION, currentDateAndTime)
-            val hashPassword = prefs.getString(SAVE_PASSWORD, "")?.let { it1 -> HashClass.transformStringToHash(it1) }
+            val hashPassword = HashClass.transformStringToHash(prefs.getString(SAVE_PASSWORD, "")!!)
+            prefs.putString(SAVE_PASSWORD, hashPassword!!)
 
-            val params = JSONObject()
-            params.put(NOME, prefs.getString(SAVE_FIRST_NAME, ""))
-            params.put(COGNOME, prefs.getString(SAVE_LAST_NAME, ""))
-            params.put(E_MAIL, prefs.getString(SAVE_E_MAIL, ""))
-            params.put(PASSWORD, hashPassword)
-            params.put(DATA_DI_NASCITA, prefs.getString(SAVE_DATA, ""))
-            params.put(TIPO_REGISTRAZIONE, "CL")
-            params.put(CODICE_RECUPERO, "123456")
-            params.put(DATA_REGISTRAZIONE, prefs.getString(SAVE_DATA_REGISTRATION, ""))
-            sendDataVolley(params) {}
+            //send data to PHPserver
+            serviceInterface.post()
 
             signIn5ViewModel.send(
                 SignIn5Event.User(
@@ -208,25 +206,5 @@ class SignInScreen5 : AppCompatActivity() {
         takeAPhoto.visibility = View.GONE
         prefs.putString(SAVE_URI_PHOTO, fileUri.toString())
         photo.setImageURI(fileUri)
-    }
-
-    private fun sendDataVolley(params: JSONObject, completionHandler: (response: JSONObject?) -> Unit) {
-        val jsonObjReq = object : JsonObjectRequest(Method.POST, URL, params,
-            Response.Listener<JSONObject> { response ->
-                Timber.i("TAG %s", "/post request OK! Response: $response")
-                completionHandler(response)
-            },
-            Response.ErrorListener { error ->
-                VolleyLog.e("TAG", "/post request fail! Error: ${error.message}")
-                completionHandler(null)
-            }) {
-            @Throws(AuthFailureError::class)
-            override fun getHeaders(): Map<String, String> {
-                val headers = HashMap<String, String>()
-                headers.put("Content-Type", "application/json")
-                return headers
-            }
-        }
-        volleyRequest.addToRequestQueue(jsonObjReq)
     }
 }
