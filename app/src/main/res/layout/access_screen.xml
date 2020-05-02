@@ -6,13 +6,89 @@
     android:layout_height="match_parent"
     tools:context=".ui.authentication.access.AccessScreen">
 
+    <ImageView
+        android:id="@+id/bologna"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bologna_sliceat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sliceat_is_in_bologna"
+        style="@style/textTitle"
+        android:layout_margin="16dp"
+        android:text="@string/sliceat_is_in_bologna"
+        app:layout_constraintBottom_toBottomOf="@id/bologna"
+        app:layout_constraintEnd_toEndOf="@id/bologna"
+        app:layout_constraintStart_toStartOf="@id/bologna"
+        app:layout_constraintTop_toTopOf="@id/bologna" />
+
+    <TextView
+        android:id="@+id/access"
+        style="@style/big_title"
+        android:text="@string/accedi"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/bologna"
+        app:layout_constraintEnd_toEndOf="@id/bologna"
+        app:layout_constraintStart_toStartOf="@id/bologna" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/back_button_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/insertEmail"
+        style="@style/title"
+        android:layout_margin="16dp"
+        android:background="@null"
+        android:hint="@string/email"
+        android:textColor="@color/graySoft"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bologna" />
+
+    <EditText
+        android:id="@+id/insertPassword"
+        style="@style/title"
+        android:layout_margin="16dp"
+        android:background="@null"
+        android:hint="@string/password"
+        android:textColor="@color/graySoft"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/insertEmail" />
+
     <Button
         android:id="@+id/goOn"
         style="@style/authenticationButton"
         android:backgroundTint="@color/graySoft"
         android:text="@string/accedi"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/signInFacebook"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ops_forgotten_password"
+        style="@style/text"
+        android:layout_margin="16dp"
+        android:text="@string/ops_forgotten_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/goOn" />
+
+
+    <Button
+        android:id="@+id/signInFacebook"
+        style="@style/authenticationButton"
+        android:text="@string/accediConFb"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toTopOf="@id/signInGoogle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -26,76 +102,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/signInFacebook"
-        style="@style/authenticationButton"
-        android:text="@string/accediConFb"
-        android:textColor="@color/blue"
-        app:layout_constraintBottom_toTopOf="@id/signInGoogle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/insertPassword"
-        style="@style/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@null"
-        android:hint="@string/password"
-        android:textColor="@color/graySoft"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password" />
-
-    <TextView
-        android:id="@+id/password"
-        style="@style/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/insertEmail" />
-
-    <EditText
-        android:id="@+id/insertEmail"
-        style="@style/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@null"
-        android:hint="@string/scrivi_qui"
-        android:textColor="@color/graySoft"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/email" />
-
-    <TextView
-        android:id="@+id/email"
-        style="@style/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/email"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/accedi" />
-
-    <TextView
-        android:id="@+id/accedi"
-        style="@style/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/accedi"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/backButton" />
-
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="9dp"
-        android:layout_height="17dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/back_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

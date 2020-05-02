@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.authentication.signin.signin1.SignInScreen1">
+
+    <ImageView
+        android:id="@+id/bologna"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bologna_sliceat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sliceat_is_in_rome"
+        style="@style/textTitle"
+        android:layout_margin="16dp"
+        android:text="@string/sliceat_is_in_rome"
+        app:layout_constraintBottom_toBottomOf="@id/bologna"
+        app:layout_constraintEnd_toEndOf="@id/bologna"
+        app:layout_constraintStart_toStartOf="@id/bologna"
+        app:layout_constraintTop_toTopOf="@id/bologna" />
+
+    <TextView
+        android:id="@+id/signIn"
+        style="@style/big_title"
+        android:text="@string/registrati"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/bologna"
+        app:layout_constraintEnd_toEndOf="@id/bologna"
+        app:layout_constraintStart_toStartOf="@id/bologna" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/back_button_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/insertName"
+        style="@style/title"
+        android:layout_margin="16dp"
+        android:background="@null"
+        android:hint="@string/first_name"
+        android:textColorHint="@color/graySoft"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bologna" />
+
+    <EditText
+        android:id="@+id/insertLastName"
+        style="@style/title"
+        android:layout_margin="16dp"
+        android:background="@null"
+        android:hint="@string/last_name"
+        android:textColorHint="@color/graySoft"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/insertName" />
+
+    <Button
+        android:id="@+id/continua"
+        style="@style/authenticationButton"
+        android:backgroundTint="@color/graySoft"
+        android:layout_marginBottom="32dp"
+        android:text="@string/continua"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/name_empty"
+        style="@style/text"
+        android:visibility="gone"
+        android:textColor="@color/orange"
+        android:layout_margin="16dp"
+        android:text="@string/name_empty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/continua" />
+
+    <TextView
+        android:id="@+id/last_name_empty"
+        style="@style/text"
+        android:visibility="gone"
+        android:textColor="@color/orange"
+        android:layout_margin="16dp"
+        android:text="@string/last_name_empty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/continua" />
+
+    <Button
+        android:id="@+id/signInFacebook"
+        style="@style/authenticationButton"
+        android:text="@string/accediConFb"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toTopOf="@id/signInGoogle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/signInGoogle"
+        style="@style/authenticationButton"
+        android:background="@drawable/ic_accedi_google"
+        android:text="@string/accediConGoogle"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

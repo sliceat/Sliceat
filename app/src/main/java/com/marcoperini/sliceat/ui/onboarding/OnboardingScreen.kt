@@ -1,8 +1,10 @@
 package com.marcoperini.sliceat.ui.onboarding
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.hellmund.viewpager2indicator.ViewPager2Indicator
@@ -33,20 +35,22 @@ class OnboardingScreen : AppCompatActivity() {
         setOnClickListeners()
 
         view_pager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            @RequiresApi(Build.VERSION_CODES.M)
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
                 if (view_pager2.currentItem == 2) {
 //                    skipButton.isClickable = false
                     skipButton.visibility = View.GONE
                     entryButton.visibility = View.VISIBLE
-                    skipButton.setTextColor(resources.getColor(R.color.white))
-                    entryButton.setTextColor(resources.getColor(R.color.orange))
+
+                    skipButton.setTextColor(resources.getColor(R.color.white, null))
+                    entryButton.setTextColor(resources.getColor(R.color.orange, null))
                 } else {
 //                    skipButton.isClickable = true
                     skipButton.visibility = View.VISIBLE
                     entryButton.visibility = View.GONE
-                    entryButton.setTextColor(resources.getColor(R.color.white))
-                    skipButton.setTextColor(resources.getColor(R.color.orange))
+                    entryButton.setTextColor(resources.getColor(R.color.white, null))
+                    skipButton.setTextColor(resources.getColor(R.color.orange, null))
                 }
             }
         })

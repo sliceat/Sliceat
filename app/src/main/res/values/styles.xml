@@ -8,6 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="style_date_picker_dialog" parent="@android:style/Theme.DeviceDefault.Light">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:datePickerStyle">@style/style_datepicker</item>
+    </style>
+
+    <style name="style_datepicker" parent="android:Widget.Material.Light.DatePicker">
+        <item name="android:datePickerMode">spinner</item>
+        <item name="colorAccent">@android:color/holo_orange_dark</item>
+    </style>
+
     <style name="skip_button">
         <item name="android:textColor">@color/orange</item>
         <item name="android:gravity">center_horizontal|center_vertical</item>
@@ -15,15 +25,19 @@
         <item name="android:textStyle">bold|italic</item>
         <item name="fontFamily">@font/montserrat</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="title">
         <item name="android:textColor">@color/black</item>
-        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">20sp</item>
         <item name="android:lineSpacingExtra">2.4sp</item>
         <item name="fontFamily">@font/montserrat_bold</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="text">
@@ -33,6 +47,8 @@
         <item name="android:lineSpacingExtra">2.3sp</item>
         <item name="fontFamily">@font/montserrat</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="authenticationTitle1">
@@ -42,6 +58,8 @@
         <item name="android:lineSpacingExtra">3.0sp</item>
         <item name="fontFamily">@font/montserrat_bold</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="authenticationText">
@@ -51,6 +69,8 @@
         <item name="android:lineSpacingExtra">2.1sp</item>
         <item name="fontFamily">@font/montserrat</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="authenticationButton">
@@ -65,4 +85,25 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
+    <style name="textTitle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">3.0sp</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="big_title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:lineSpacingExtra">4.9sp</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
@@ -12,6 +13,8 @@ import org.koin.android.ext.android.inject
 class AccessScreen : AppCompatActivity() {
 
     private lateinit var backButton: Button
+    private lateinit var email: EditText
+    private lateinit var password: EditText
 
     private val navigator: Navigator by inject()
 
@@ -29,7 +32,9 @@ class AccessScreen : AppCompatActivity() {
     }
 
     private fun setupView() {
+        email = findViewById(R.id.insertEmail)
         backButton = findViewById(R.id.backButton)
+        password = findViewById(R.id.insertPassword)
     }
 
     private fun setOnClickListener() {

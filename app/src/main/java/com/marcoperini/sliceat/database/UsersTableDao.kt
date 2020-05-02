@@ -15,6 +15,9 @@ interface UsersTableDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(value: UsersTable)
 
+//    @Query("INSERT INTO $TABLE_NAME (column1, column2)")
+//    suspend fun insertTwoElement(value: UsersTable)
+
     @Query("DELETE FROM $TABLE_NAME")
     suspend fun deleteAll()
 }

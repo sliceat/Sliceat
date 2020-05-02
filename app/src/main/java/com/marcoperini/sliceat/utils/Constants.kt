@@ -3,6 +3,11 @@ package com.marcoperini.sliceat.utils
 class Constants {
 
     companion object {
+
+        //Camera
+        const val PICK_PHOTO_REQUEST = 2
+        const val TAKE_PHOTO_REQUEST = 1
+
         // Launch Screen
         const val DELAY_START_SCREEN = 1500
 
@@ -14,10 +19,23 @@ class Constants {
         //Database
         const val TABLE_NAME : String = "UserTable"
         const val USER_DATABASE_NAME : String = "Users.db"
-        const val FIRST_NAME : String = "firstName"
-        const val LAST_NAME : String = "lastName"
-        const val E_MAIL : String = "email"
-        const val PASSWORD : String = "password"
-        const val GENDER : String = "gender"
+        const val NOME : String = "item1"
+        const val COGNOME : String = "item2"
+        const val E_MAIL : String = "item3"
+        const val PASSWORD : String = "item4"
+        const val DATA_DI_NASCITA: String = "item5"
+        const val TIPO_REGISTRAZIONE: String = "item6"
+        const val CODICE_RECUPERO: String = "item7"
+        const val DATA_REGISTRAZIONE: String = "item8"
+
+        //foto
+        const val PERCORSO_FOTO : String = "PercorsoFoto"
+
+        //password Rule
+        const val PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$%^&+=!£])(?=\\S+$).{4,}$"
+
+        //URL SERVER
+        const val URL = "https://www.sliceat.it/WebService/"
+        const val POST_USER_REQUEST = "inseriscoUtente.php"
     }
 }
