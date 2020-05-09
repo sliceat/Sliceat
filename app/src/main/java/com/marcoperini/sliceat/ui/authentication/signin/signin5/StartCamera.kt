@@ -11,12 +11,8 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 
 class StartCamera {
 
-    interface StartCameraReceiver {
-        fun launchCamera()
-    }
-
     //ask for permission to take photo
-    fun askCameraPermission(activity: Activity, callback: StartCameraReceiver) {
+    fun askCameraPermission(activity: Activity, launchCamera : ()-> Unit) {
         Dexter.withActivity(activity)
             .withPermissions(
                 Manifest.permission.CAMERA,
@@ -25,7 +21,7 @@ class StartCamera {
                 override fun onPermissionsChecked(report: MultiplePermissionsReport) {/* ... */
                     if (report.areAllPermissionsGranted()) {
                         //once permissions are granted, launch the camera
-                        callback.launchCamera()
+                        launchCamera.invoke()
                     } else {
                         Toast.makeText(activity, "All permissions need to be granted to take photo", Toast.LENGTH_LONG).show()
                     }

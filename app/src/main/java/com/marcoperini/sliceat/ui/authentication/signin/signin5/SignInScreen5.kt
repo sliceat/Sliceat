@@ -16,9 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.database.UsersTable
 import com.marcoperini.sliceat.ui.Navigator
-import com.marcoperini.sliceat.ui.authentication.signin.signin5.StartCamera.StartCameraReceiver
 import com.marcoperini.sliceat.utils.Constants
-import com.marcoperini.sliceat.utils.HashClass
 import com.marcoperini.sliceat.utils.exhaustive
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_DATA
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_DATA_REGISTRATION
@@ -124,23 +122,26 @@ class SignInScreen5 : AppCompatActivity() {
         startActivityForResult(pickImageIntent, Constants.PICK_PHOTO_REQUEST)
     }
 
+    //use lambda fun. Pass this in constructor of the other function higher order in other class
+    //instead use the interface like DialogPhoto class.
+
+    private var launchCamera : () -> Unit = {
+        val values = ContentValues(1)
+        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpg")
+        fileUri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (intent.resolveActivity(packageManager) != null) {
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri)
+            intent.addFlags(
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+                        or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+            )
+            startActivityForResult(intent, Constants.TAKE_PHOTO_REQUEST)
+        }
+    }
+
     private fun startCamera() {
-        StartCamera().askCameraPermission(this@SignInScreen5, object : StartCameraReceiver {
-            override fun launchCamera() {
-                val values = ContentValues(1)
-                values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpg")
-                fileUri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
-                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                if (intent.resolveActivity(packageManager) != null) {
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri)
-                    intent.addFlags(
-                        Intent.FLAG_GRANT_READ_URI_PERMISSION
-                                or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                    )
-                    startActivityForResult(intent, Constants.TAKE_PHOTO_REQUEST)
-                }
-            }
-        })
+        StartCamera().askCameraPermission(this@SignInScreen5) { launchCamera() }//here pass the lambda var(fun) in other fun
     }
 
     override fun onActivityResult(
