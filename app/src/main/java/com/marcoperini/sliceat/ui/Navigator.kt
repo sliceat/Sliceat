@@ -14,6 +14,7 @@ import com.marcoperini.sliceat.ui.authentication.signin.signin5.SignInScreen5
 import com.marcoperini.sliceat.ui.launch.LaunchScreen2
 import com.marcoperini.sliceat.ui.main.MainScreen
 import com.marcoperini.sliceat.ui.onboarding.OnboardingScreen
+import com.marcoperini.sliceat.ui.privacy.PrivacyScreen
 
 interface Navigator {
     fun goToMainScreen()

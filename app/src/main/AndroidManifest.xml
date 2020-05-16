@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-        <activity android:name=".ui.PrivacyScreen"></activity>
+        <activity android:name=".ui.privacy.ProtectionScreen"></activity>
+        <activity android:name=".ui.privacy.PrivacyScreen" />
         <activity android:name=".ui.authentication.signin.signin5.SignInScreen5" />
         <activity android:name=".ui.authentication.signin.signin4.SignInScreen4" />
         <activity android:name=".ui.authentication.signin.signin3.SignInScreen3" />

@@ -1,4 +1,4 @@
-package com.marcoperini.sliceat.ui
+package com.marcoperini.sliceat.ui.privacy
 
 import android.content.Context
 import android.content.Intent
