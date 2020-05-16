@@ -15,6 +15,7 @@ import com.marcoperini.sliceat.ui.launch.LaunchScreen2
 import com.marcoperini.sliceat.ui.main.MainScreen
 import com.marcoperini.sliceat.ui.onboarding.OnboardingScreen
 import com.marcoperini.sliceat.ui.privacy.PrivacyScreen
+import com.marcoperini.sliceat.ui.privacy.ProtectionScreen
 
 interface Navigator {
     fun goToMainScreen()
@@ -28,6 +29,7 @@ interface Navigator {
     fun goToSignInScreen4()
     fun goToSignInScreen5()
     fun goToPrivacyScreen()
+    fun goToProtectionScreen()
     fun goToMap()
 }
 
@@ -79,6 +81,10 @@ class AppNavigator(private val context: Context) : Navigator {
 
     override fun goToPrivacyScreen() {
         ContextCompat.startActivity(context, PrivacyScreen.getIntent(context), null)
+    }
+
+    override fun goToProtectionScreen() {
+        ContextCompat.startActivity(context, ProtectionScreen.getIntent(context), null)
     }
 
     override fun goToMap() {

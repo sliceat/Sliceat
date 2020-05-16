@@ -6,13 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".ui.privacy.ProtectionScreen">
 
-    <ImageView
-        android:id="@+id/verona"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/black_and_white_bar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textPrivacy"
+            style="@style/textPrivacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/privacy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/barBlackAndWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/black_and_white_bar"
+            app:layout_constraintTop_toBottomOf="@id/textPrivacy" />
+
+        <TextView
+            android:id="@+id/textPrivacy2"
+            style="@style/textPrivacy"
+            android:layout_width="246sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/privacy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barBlackAndWhite" />
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

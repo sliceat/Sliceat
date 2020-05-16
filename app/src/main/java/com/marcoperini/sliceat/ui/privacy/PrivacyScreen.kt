@@ -14,6 +14,8 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.marcoperini.sliceat.R
+import com.marcoperini.sliceat.ui.Navigator
+import org.koin.android.ext.android.inject
 
 sealed class Links(val link: String) {
     object Privacy : Links("https://www.sliceat.it/privacy.php")
@@ -25,6 +27,7 @@ class PrivacyScreen : AppCompatActivity() {
     private lateinit var readMoreText: SpannableString
     private lateinit var accessButton: Button
 
+    private var navigator : Navigator by inject()
     private val privacyLink = Links.Privacy.link
 
     companion object {
@@ -58,7 +61,9 @@ class PrivacyScreen : AppCompatActivity() {
         readMore.movementMethod = LinkMovementMethod.getInstance()
         readMore.text = readMoreText
 
-        accessButton.setOnClickListener {  }
+        accessButton.setOnClickListener {
+            navigator.goToProtectionScreen()
+        }
 
     }
 }
