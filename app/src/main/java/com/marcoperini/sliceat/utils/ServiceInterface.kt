@@ -1,12 +1,11 @@
-package com.marcoperini.sliceat.utils.sharedpreferences
+package com.marcoperini.sliceat.utils
 
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
-import com.marcoperini.sliceat.utils.Constants
-import com.marcoperini.sliceat.utils.HashClass
-import com.marcoperini.sliceat.utils.VolleyRequest
+import com.marcoperini.sliceat.utils.sharedpreferences.Key
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_PASSWORD
+import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import org.json.JSONException
 import org.json.JSONObject
 import timber.log.Timber
@@ -16,7 +15,8 @@ interface ServiceInterface {
     fun post()
 }
 
-class APIController constructor(private val volleyRequest: VolleyRequest, val prefs: KeyValueStorage) : ServiceInterface {
+class APIController constructor(private val volleyRequest: VolleyRequest, val prefs: KeyValueStorage) :
+    ServiceInterface {
 
     override fun post() {
         val postRequest: StringRequest = object : StringRequest(

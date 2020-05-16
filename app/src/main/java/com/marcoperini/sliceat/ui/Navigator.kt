@@ -26,6 +26,7 @@ interface Navigator {
     fun goToSignInScreen3()
     fun goToSignInScreen4()
     fun goToSignInScreen5()
+    fun goToPrivacyScreen()
     fun goToMap()
 }
 
@@ -73,6 +74,10 @@ class AppNavigator(private val context: Context) : Navigator {
 
     override fun goToSignInScreen5() {
         ContextCompat.startActivity(context, SignInScreen5.getIntent(context), null)
+    }
+
+    override fun goToPrivacyScreen() {
+        ContextCompat.startActivity(context, PrivacyScreen.getIntent(context), null)
     }
 
     override fun goToMap() {

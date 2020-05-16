@@ -68,4 +68,8 @@
     <string name="choise_photo_gallery">Scegli se scattare una foto o\nrecuperarla dalla galleria</string>
     <string name="take_photo">Scatta una foto</string>
     <string name="choise_photo">Scegli foto</string>
+    <string name="attiva_la_tua_privacy">Attiva la tua privacy</string>
+    <string name="privacy">Grazie per aver scaricato Sliceat. Tra\npoco potrai provare tutte le sue\nfunzionalità. Prima di continuare\n
+    devi attivare la sua privacy. Teniamo davvero\nmolto ai tuoi dati e quindi abbiamo\npreparato tutti i documenti. . .\n\n\n\n\n\n</string>
+    <string name="read_more">Leggi di più</string>
 </resources>

@@ -26,7 +26,7 @@ import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_LAST_N
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_PASSWORD
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_URI_PHOTO
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
-import com.marcoperini.sliceat.utils.sharedpreferences.ServiceInterface
+import com.marcoperini.sliceat.utils.ServiceInterface
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
@@ -107,7 +107,7 @@ class SignInScreen5 : AppCompatActivity() {
     private fun observer() {
         signIn5ViewModel.observe(lifecycleScope) { state ->
             when (state) {
-                SignIn5State.SaveUser -> navigator.goToMainScreen()
+                SignIn5State.SaveUser -> navigator.goToPrivacyScreen()
             }.exhaustive
         }
     }
