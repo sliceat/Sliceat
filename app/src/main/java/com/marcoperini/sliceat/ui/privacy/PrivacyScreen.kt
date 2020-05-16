@@ -27,7 +27,7 @@ class PrivacyScreen : AppCompatActivity() {
     private lateinit var readMoreText: SpannableString
     private lateinit var accessButton: Button
 
-    private var navigator : Navigator by inject()
+    private val navigator : Navigator by inject()
     private val privacyLink = Links.Privacy.link
 
     companion object {
@@ -64,6 +64,5 @@ class PrivacyScreen : AppCompatActivity() {
         accessButton.setOnClickListener {
             navigator.goToProtectionScreen()
         }
-
     }
 }
