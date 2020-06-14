@@ -41,7 +41,7 @@ class SignInScreen5 : AppCompatActivity() {
     private val prefs: KeyValueStorage by inject()
     private val serviceInterface: ServiceInterface by inject()
 
-    private var fileUri: Uri? = null
+    var fileUri: Uri? = null
     private lateinit var backButton: Button
     private lateinit var takeAPhoto: Button
     private lateinit var photo: ImageView
@@ -59,7 +59,7 @@ class SignInScreen5 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_in_screen5)
 
-        prefs.putString(SAVE_URI_PHOTO, " ")
+        prefs.putString(SAVE_URI_PHOTO, "")
         setupView()
         setOnClickListener()
         observer()
