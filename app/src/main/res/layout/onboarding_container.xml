@@ -46,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="18dp"
         app:radius="4dp"
-        app:selectedFillColor="@color/black"
+        app:selectedFillColor="@color/white"
         app:spacing="8dp"
         app:unselectedFillColor="@color/gray" />
 
