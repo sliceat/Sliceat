@@ -17,10 +17,9 @@
 
     <Button
         android:id="@+id/skipButton"
-        style="@style/skip_button"
+        style="@style/text"
         android:background="@android:color/transparent"
         android:contentDescription="@string/skip_button"
-        android:textColor="@color/orange"
         android:text="@string/skip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,10 +27,9 @@
 
     <Button
         android:id="@+id/entry"
-        style="@style/skip_button"
+        style="@style/text"
         android:background="@android:color/transparent"
         android:contentDescription="@string/entry"
-        android:textColor="@color/orange"
         android:text="@string/entry"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -2,8 +2,8 @@
     <string name="app_name">Sliceat</string>
     <string name="launchLogo">launchLogo</string>
     <string name="skip_button">skip_button</string>
-    <string name="skip">skip</string>
-    <string name="entry">entry</string>
+    <string name="skip"><u>skip</u></string>
+    <string name="entry"><u>entry</u></string>
     <string name="onboardingimage">onBoardingImage</string>
     <string name="onboardingTitle1">Tutto sotto controllo</string>
     <string name="onboardingTitle2">Loro hanno la precedenza</string>

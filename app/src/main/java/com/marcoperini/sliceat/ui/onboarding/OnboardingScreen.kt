@@ -44,13 +44,13 @@ class OnboardingScreen : AppCompatActivity() {
                     entryButton.visibility = View.VISIBLE
 
                     skipButton.setTextColor(resources.getColor(R.color.white))
-                    entryButton.setTextColor(resources.getColor(R.color.orange))
+                    entryButton.setTextColor(resources.getColor(R.color.white))
                 } else {
 //                    skipButton.isClickable = true
                     skipButton.visibility = View.VISIBLE
                     entryButton.visibility = View.GONE
                     entryButton.setTextColor(resources.getColor(R.color.white))
-                    skipButton.setTextColor(resources.getColor(R.color.orange))
+                    skipButton.setTextColor(resources.getColor(R.color.white))
                 }
             }
         })
