@@ -137,12 +137,16 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
     private fun setupView() {
         searchView = findViewById(R.id.sv_location)
         photo = findViewById(R.id.profilePhoto)
+
+        // for upload profile image
         val uriPhoto = prefs.getString(Key.SAVE_URI_PHOTO, "")
 
         if (uriPhoto != "") {
             val uri = Uri.parse(uriPhoto)
             photo.transformImageToRoundImage(uriPhoto)
             photo.setImageURI(uri)
+        } else {
+            return
         }
     }
 

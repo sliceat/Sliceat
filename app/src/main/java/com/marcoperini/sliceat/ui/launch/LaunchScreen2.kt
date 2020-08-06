@@ -26,14 +26,15 @@ class LaunchScreen2 : AppCompatActivity() {
         launchViewModel.observe(lifecycleScope) { LaunchState ->
             when (LaunchState) {
                 com.marcoperini.sliceat.ui.launch.LaunchState.NewUser -> goToOnBoarding()
-                com.marcoperini.sliceat.ui.launch.LaunchState.OldUser -> goToMainScreen()
+                com.marcoperini.sliceat.ui.launch.LaunchState.OldUser -> goToMapsScreen()
             }.exhaustive
         }
         Handler().postDelayed({ launchViewModel.send(LaunchEvent.Init) }, DELAY_START_SCREEN.toLong())
     }
 
-    private fun goToMainScreen() {
-        navigator.goToAuthenticationScreen()
+    private fun goToMapsScreen() {
+//        navigator.goToAuthenticationScreen()
+        navigator.goToMapsScreen()
         finish()
     }
 

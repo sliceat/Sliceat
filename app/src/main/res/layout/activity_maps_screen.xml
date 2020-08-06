@@ -47,7 +47,7 @@
             android:elevation="5dp"
             android:scaleType="centerCrop"
             android:layout_gravity="bottom"
-            android:src="@drawable/ic_user_light"
+            android:src="@drawable/home_noaccount"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
