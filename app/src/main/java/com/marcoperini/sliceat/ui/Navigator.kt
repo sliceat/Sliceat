@@ -26,7 +26,7 @@ interface Navigator {
     fun goToSignInScreen3()
     fun goToSignInScreen4()
     fun goToSignInScreen5()
-    fun goToMap()
+    fun goToMapsScreen()
 }
 
 class AppNavigator(private val context: Context) : Navigator {
@@ -75,7 +75,7 @@ class AppNavigator(private val context: Context) : Navigator {
         ContextCompat.startActivity(context, SignInScreen5.getIntent(context), null)
     }
 
-    override fun goToMap() {
+    override fun goToMapsScreen() {
         ContextCompat.startActivity(context, MapsScreen.getIntent(context), null)
     }
 
