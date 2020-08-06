@@ -5,15 +5,15 @@
     <string name="skip"><u>skip</u></string>
     <string name="entry"><u>entry</u></string>
     <string name="onboardingimage">onBoardingImage</string>
-    <string name="onboardingTitle1">Tutto sotto controllo</string>
-    <string name="onboardingTitle2">Loro hanno la precedenza</string>
-    <string name="onboardingTitle3">Pagina in lavorazione</string>
-    <string name="onboardingText1">La mappa è la tua home.\nApri Sliceat e scegli subito \ndove mangiare, modifica i filtri \ndi ricerca e molto altro.\n
-        Semplicità è la parola d’ordine</string>
-    <string name="onboardingText2">Premessa: SlicEat è pensata \nper tutti. Ma il nostro piatto \nforte è dedicato a chi ha \nproblemi di allergia o \n
-    intolleranza alimentare.</string>
-    <string name="onboardingText3">Bla bla bla Bla bla bla Bla bla\n bla Bla bla bla Bla bla bla Bla\n bla bla Bla bla bla Bla\n bla bla Bla bla bla Bla\n
-        bla bla Bla bla bla.</string>
+    <string name="onboardingText1">La mappa è la tua home.\nApri Sliceeat e scegli subito\ndove mangiare, modifica i filtri\ndi ricerca e presto potrai\n
+        fare molto altro.\nSemplicità è la parola d’ordine!</string>
+    <string name="onboardingText2">Premessa: Sliceat è pensata\nper tutti. Ma il nostro piatto\nforte è dedicato a chi ha\nproblemi di allergia o\n
+        intolleranza alimentare.</string>
+    <string name="onboardingText3">Il team di Sliceat rivoluzionerà\ni motivi che ti spingono a\nscannerizzare il codice QR.\nSaranno i nostri adesivi la
+        prima\ncosa che cercherai appena\nentrato in un locale.</string>
+    <string name="onboardingTitle1">Tutto sotto\ncontrollo.</string>
+    <string name="onboardingTitle2">Loro hanno\nla precedenza.</string>
+    <string name="onboardingTitle3">La rivoluzione è\nnascosta qui.</string>
     <string name="accedi">Accedi</string>
     <string name="registrati">Registrati</string>
     <string name="authenticationText">Accedi o registrati per iniziare ad \nutilizzare tutte le funzionalità di SlicEat.\nGratis. Senza pubblicità.</string>
@@ -68,4 +68,5 @@
     <string name="choise_photo_gallery">Scegli se scattare una foto o\nrecuperarla dalla galleria</string>
     <string name="take_photo">Scatta una foto</string>
     <string name="choise_photo">Scegli foto</string>
+    <string name="start">Inizia</string>
 </resources>

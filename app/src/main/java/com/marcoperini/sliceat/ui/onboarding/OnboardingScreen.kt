@@ -44,13 +44,13 @@ class OnboardingScreen : AppCompatActivity() {
                     entryButton.visibility = View.VISIBLE
 
                     skipButton.setTextColor(resources.getColor(R.color.white))
-                    entryButton.setTextColor(resources.getColor(R.color.white))
+                    entryButton.setTextColor(resources.getColor(R.color.black))
                 } else {
 //                    skipButton.isClickable = true
                     skipButton.visibility = View.VISIBLE
                     entryButton.visibility = View.GONE
                     entryButton.setTextColor(resources.getColor(R.color.white))
-                    skipButton.setTextColor(resources.getColor(R.color.white))
+                    skipButton.setTextColor(resources.getColor(R.color.black))
                 }
             }
         })
@@ -58,7 +58,7 @@ class OnboardingScreen : AppCompatActivity() {
 
     private fun setupView() {
         skipButton = findViewById(R.id.skipButton)
-        entryButton = findViewById(R.id.entry)
+        entryButton = findViewById(R.id.start)
         pageIndicator = findViewById(R.id.indicator)
         pageIndicator.attachTo(view_pager2)
     }

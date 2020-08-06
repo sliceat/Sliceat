@@ -26,14 +26,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/entry"
-        style="@style/text"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/entry"
-        android:text="@string/entry"
+        android:id="@+id/start"
+        style="@style/authenticationButton"
+        android:backgroundTint="@color/white"
+        android:layout_marginBottom="32dp"
+        android:text="@string/start"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.hellmund.viewpager2indicator.ViewPager2Indicator
         android:id="@+id/indicator"
