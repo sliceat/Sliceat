@@ -1,26 +1,29 @@
 package com.marcoperini.sliceat.maps
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
+import android.text.Html
+import android.text.TextUtils
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
-import androidx.core.net.toUri
+import androidx.fragment.app.FragmentActivity
+import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -32,7 +35,10 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.api.model.RectangularBounds
+import com.google.android.libraries.places.api.model.TypeFilter
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -45,11 +51,11 @@ import com.marcoperini.sliceat.utils.sharedpreferences.Key
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import com.marcoperini.sliceat.utils.transformImageToRoundImage
 import org.koin.android.ext.android.inject
-import java.io.File
+import timber.log.Timber
 import java.io.IOException
 import java.util.*
 
-class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
+class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,PlaceSelectionListener {
 
     companion object {
         const val AUTOCOMPLETE_REQUEST_CODE = 1
@@ -60,9 +66,9 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
 
     private val prefs: KeyValueStorage by inject()
     private lateinit var photo: ImageView
-    private lateinit var cardPhoto: CardView
+//    private lateinit var cardPhoto: CardView
     private lateinit var googleMap: GoogleMap
-    private lateinit var searchView: SearchView
+//    private lateinit var searchView: SearchView
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var location: Location
     private lateinit var autocompleteFragment: AutocompleteSupportFragment
@@ -72,70 +78,83 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps_screen)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+//        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+//        mapFragment.getMapAsync(this)
         fusedLocationProviderClient = FusedLocationProviderClient(this)
         location = Location(this)
 
         setupView()
 
+        if (!Places.isInitialized()) {
+            Places.initialize(applicationContext,"AIzaSyAerZEakQJJI2afAIUQg9TaP_cHL3TkHy4")
+            val placesClient = Places.createClient(this)
+        }
+
+
         autocompleteFragment = supportFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                val location = searchView.query.toString()
-
-                if (location == "" || location == null) {
-                    return false
-                }
-                val geocoder = Geocoder(context)
-
-                try {
-                    var addressList = geocoder.getFromLocationName(location, 1)
-                    while (addressList.size == 0) {
-                        addressList = geocoder.getFromLocationName(location, 1)
-                    }
-
-                    if (addressList.size > 0) {
-                        val address = addressList[0]
-                        val latLng = LatLng(address.latitude, address.longitude)
-                        googleMap.addMarker(latLng.let { MarkerOptions().position(it).title(location) })
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10F))
-                    }
-
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
-            }
-        })
-        // Specify the types of place data to return.
+        autocompleteFragment.setTypeFilter(TypeFilter.ESTABLISHMENT)
+        autocompleteFragment.setLocationBias(RectangularBounds.newInstance(LatLng(-33.880490, 151.184363),LatLng(-33.858754, 151.229596)))
+        autocompleteFragment.setCountries("IT")
         autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME))
-        Places.initialize(applicationContext, resources.getString(R.string.google_maps_key))
-        Places.createClient(this)
-        // Set up a PlaceSelectionListener to handle the response.
-//        autocompleteFragment?.setOnPlaceSelectedListener(object : PlaceSelectionListener {
-//            override fun onPlaceSelected(place: Place) {
-//                // TODO: Get info about the selected place.
+
+//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 //
-//                Timber.i("FragmentActivity.TAG %s",place.name + ", " + place.id)
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                val location = searchView.query.toString()
+//
+//                if (location == "") {
+//                    return false
+//                }
+//                val geocoder = Geocoder(context)
+//
+//                try {
+//                    val addressList = geocoder.getFromLocationName(location, 1)
+//                    if (addressList.size == 0) {
+//                        Toast.makeText(this@MapsScreen, "adresse not found", Toast.LENGTH_LONG).show()
+//                    }
+//
+//                    else if (addressList.size > 0) {
+//                        val address = addressList[0]
+//                        val latLng = LatLng(address.latitude, address.longitude)
+//                        googleMap.addMarker(latLng.let { MarkerOptions().position(it).title(location) })
+//                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10F))
+//                    }
+//
+//                } catch (e: IOException) {
+//                    e.printStackTrace()
+//                }
+//                return false
 //            }
 //
-//            override fun onError(p0: Status) {
-//                // TODO: Handle the error.
-//                Timber.i("FragmentActivity.TAG %s", "An error occurred: $p0")
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                return false
 //            }
 //        })
+        // Specify the types of place data to return.
+        autocompleteFragment.setOnPlaceSelectedListener(this)
 
     }
 
+
+    @SuppressLint("BinaryOperationInTimber")
+    override fun onPlaceSelected(place: Place) {
+        Timber.i("Place Selected: %s", place.name + " " + place.id)
+
+        // Format the returned place's details and display them in the TextView.
+
+        // Format the returned place's details and display them in the TextView.
+
+    }
+
+    override fun onError(status: Status) {
+        Timber.e("onError: Status = %s", status.toString())
+
+        Toast.makeText(this, "Place selection failed: " + status.statusMessage, Toast.LENGTH_SHORT).show();
+    }
+
     private fun setupView() {
-        searchView = findViewById(R.id.sv_location)
+//        searchView = findViewById(R.id.sv_location)
         photo = findViewById(R.id.profilePhoto)
 
         // for upload profile image
@@ -191,13 +210,6 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
                     Manifest.permission.ACCESS_COARSE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
                 return
             }
             googleMap.isMyLocationEnabled = true
@@ -247,13 +259,6 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return
         }
         fusedLocationProviderClient.lastLocation.addOnCompleteListener(this) { task ->
