@@ -66,30 +66,67 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,P
 
     private val prefs: KeyValueStorage by inject()
     private lateinit var photo: ImageView
-//    private lateinit var cardPhoto: CardView
     private lateinit var googleMap: GoogleMap
-//    private lateinit var searchView: SearchView
+    private lateinit var searchView: SearchView
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var location: Location
     private lateinit var autocompleteFragment: AutocompleteSupportFragment
-    val context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps_screen)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-//        mapFragment.getMapAsync(this)
-        fusedLocationProviderClient = FusedLocationProviderClient(this)
-        location = Location(this)
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
 
         setupView()
 
+        searchQuery()
+
+//        setupAutocompleteSearch() need the credit card to autocomplete search
+    }
+
+    private fun searchQuery() {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                val location = searchView.query.toString()
+
+                if (location == "") {
+                    return false
+                }
+                val geocoder = Geocoder(this@MapsScreen)
+
+                try {
+                    val addressList = geocoder.getFromLocationName(location, 1)
+                    if (addressList.size == 0) {
+                        Toast.makeText(this@MapsScreen, "adresse not found", Toast.LENGTH_LONG).show()
+                    }
+
+                    else if (addressList.size > 0) {
+                        val address = addressList[0]
+                        val latLng = LatLng(address.latitude, address.longitude)
+                        googleMap.addMarker(latLng.let { MarkerOptions().position(it).title(location) })
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10F))
+                    }
+
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+    }
+
+    private fun setupAutocompleteSearch() {
         if (!Places.isInitialized()) {
             Places.initialize(applicationContext,"AIzaSyAerZEakQJJI2afAIUQg9TaP_cHL3TkHy4")
-            val placesClient = Places.createClient(this)
+            Places.createClient(this)
         }
-
 
         autocompleteFragment = supportFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
 
@@ -98,63 +135,14 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,P
         autocompleteFragment.setCountries("IT")
         autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME))
 
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                val location = searchView.query.toString()
-//
-//                if (location == "") {
-//                    return false
-//                }
-//                val geocoder = Geocoder(context)
-//
-//                try {
-//                    val addressList = geocoder.getFromLocationName(location, 1)
-//                    if (addressList.size == 0) {
-//                        Toast.makeText(this@MapsScreen, "adresse not found", Toast.LENGTH_LONG).show()
-//                    }
-//
-//                    else if (addressList.size > 0) {
-//                        val address = addressList[0]
-//                        val latLng = LatLng(address.latitude, address.longitude)
-//                        googleMap.addMarker(latLng.let { MarkerOptions().position(it).title(location) })
-//                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10F))
-//                    }
-//
-//                } catch (e: IOException) {
-//                    e.printStackTrace()
-//                }
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                return false
-//            }
-//        })
         // Specify the types of place data to return.
         autocompleteFragment.setOnPlaceSelectedListener(this)
-
-    }
-
-
-    @SuppressLint("BinaryOperationInTimber")
-    override fun onPlaceSelected(place: Place) {
-        Timber.i("Place Selected: %s", place.name + " " + place.id)
-
-        // Format the returned place's details and display them in the TextView.
-
-        // Format the returned place's details and display them in the TextView.
-
-    }
-
-    override fun onError(status: Status) {
-        Timber.e("onError: Status = %s", status.toString())
-
-        Toast.makeText(this, "Place selection failed: " + status.statusMessage, Toast.LENGTH_SHORT).show();
     }
 
     private fun setupView() {
-//        searchView = findViewById(R.id.sv_location)
+        fusedLocationProviderClient = FusedLocationProviderClient(this)
+        location = Location(this)
+        searchView = findViewById(R.id.sv_location)
         photo = findViewById(R.id.profilePhoto)
 
         // for upload profile image
@@ -167,6 +155,18 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,P
         } else {
             return
         }
+    }
+
+    @SuppressLint("BinaryOperationInTimber")
+    override fun onPlaceSelected(place: Place) {
+        Timber.i("Place Selected: %s", place.name + " " + place.id)
+        // Format the returned place's details and display them in the TextView.
+    }
+
+    override fun onError(status: Status) {
+        Timber.e("onError: Status = %s", status.toString())
+
+        Toast.makeText(this, "Place selection failed: " + status.statusMessage, Toast.LENGTH_SHORT).show();
     }
 
     // Initializes contents of Activity's standard options menu. Only called the first time options
