@@ -69,4 +69,6 @@
     <string name="take_photo">Scatta una foto</string>
     <string name="choise_photo">Scegli foto</string>
     <string name="start">Inizia</string>
+    <string name="back_button">back button</string>
+    <string name="Setting">Impostazioni</string>
 </resources>
