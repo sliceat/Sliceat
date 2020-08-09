@@ -30,7 +30,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/informazioni_sicure"
+                android:id="@+id/secure_informations"
                 style="@style/text"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="40dp"
@@ -44,11 +44,53 @@
                 android:layout_marginEnd="40dp"
                 android:src="@drawable/icon_approval" />
 
+            <TextView
+                android:id="@+id/description_informations"
+                style="@style/text"
+                android:textAlignment="viewStart"
+                android:textSize="12sp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="12dp"
+                android:layout_below="@id/secure_informations"
+                android:text="@string/description_informations"
+                android:textColor="@color/black" />
+
             <View
                 android:id="@+id/first_divider"
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
-                android:layout_below="@id/informazioni_sicure"
+                android:layout_below="@id/description_informations"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/graySoft" />
+
+            <TextView
+                android:id="@+id/secure_eating"
+                style="@style/text"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/secure_eating"
+                android:textColor="@color/black"
+                android:layout_below="@id/first_divider"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@id/secure_eating"
+                android:layout_marginEnd="40dp"
+                android:src="@drawable/icon_smile" />
+
+            <View
+                android:id="@+id/second_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_below="@id/secure_eating"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="40dp"
