@@ -46,6 +46,7 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import com.marcoperini.sliceat.R
+import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.utils.Constants.Companion.ZOOM_CAMERA
 import com.marcoperini.sliceat.utils.sharedpreferences.Key
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
@@ -65,6 +66,8 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,P
     }
 
     private val prefs: KeyValueStorage by inject()
+    private val navigator: Navigator by inject()
+
     private lateinit var photo: ImageView
     private lateinit var googleMap: GoogleMap
     private lateinit var searchView: SearchView
@@ -80,6 +83,8 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,P
         mapFragment.getMapAsync(this)
 
         setupView()
+
+        clickListener()
 
         searchQuery()
 
@@ -154,6 +159,12 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,P
             photo.setImageURI(uri)
         } else {
             return
+        }
+    }
+
+    private fun clickListener() {
+        photo.setOnClickListener {
+            navigator.goToSettingsScreen()
         }
     }
 

@@ -1,14 +1,10 @@
 package com.marcoperini.sliceat.ui.settings
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Canvas
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
 import kotlinx.android.synthetic.main.item_page.view.ivImage
@@ -26,15 +22,15 @@ class SettingsAdapter(val context: Context) : RecyclerView.Adapter<PagerVH>() {
     override fun onBindViewHolder(holder: PagerVH, position: Int) = holder.itemView.run {
 
         if (position == 0) {
-            title.text = context.getString(R.string.onboardingTitle1)
+//            title.text = context.getString(R.string.onboardingTitle1) TODO add correct text and image
 
             val firstImage = BitmapFactory.decodeResource(resources, R.drawable.view_pager1)
 
             ivImage.setImageBitmap(firstImage)
         }
         if (position == 1) {
-            title.text = context.getString(R.string.onboardingTitle2)
-            val secondImage = BitmapFactory.decodeResource(resources, R.drawable.onboarding_second)
+//            title.text = context.getString(R.string.onboardingTitle2) TODO add correct text and image
+            val secondImage = BitmapFactory.decodeResource(resources, R.drawable.view_pager1)
 
             ivImage.setImageBitmap(secondImage)
         }

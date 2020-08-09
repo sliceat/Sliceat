@@ -1,5 +1,7 @@
 package com.marcoperini.sliceat.ui.settings
 
+import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.viewpager2.widget.ViewPager2
 import com.hellmund.viewpager2indicator.ViewPager2Indicator
 import com.marcoperini.sliceat.R
+import com.marcoperini.sliceat.maps.MapsScreen
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.onboarding.OnboardingAdapter
 import com.marcoperini.sliceat.utils.sharedpreferences.Key
@@ -20,9 +23,12 @@ class SettingsScreen : AppCompatActivity() {
     private val navigator: Navigator by inject()
     private val prefs: KeyValueStorage by inject()
 
-    private lateinit var skipButton: Button
-    private lateinit var entryButton: Button
     private lateinit var pageIndicator: ViewPager2Indicator
+
+    companion object {
+        fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, SettingsScreen::class.java)
+            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,34 +44,21 @@ class SettingsScreen : AppCompatActivity() {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
                 if (view_pager2.currentItem == 2) {
-                    skipButton.visibility = View.GONE
-                    entryButton.visibility = View.VISIBLE
 
-                    entryButton.setTextColor(resources.getColor(R.color.black))
                 } else {
-                    skipButton.visibility = View.VISIBLE
-                    entryButton.visibility = View.GONE
 
-                    skipButton.setTextColor(resources.getColor(R.color.white))
                 }
             }
         })
     }
 
     private fun setupView() {
-        skipButton = findViewById(R.id.skipButton)
-        entryButton = findViewById(R.id.start)
         pageIndicator = findViewById(R.id.indicator)
         pageIndicator.attachTo(view_pager2)
     }
 
     private fun setOnClickListeners() {
-        entryButton.setOnClickListener {
-            exit()
-        }
-        skipButton.setOnClickListener {
-            exit()
-        }
+
     }
 
     private fun exit() {

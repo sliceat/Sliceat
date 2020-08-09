@@ -14,6 +14,7 @@ import com.marcoperini.sliceat.ui.authentication.signin.signin5.SignInScreen5
 import com.marcoperini.sliceat.ui.launch.LaunchScreen2
 import com.marcoperini.sliceat.ui.main.MainScreen
 import com.marcoperini.sliceat.ui.onboarding.OnboardingScreen
+import com.marcoperini.sliceat.ui.settings.SettingsScreen
 
 interface Navigator {
     fun goToMainScreen()
@@ -27,6 +28,7 @@ interface Navigator {
     fun goToSignInScreen4()
     fun goToSignInScreen5()
     fun goToMapsScreen()
+    fun goToSettingsScreen()
 }
 
 class AppNavigator(private val context: Context) : Navigator {
@@ -77,6 +79,10 @@ class AppNavigator(private val context: Context) : Navigator {
 
     override fun goToMapsScreen() {
         ContextCompat.startActivity(context, MapsScreen.getIntent(context), null)
+    }
+
+    override fun goToSettingsScreen() {
+        ContextCompat.startActivity(context, SettingsScreen.getIntent(context), null)
     }
 
     override fun goToMainScreen() {

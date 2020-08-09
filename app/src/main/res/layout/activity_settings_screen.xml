@@ -9,20 +9,53 @@
     <include
         android:id="@+id/include_custom_toolbar"
         layout="@layout/toolbar_with_indicator" />
+
     <include
         android:id="@+id/include_page_indicator"
-        layout="@layout/settings_container"/>
+        layout="@layout/settings_container"
+        android:layout_width="match_parent"
+        android:layout_height="260dp" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/include_page_indicator">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/informazioni_sicure"
+                style="@style/text"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:text="@string/informazioni_sicure"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="40dp"
+                android:src="@drawable/icon_approval" />
+
+            <View
+                android:id="@+id/first_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_below="@id/informazioni_sicure"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/graySoft" />
+        </RelativeLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
