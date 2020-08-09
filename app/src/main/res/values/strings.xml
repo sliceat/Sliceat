@@ -74,4 +74,8 @@
     <string name="informazioni_sicure">Informazioni sicure</string>
     <string name="description_informations">Il primo modo per combattere il virus\nè tenersi aggiornati su canali\nd’informazione autorevoli e sicuri.</string>
     <string name="secure_eating">Mangia in sicurezza</string>
+    <string name="your_profile">Il tuo profilo</string>
+    <string name="mail">Posta</string>
+    <string name="invite">Inviti</string>
+    <string name="share_sliceat">Condividi Sliceat</string>
 </resources>

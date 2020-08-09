@@ -17,13 +17,13 @@
         android:layout_height="260dp" />
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/ScrollView"
         android:layout_marginTop="24dp"
-        android:orientation="vertical"
+        android:fadeScrollbars="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include_page_indicator">
+        app:layout_constraintTop_toBottomOf="@id/include_page_indicator"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,6 +32,7 @@
             <TextView
                 android:id="@+id/secure_informations"
                 style="@style/text"
+                android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="40dp"
                 android:text="@string/informazioni_sicure"
@@ -51,7 +52,8 @@
                 android:textSize="12sp"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
                 android:layout_below="@id/secure_informations"
                 android:text="@string/description_informations"
                 android:textColor="@color/black" />
@@ -96,6 +98,84 @@
                 android:layout_marginEnd="40dp"
                 android:layout_marginBottom="12dp"
                 android:background="@color/graySoft" />
+
+            <TextView
+                android:id="@+id/your_profile"
+                style="@style/text"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/your_profile"
+                android:textColor="@color/gray"
+                android:layout_below="@id/second_divider"/>
+
+            <TextView
+                android:id="@+id/mail"
+                style="@style/text"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/mail"
+                android:textColor="@color/black"
+                android:layout_below="@id/your_profile"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@id/mail"
+                android:layout_alignTop="@id/mail"
+                android:layout_marginEnd="80dp"
+                android:src="@drawable/icon_orange_mail" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@id/mail"
+                android:layout_marginEnd="40dp"
+                android:src="@drawable/icon_mail" />
+
+            <View
+                android:id="@+id/third_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_below="@id/mail"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/graySoft" />
+
+            <TextView
+                android:id="@+id/invite"
+                style="@style/text"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/invite"
+                android:textColor="@color/gray"
+                android:layout_below="@id/third_divider"/>
+
+            <TextView
+                android:id="@+id/share_sliceat"
+                style="@style/text"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/share_sliceat"
+                android:textColor="@color/black"
+                android:layout_below="@id/invite"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@id/share_sliceat"
+                android:layout_marginEnd="40dp"
+                android:src="@drawable/icon_share" />
         </RelativeLayout>
 
     </ScrollView>
