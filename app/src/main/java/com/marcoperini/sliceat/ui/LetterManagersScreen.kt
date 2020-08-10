@@ -27,8 +27,7 @@ class LetterManagersScreen : AppCompatActivity() {
 
         setupToolbar()
     }
-
-    @RequiresApi(Build.VERSION_CODES.M)
+    
     private fun setupToolbar() {
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.include_custom_toolbar)
         toolbar.setNavigationIcon(R.drawable.icon_close)
