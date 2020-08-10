@@ -78,4 +78,9 @@
     <string name="mail">Posta</string>
     <string name="invite">Inviti</string>
     <string name="share_sliceat">Condividi Sliceat</string>
+    <string name="your_thinking">Cosa ne pensi di Sliceat?</string>
+    <string name="legal">Legale</string>
+    <string name="term_usage">Termini di Utilizzo</string>
+    <string name="privacy_policy">Politica della Privacy</string>
+    <string name="version_sliceat">Versione di Sliceat 1.0</string>
 </resources>

@@ -3,18 +3,14 @@ package com.marcoperini.sliceat.ui.settings
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
+import android.widget.ImageView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.hellmund.viewpager2indicator.ViewPager2Indicator
 import com.marcoperini.sliceat.R
-import com.marcoperini.sliceat.maps.MapsScreen
 import com.marcoperini.sliceat.ui.Navigator
-import com.marcoperini.sliceat.ui.onboarding.OnboardingAdapter
-import com.marcoperini.sliceat.utils.sharedpreferences.Key
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import kotlinx.android.synthetic.main.onboarding_container.view_pager2
 import org.koin.android.ext.android.inject
@@ -24,6 +20,8 @@ class SettingsScreen : AppCompatActivity() {
     private val prefs: KeyValueStorage by inject()
 
     private lateinit var pageIndicator: ViewPager2Indicator
+    private lateinit var toolbar: androidx.constraintlayout.widget.ConstraintLayout
+    private lateinit var toolbarBack: ImageView
 
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, SettingsScreen::class.java)
@@ -53,18 +51,16 @@ class SettingsScreen : AppCompatActivity() {
     }
 
     private fun setupView() {
+        toolbar = findViewById(R.id.include_custom_toolbar)
         pageIndicator = findViewById(R.id.indicator)
         pageIndicator.attachTo(view_pager2)
+        toolbarBack = findViewById<ImageView>(R.id.toolbar_back_button)
     }
 
     private fun setOnClickListeners() {
-
+        toolbarBack.setOnClickListener {
+            navigator.goToMapsScreen()
+        }
     }
 
-    private fun exit() {
-//        navigator.goToAuthenticationScreen()
-        navigator.goToMapsScreen()
-        prefs.putBoolean(Key.FIRST_START, false)
-        finish()
-    }
 }

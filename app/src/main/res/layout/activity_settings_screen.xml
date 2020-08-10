@@ -102,6 +102,7 @@
             <TextView
                 android:id="@+id/your_profile"
                 style="@style/text"
+                android:textSize="13sp"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="24dp"
@@ -151,6 +152,7 @@
             <TextView
                 android:id="@+id/invite"
                 style="@style/text"
+                android:textSize="13sp"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="24dp"
@@ -176,6 +178,133 @@
                 android:layout_alignBottom="@id/share_sliceat"
                 android:layout_marginEnd="40dp"
                 android:src="@drawable/icon_share" />
+
+            <View
+                android:id="@+id/fourth_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_below="@id/share_sliceat"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/graySoft" />
+
+            <TextView
+                android:id="@+id/your_thinking"
+                style="@style/text"
+                android:textSize="13sp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/your_thinking"
+                android:textColor="@color/gray"
+                android:layout_below="@id/fourth_divider"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@id/your_thinking"
+                android:layout_marginEnd="40dp"
+                android:src="@drawable/icon_star" />
+
+            <View
+                android:id="@+id/fifth_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_below="@id/your_thinking"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/graySoft" />
+
+            <TextView
+                android:id="@+id/legal"
+                style="@style/text"
+                android:textSize="13sp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/legal"
+                android:textColor="@color/gray"
+                android:layout_below="@id/fifth_divider"/>
+
+            <TextView
+                android:id="@+id/term_usage"
+                style="@style/text"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/term_usage"
+                android:textColor="@color/black"
+                android:layout_below="@id/legal"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@id/term_usage"
+                android:layout_marginEnd="40dp"
+                android:src="@drawable/icon_signature" />
+
+            <View
+                android:id="@+id/sixth_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_below="@id/term_usage"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/graySoft" />
+
+            <TextView
+                android:id="@+id/privacy_policy"
+                style="@style/text"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/privacy_policy"
+                android:textColor="@color/black"
+                android:layout_below="@id/sixth_divider"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@id/privacy_policy"
+                android:layout_marginEnd="40dp"
+                android:src="@drawable/icon_privacy" />
+
+            <View
+                android:id="@+id/seventh_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_below="@id/privacy_policy"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/graySoft" />
+
+            <TextView
+                android:id="@+id/version_sliceat"
+                style="@style/text"
+                android:textSize="13sp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/version_sliceat"
+                android:textColor="@color/gray"
+                android:layout_below="@id/seventh_divider"/>
+
         </RelativeLayout>
 
     </ScrollView>
