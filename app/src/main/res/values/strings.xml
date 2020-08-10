@@ -70,7 +70,7 @@
     <string name="choise_photo">Scegli foto</string>
     <string name="start">Inizia</string>
     <string name="back_button">back button</string>
-    <string name="Setting">Impostazioni</string>
+    <string name="setting">Impostazioni</string>
     <string name="informazioni_sicure">Informazioni sicure</string>
     <string name="description_informations">Il primo modo per combattere il virus\nè tenersi aggiornati su canali\nd’informazione autorevoli e sicuri.</string>
     <string name="secure_eating">Mangia in sicurezza</string>
@@ -83,4 +83,19 @@
     <string name="term_usage">Termini di Utilizzo</string>
     <string name="privacy_policy">Politica della Privacy</string>
     <string name="version_sliceat">Versione di Sliceat 1.0</string>
+    <string name="letters_manager">Gentili colleghi,\n\n  Abbiamo passato davvero un periodo intenso sotto ogni aspetto. Una malattia completamente nuova,
+        la condivisione  di fake news, il lockdown dalla durata storica e infine una ripresa lenta e piena d’incertezza economica e morale.\n\nAppena il
+        governo ha iniziato la Fase 2, molti di voi, nonostante la possibilità di aprire il proprio locale, non lo hanno fatto. Avete preferito aspettare
+        che la situazione ritornasse “normale” e, quindi, offrire ai vostri clienti un esperienza diversa.\n\nAltri invece sono riusciti ad organizzarsi e
+        aprire il proprio locale quasi da subito. Certo, con qualche sacrificio, ma non hanno mai abbondato i loro fedeli clienti.\n\n<b>Una ripresa piena di
+        novità</b>\n\nCosì abbiamo assistito ad una valanga di applicazioni e siti web che offrivano l’opportunità di aggiungere al proprio servizio anche
+        un’esperienza digitale.\n\nAnche Sliceat si è adeguata e offre la possibilità di digitalizzare il proprio servizio.\n\nPerò ci teniamo davvero a
+        dirti una cosa: abbiamo bisogno più che mai di creare una relazione umana con i nostri clienti. Superando le barriere digitali ed evitare di
+        nasconderci dietro ad uno schermo.\n\nIl cliente desidera conoscere davvero chi c’è dietro ad un servizio o ad un prodotto.\n\n<b>Sliceat vuole creare
+        una nuova realtà</b>\n\nIl nostro sogno è quello di permettere a tantissime persone di sentirsi libere di mangiare dove e come vogliono. Noi, anche
+        se siamo solo all’inizio, ci impegneremo per offrirti un servizio all’altezza delle tue aspettative.\n\nPerò, creando una piattaforma diversa dalle
+        altre: il tuo locale è al centro dell’attenzione del cliente. La tua storia parlerà al posto tuo. Il tuo menù e il servizio che offri farà da garante.
+        \n\nUtilizziamo il digitale per far conoscere la tua storia e attirare clienti che hanno ancora il desiderio di conoscerti.\n\nCon una piccola
+        sorpresa: sarà gratis fino a quando non avremo superato questo periodo. Lo facciamo per i nostri tantissimi clienti, per te e per il tuo business.\n\n
+        Ci aspettano tantissime novità. Questo è solo l’inizio. A presto e buon lavoro.\n\nSliceat</string>
 </resources>

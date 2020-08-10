@@ -29,6 +29,7 @@ interface Navigator {
     fun goToSignInScreen5()
     fun goToMapsScreen()
     fun goToSettingsScreen()
+    fun goToLetterManagersScreen()
 }
 
 class AppNavigator(private val context: Context) : Navigator {
@@ -83,6 +84,10 @@ class AppNavigator(private val context: Context) : Navigator {
 
     override fun goToSettingsScreen() {
         ContextCompat.startActivity(context, SettingsScreen.getIntent(context), null)
+    }
+
+    override fun goToLetterManagersScreen() {
+        ContextCompat.startActivity(context, LetterManagersScreen.getIntent(context), null)
     }
 
     override fun goToMainScreen() {

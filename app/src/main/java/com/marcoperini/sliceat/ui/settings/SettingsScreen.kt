@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.ImageView
+import android.widget.Toolbar
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -20,8 +22,7 @@ class SettingsScreen : AppCompatActivity() {
     private val prefs: KeyValueStorage by inject()
 
     private lateinit var pageIndicator: ViewPager2Indicator
-    private lateinit var toolbar: androidx.constraintlayout.widget.ConstraintLayout
-    private lateinit var toolbarBack: ImageView
+//    private lateinit var toolbarBack: ImageView
 
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, SettingsScreen::class.java)
@@ -32,10 +33,10 @@ class SettingsScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings_screen)
 
-        view_pager2.adapter = SettingsAdapter(this)
+        view_pager2.adapter = SettingsAdapter(this, navigator)
 
+        setupToolbar()
         setupView()
-        setOnClickListeners()
 
         view_pager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             @RequiresApi(Build.VERSION_CODES.M)
@@ -51,16 +52,23 @@ class SettingsScreen : AppCompatActivity() {
     }
 
     private fun setupView() {
-        toolbar = findViewById(R.id.include_custom_toolbar)
         pageIndicator = findViewById(R.id.indicator)
         pageIndicator.attachTo(view_pager2)
-        toolbarBack = findViewById<ImageView>(R.id.toolbar_back_button)
     }
 
-    private fun setOnClickListeners() {
-        toolbarBack.setOnClickListener {
+    private fun setupToolbar() {
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.include_custom_toolbar)
+        toolbar.setNavigationIcon(R.drawable.back_button)
+        toolbar.title = resources.getString(R.string.setting)
+        setSupportActionBar(toolbar)
+    }
+
+    @Suppress("UseIfInsteadOfWhen")
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        android.R.id.home -> {
             navigator.goToMapsScreen()
+            true
         }
+        else -> super.onOptionsItemSelected(item)
     }
-
 }

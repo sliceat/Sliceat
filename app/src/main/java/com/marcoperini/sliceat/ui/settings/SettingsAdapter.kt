@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
+import com.marcoperini.sliceat.ui.Navigator
 import kotlinx.android.synthetic.main.item_page.view.ivImage
 import kotlinx.android.synthetic.main.item_page_settings.view.title
 
-class SettingsAdapter(val context: Context) : RecyclerView.Adapter<PagerVH>() {
+class SettingsAdapter(val context: Context, val navigator: Navigator) : RecyclerView.Adapter<PagerVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerVH =
         PagerVH(LayoutInflater.from(parent.context).inflate(R.layout.item_page_settings, parent, false))
@@ -27,6 +28,10 @@ class SettingsAdapter(val context: Context) : RecyclerView.Adapter<PagerVH>() {
             val firstImage = BitmapFactory.decodeResource(resources, R.drawable.view_pager1)
 
             ivImage.setImageBitmap(firstImage)
+
+            ivImage.setOnClickListener {
+                navigator.goToLetterManagersScreen()
+            }
         }
         if (position == 1) {
 //            title.text = context.getString(R.string.onboardingTitle2) TODO add correct text and image

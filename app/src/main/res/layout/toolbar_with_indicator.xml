@@ -1,40 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar_main"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    tools:ignore="MissingConstraints"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/toolbar_third_level_title_section"
-        android:text="@string/Setting"
-        android:textSize="18sp"
-        android:fontFamily="@font/montserrat_bold"
-        android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="14dp"/>
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints">
-
-        <ImageView
-            android:id="@+id/toolbar_back_button"
-            android:contentDescription="@string/back_button"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:src="@drawable/back_button" />
-
-    </androidx.appcompat.widget.Toolbar>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.Toolbar>
 
