@@ -25,27 +25,30 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:layout_alignParentStart="true"
-                android:src="@drawable/icon_filter" />
+                android:src="@drawable/arachidi" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:layout_marginBottom="12dp"
-                android:text="wfwef"
+                android:textColor="@color/black"
+                android:text="@string/arachidi"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
+                android:layout_marginStart="64dp"
+                android:textSize="16sp"
+                android:gravity="center_vertical|center_horizontal"
                 android:layout_alignBottom="@+id/no_houses_listed_header_image"
-                android:layout_alignTop="@+id/no_houses_listed_header_image"
-                android:textAlignment="center" />
+                android:layout_alignTop="@+id/no_houses_listed_header_image" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/contract_proposal_rent_dates_payment_each_month"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:layout_margin="12dp"
+                android:layout_alignBottom="@+id/no_houses_listed_header_image"
+                android:layout_alignTop="@+id/no_houses_listed_header_image"
+                android:layout_marginEnd="48dp"
                 android:button="@color/white"
+                android:background="@drawable/icon_empty"
                 android:checked="false"
                 android:gravity="end" />
 
