@@ -1,5 +1,6 @@
 package com.marcoperini.sliceat.ui.settings
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -13,7 +14,7 @@ import com.marcoperini.sliceat.ui.Navigator
 import kotlinx.android.synthetic.main.item_page.view.ivImage
 import kotlinx.android.synthetic.main.item_page_settings.view.title
 
-class SettingsAdapter(val context: Context, val navigator: Navigator) : RecyclerView.Adapter<PagerVH>() {
+class SettingsAdapter(val context: Context, val navigator: Navigator, val activity: Activity) : RecyclerView.Adapter<PagerVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerVH =
         PagerVH(LayoutInflater.from(parent.context).inflate(R.layout.item_page_settings, parent, false))
@@ -35,6 +36,7 @@ class SettingsAdapter(val context: Context, val navigator: Navigator) : Recycler
 
             ivImage.setOnClickListener {
                 navigator.goToLetterManagersScreen()
+                activity.finish()
             }
         }
         if (position == 1) {

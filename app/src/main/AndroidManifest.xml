@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="n">
-        <activity android:name=".ui.LetterManagersScreen"></activity>
+        <activity android:name=".ui.FiltersScreen"></activity>
+        <activity android:name=".ui.LetterManagersScreen" />
         <activity android:name=".ui.settings.SettingsScreen" />
         <activity android:name=".ui.authentication.signin.signin5.SignInScreen5" />
         <activity android:name=".ui.authentication.signin.signin4.SignInScreen4" />
@@ -42,7 +43,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".maps.MapsScreen"
+            android:name=".ui.maps.MapsScreen"
             android:label="@string/title_activity_maps_screen" />
         <activity android:name=".ui.authentication.access.AccessScreen" />
         <activity android:name=".ui.launch.LaunchScreen1">

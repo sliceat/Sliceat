@@ -33,7 +33,7 @@ class SettingsScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings_screen)
 
-        view_pager2.adapter = SettingsAdapter(this, navigator)
+        view_pager2.adapter = SettingsAdapter(this, navigator, this@SettingsScreen)
 
         setupToolbar()
         setupView()
@@ -67,6 +67,7 @@ class SettingsScreen : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         android.R.id.home -> {
             navigator.goToMapsScreen()
+            finish()
             true
         }
         else -> super.onOptionsItemSelected(item)

@@ -83,6 +83,7 @@
     <string name="term_usage">Termini di Utilizzo</string>
     <string name="privacy_policy">Politica della Privacy</string>
     <string name="version_sliceat">Versione di Sliceat 1.0</string>
+    <string name="empty"> </string>
     <string name="letters_manager">Gentili colleghi,\n\n  Abbiamo passato davvero un periodo intenso sotto ogni aspetto. Una malattia completamente nuova,
         la condivisione  di fake news, il lockdown dalla durata storica e infine una ripresa lenta e piena d’incertezza economica e morale.\n\nAppena il
         governo ha iniziato la Fase 2, molti di voi, nonostante la possibilità di aprire il proprio locale, non lo hanno fatto. Avete preferito aspettare
@@ -100,4 +101,5 @@
         Ci aspettano tantissime novità. Questo è solo l’inizio. A presto e buon lavoro.\n\nSliceat</string>
     <string name="setting_title1">Una lettera per\ntutti i manager.</string>
     <string name="setting_title2">Sliceat è intollerante\nall’inquinamento.</string>
+    <string name="icon_close">close</string>
 </resources>

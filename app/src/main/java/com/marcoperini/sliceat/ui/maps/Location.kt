@@ -1,4 +1,4 @@
-package com.marcoperini.sliceat.maps
+package com.marcoperini.sliceat.ui.maps
 
 import android.app.Activity
 import android.content.Context
