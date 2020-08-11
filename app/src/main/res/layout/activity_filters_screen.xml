@@ -6,48 +6,100 @@
     android:layout_height="match_parent"
     tools:context=".ui.FiltersScreen">
 
+    <include
+        android:id="@+id/include_custom_toolbar"
+        layout="@layout/toolbar_with_indicator" />
+
     <androidx.cardview.widget.CardView
-        android:id="@+id/empty_house_listing_landlord"
+        android:id="@+id/first_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/include_custom_toolbar">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/no_houses_listed_header_image"
+                android:id="@+id/arachidi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
                 android:layout_alignParentStart="true"
+                android:layout_margin="12dp"
                 android:src="@drawable/arachidi" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="@string/arachidi"
+                android:layout_alignTop="@+id/arachidi"
+                android:layout_alignBottom="@+id/arachidi"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="64dp"
-                android:textSize="16sp"
                 android:gravity="center_vertical|center_horizontal"
-                android:layout_alignBottom="@+id/no_houses_listed_header_image"
-                android:layout_alignTop="@+id/no_houses_listed_header_image" />
+                android:text="@string/arachidi"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
-                android:id="@+id/contract_proposal_rent_dates_payment_each_month"
+                android:id="@+id/first_checkbox"
                 android:layout_width="33dp"
                 android:layout_height="33dp"
-                android:layout_alignBottom="@+id/no_houses_listed_header_image"
+                android:layout_alignBottom="@+id/arachidi"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="24dp"
-                android:button="@color/white"
                 android:background="@drawable/icon_empty"
+                android:button="@color/white"
+                android:checked="false" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/second_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_card">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/crostacei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_margin="12dp"
+                android:src="@drawable/crostacei" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/crostacei"
+                android:layout_alignBottom="@+id/crostacei"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="64dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/crostacei"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/second_checkbox"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_alignBottom="@+id/crostacei"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/icon_empty"
+                android:button="@color/white"
                 android:checked="false" />
 
         </RelativeLayout>

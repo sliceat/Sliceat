@@ -15,6 +15,8 @@ import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import kotlinx.android.synthetic.main.onboarding_container.view_pager2
+import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_back_button
+import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_title
 import org.koin.android.ext.android.inject
 
 class SettingsScreen : AppCompatActivity() {
@@ -58,18 +60,13 @@ class SettingsScreen : AppCompatActivity() {
 
     private fun setupToolbar() {
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.include_custom_toolbar)
-        toolbar.setNavigationIcon(R.drawable.back_button)
-        toolbar.title = resources.getString(R.string.setting)
-        setSupportActionBar(toolbar)
-    }
+        toolbar.toolbar_title.text = resources.getString(R.string.setting)
 
-    @Suppress("UseIfInsteadOfWhen")
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        android.R.id.home -> {
+        toolbar.toolbar_back_button.setOnClickListener {
             navigator.goToMapsScreen()
             finish()
-            true
         }
-        else -> super.onOptionsItemSelected(item)
     }
+
+
 }
