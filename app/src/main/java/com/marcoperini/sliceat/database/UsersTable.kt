@@ -1,5 +1,6 @@
 package com.marcoperini.sliceat.database
 
+import android.widget.ImageView
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,7 +10,10 @@ import com.marcoperini.sliceat.utils.Constants.Companion.E_MAIL
 import com.marcoperini.sliceat.utils.Constants.Companion.NOME
 import com.marcoperini.sliceat.utils.Constants.Companion.COGNOME
 import com.marcoperini.sliceat.utils.Constants.Companion.DATA_REGISTRAZIONE
+import com.marcoperini.sliceat.utils.Constants.Companion.IMAGE_ALIMENT
+import com.marcoperini.sliceat.utils.Constants.Companion.NAME_ALIMENT
 import com.marcoperini.sliceat.utils.Constants.Companion.PASSWORD
+import com.marcoperini.sliceat.utils.Constants.Companion.TABLE_ALIMENT
 import com.marcoperini.sliceat.utils.Constants.Companion.TIPO_REGISTRAZIONE
 import com.marcoperini.sliceat.utils.Constants.Companion.TABLE_NAME
 
@@ -27,6 +31,14 @@ data class UsersTable(
     @ColumnInfo(name = TIPO_REGISTRAZIONE) val typeAuthentication: String?,
     @ColumnInfo(name = CODICE_RECUPERO) val recovery_code: String?,
     @ColumnInfo(name = DATA_REGISTRAZIONE) val dateOfRegistration: String?
+) {
+    @PrimaryKey(autoGenerate = true) var id: Int = 0
+}
+
+@Entity(tableName = TABLE_ALIMENT)
+data class FilterTable(
+    @ColumnInfo(name = IMAGE_ALIMENT) var imageAliment: ImageView?,
+    @ColumnInfo(name = NAME_ALIMENT) var nameAliment: String?
 ) {
     @PrimaryKey(autoGenerate = true) var id: Int = 0
 }
