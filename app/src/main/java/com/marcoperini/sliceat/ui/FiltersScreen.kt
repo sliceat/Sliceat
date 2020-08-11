@@ -2,10 +2,9 @@ package com.marcoperini.sliceat.ui
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.marcoperini.sliceat.R
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_back_button
@@ -41,10 +40,11 @@ class FiltersScreen : AppCompatActivity() {
 
     private fun clickListener() {
         toolbar.toolbar_close_button.setOnClickListener {
-            navigator.goToSettingsScreen()
+            navigator.goToMapsScreen()
             finish()
             toolbar.toolbar_close_button.visibility = View.GONE
         }
+
         toolbar.toolbar_back_button.setOnClickListener {
             navigator.goToMapsScreen()
             finish()
