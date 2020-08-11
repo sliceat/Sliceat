@@ -1,7 +1,9 @@
 package com.marcoperini.sliceat.ui.settings
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Canvas
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,22 +25,34 @@ class SettingsAdapter(val context: Context, val navigator: Navigator) : Recycler
     override fun onBindViewHolder(holder: PagerVH, position: Int) = holder.itemView.run {
 
         if (position == 0) {
-//            title.text = context.getString(R.string.onboardingTitle1) TODO add correct text and image
+            title.text = context.getString(R.string.setting_title1)
 
             val firstImage = BitmapFactory.decodeResource(resources, R.drawable.view_pager1)
+            val backgroundImage = BitmapFactory.decodeResource(resources, R.drawable.view_pager1_background)
+            val mergedImages = createSingleImageFromMultipleImages(firstImage, backgroundImage)
 
-            ivImage.setImageBitmap(firstImage)
+            ivImage.setImageBitmap(mergedImages)
 
             ivImage.setOnClickListener {
                 navigator.goToLetterManagersScreen()
             }
         }
         if (position == 1) {
-//            title.text = context.getString(R.string.onboardingTitle2) TODO add correct text and image
-            val secondImage = BitmapFactory.decodeResource(resources, R.drawable.view_pager1)
+            title.text = context.getString(R.string.setting_title2)
+            val secondImage = BitmapFactory.decodeResource(resources, R.drawable.view_pager2)
+            val backgroundImage2 = BitmapFactory.decodeResource(resources, R.drawable.view_pager2_background)
+            val mergedImages2 = createSingleImageFromMultipleImages(secondImage, backgroundImage2)
 
-            ivImage.setImageBitmap(secondImage)
+            ivImage.setImageBitmap(mergedImages2)
         }
+    }
+
+    private fun createSingleImageFromMultipleImages(firstImage: Bitmap, secondImage: Bitmap): Bitmap? {
+        val result = Bitmap.createBitmap(firstImage.width, firstImage.height, firstImage.config)
+        val canvas = Canvas(result)
+        canvas.drawBitmap(firstImage, 0f, 0f, null)
+        canvas.drawBitmap(secondImage, 0f, 0f, null)
+        return result
     }
 }
 

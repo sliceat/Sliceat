@@ -7,8 +7,6 @@ import android.graphics.Canvas
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
 import kotlinx.android.synthetic.main.item_page.view.ivImage
@@ -39,8 +37,8 @@ class OnboardingAdapter(val context: Context) : RecyclerView.Adapter<PagerVH>() 
         if (position == 1) {
             tvTitle.text = context.getString(R.string.onboardingTitle2)
             tvAbout.text = context.getString(R.string.onboardingText2)
-            val firstImage = BitmapFactory.decodeResource(resources, R.drawable.onboarding_second)
-            val mergedImages = createSingleImageFromMultipleImages(firstImage, backgroundImage)
+            val secondImage = BitmapFactory.decodeResource(resources, R.drawable.onboarding_second)
+            val mergedImages = createSingleImageFromMultipleImages(secondImage, backgroundImage)
 
             ivImage.setImageBitmap(mergedImages)
         }
