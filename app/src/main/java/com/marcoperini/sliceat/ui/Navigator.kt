@@ -30,6 +30,7 @@ interface Navigator {
     fun goToMapsScreen()
     fun goToSettingsScreen()
     fun goToLetterManagersScreen()
+    fun goToFiltersScreens()
 }
 
 class AppNavigator(private val context: Context) : Navigator {
@@ -88,6 +89,10 @@ class AppNavigator(private val context: Context) : Navigator {
 
     override fun goToLetterManagersScreen() {
         ContextCompat.startActivity(context, LetterManagersScreen.getIntent(context), null)
+    }
+
+    override fun goToFiltersScreens() {
+        ContextCompat.startActivity(context, FiltersScreen.getIntent(context), null)
     }
 
     override fun goToMainScreen() {

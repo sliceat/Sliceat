@@ -41,16 +41,14 @@
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/contract_proposal_rent_dates_payment_each_month"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
                 android:layout_alignBottom="@+id/no_houses_listed_header_image"
-                android:layout_alignTop="@+id/no_houses_listed_header_image"
-                android:layout_marginEnd="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="24dp"
                 android:button="@color/white"
                 android:background="@drawable/icon_empty"
-                android:checked="false"
-                android:gravity="end" />
+                android:checked="false" />
 
         </RelativeLayout>
 

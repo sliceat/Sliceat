@@ -64,6 +64,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,P
     private val navigator: Navigator by inject()
 
     private lateinit var photo: ImageView
+    private lateinit var filter: ImageView
     private lateinit var googleMap: GoogleMap
     private lateinit var searchView: SearchView
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -144,6 +145,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,P
         location = Location(this)
         searchView = findViewById(R.id.sv_location)
         photo = findViewById(R.id.profilePhoto)
+        filter = findViewById(R.id.filter_icon)
 
         // for upload profile image
         val uriPhoto = prefs.getString(Key.SAVE_URI_PHOTO, "")
@@ -160,6 +162,9 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,P
     private fun clickListener() {
         photo.setOnClickListener {
             navigator.goToSettingsScreen()
+        }
+        filter.setOnClickListener {
+            navigator.goToFiltersScreens()
         }
     }
 
