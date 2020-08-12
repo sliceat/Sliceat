@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.marcoperini.sliceat.utils.Constants.Companion.TABLE_NAME
 
 @Dao
-interface UsersTableDao {
+interface TableDao {
 
     @Query("SELECT * FROM $TABLE_NAME")
     suspend fun findAll(): List<UsersTable>
@@ -20,4 +20,8 @@ interface UsersTableDao {
 
     @Query("DELETE FROM $TABLE_NAME")
     suspend fun deleteAll()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @JvmSuppressWildcards
+    abstract fun insertAll(kist: List<Any>)
 }
