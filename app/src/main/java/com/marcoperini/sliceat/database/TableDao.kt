@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.marcoperini.sliceat.CardFilter
 import com.marcoperini.sliceat.utils.Constants.Companion.TABLE_NAME
 
 @Dao
@@ -20,8 +21,4 @@ interface TableDao {
 
     @Query("DELETE FROM $TABLE_NAME")
     suspend fun deleteAll()
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    @JvmSuppressWildcards
-    abstract fun insertAll(kist: List<Any>)
 }

@@ -18,7 +18,6 @@ class Constants {
 
         //Database
         const val TABLE_NAME : String = "UserTable"
-        const val TABLE_ALIMENT : String = "AlimentTable"
         const val USER_DATABASE_NAME : String = "Users.db"
         const val NOME : String = "item1"
         const val COGNOME : String = "item2"
@@ -28,8 +27,6 @@ class Constants {
         const val TIPO_REGISTRAZIONE: String = "item6"
         const val CODICE_RECUPERO: String = "item7"
         const val DATA_REGISTRAZIONE: String = "item8"
-        const val IMAGE_ALIMENT: String = "image aliment"
-        const val NAME_ALIMENT: String = "name aliment"
 
         //foto
         const val PERCORSO_FOTO : String = "PercorsoFoto"

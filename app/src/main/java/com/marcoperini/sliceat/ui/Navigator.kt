@@ -11,6 +11,7 @@ import com.marcoperini.sliceat.ui.authentication.signin.signin1.SignInScreen1
 import com.marcoperini.sliceat.ui.authentication.signin.signin2.SignInScreen2
 import com.marcoperini.sliceat.ui.authentication.signin.signin3.SignInScreen3
 import com.marcoperini.sliceat.ui.authentication.signin.signin5.SignInScreen5
+import com.marcoperini.sliceat.ui.filters.FiltersScreen
 import com.marcoperini.sliceat.ui.launch.LaunchScreen2
 import com.marcoperini.sliceat.ui.main.MainScreen
 import com.marcoperini.sliceat.ui.onboarding.OnboardingScreen

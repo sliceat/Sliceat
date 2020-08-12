@@ -107,4 +107,18 @@
     <string name="help">Come posso aiutarti?</string>
     <string name="frutta_con_guscio">Frutta con guscio</string>
     <string name="funghi">Funghi</string>
+    <string name="glutine">Glutine</string>
+    <string name="lattosio">Lattosio</string>
+    <string name="lievito">Lievito</string>
+    <string name="lupini">Lupini</string>
+    <string name="mais">Mais</string>
+    <string name="molluschi">Molluschi</string>
+    <string name="pesce">Pesce</string>
+    <string name="sedano">Sedano</string>
+    <string name="senape">Senape</string>
+    <string name="sesamo">Sesamo</string>
+    <string name="soia">Soia</string>
+    <string name="solfiti">Solfiti</string>
+    <string name="uova">Uova</string>
+    <string name="zuccheri_aggiunti">Zuccheri aggiunti</string>
 </resources>
