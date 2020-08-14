@@ -51,8 +51,7 @@ class APIController constructor(private val volleyRequest: VolleyRequest, val pr
                 // Descriptive alphabet using three CharRange objects, concatenated
                 val alphabet: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
 
-                // Build list from 20 random samples from the alphabet,
-                // and convert it to a string using "" as element separator
+                // Build list from 20 random samples from the alphabet, and convert it to a string using "" as element separator
                 return List(LENGTH_RECOVERY_CODE) { alphabet.random() }.joinToString("")
             }
 
@@ -66,6 +65,3 @@ class APIController constructor(private val volleyRequest: VolleyRequest, val pr
         volleyRequest.addToRequestQueue(postRequest)
     }
 }
-
-
-

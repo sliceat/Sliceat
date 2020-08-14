@@ -2,9 +2,11 @@ package com.marcoperini.sliceat.ui.settings
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toolbar
 import androidx.annotation.RequiresApi
@@ -24,6 +26,9 @@ class SettingsScreen : AppCompatActivity() {
     private val prefs: KeyValueStorage by inject()
 
     private lateinit var pageIndicator: ViewPager2Indicator
+    private lateinit var shareSliceat: ImageView
+    private lateinit var termsAndCondition: ImageView
+    private lateinit var privacyPolicy: ImageView
 //    private lateinit var toolbarBack: ImageView
 
     companion object {
@@ -39,6 +44,7 @@ class SettingsScreen : AppCompatActivity() {
 
         setupToolbar()
         setupView()
+        setupListener()
 
         view_pager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             @RequiresApi(Build.VERSION_CODES.M)
@@ -56,6 +62,9 @@ class SettingsScreen : AppCompatActivity() {
     private fun setupView() {
         pageIndicator = findViewById(R.id.indicator)
         pageIndicator.attachTo(view_pager2)
+        shareSliceat = findViewById(R.id.share_sliceat_icon)
+        termsAndCondition = findViewById(R.id.term_and_condition_icon)
+        privacyPolicy = findViewById(R.id.privacy_policy_icon)
     }
 
     private fun setupToolbar() {
@@ -68,5 +77,23 @@ class SettingsScreen : AppCompatActivity() {
         }
     }
 
+    private fun setupListener() {
+        shareSliceat.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, "market://details?id=$packageName")
+            startActivity(Intent.createChooser(intent, resources.getString(R.string.invite_your_friends)), null)
+        }
 
+        termsAndCondition.setOnClickListener {
+            intent = Intent(Intent.ACTION_VIEW, Uri.parse(resources.getString(R.string.terms_link_it)))
+            startActivity(intent)
+        }
+
+        privacyPolicy.setOnClickListener {
+            intent = Intent(Intent.ACTION_VIEW, Uri.parse(resources.getString(R.string.privacy_link_it)))
+            startActivity(intent)
+        }
+    }
 }

@@ -8,6 +8,7 @@ import android.graphics.Canvas
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
@@ -24,6 +25,7 @@ class SettingsAdapter(val context: Context, val navigator: Navigator, val activi
 
     //binding the screen with view
     override fun onBindViewHolder(holder: PagerVH, position: Int) = holder.itemView.run {
+
 
         if (position == 0) {
             title.text = context.getString(R.string.setting_title1)

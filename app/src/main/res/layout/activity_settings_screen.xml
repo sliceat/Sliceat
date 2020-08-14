@@ -172,6 +172,7 @@
                 android:layout_below="@id/invite"/>
 
             <ImageView
+                android:id="@+id/share_sliceat_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -231,7 +232,7 @@
                 android:layout_below="@id/fifth_divider"/>
 
             <TextView
-                android:id="@+id/term_usage"
+                android:id="@+id/term_and_condition"
                 style="@style/text"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="40dp"
@@ -242,10 +243,11 @@
                 android:layout_below="@id/legal"/>
 
             <ImageView
+                android:id="@+id/term_and_condition_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignBottom="@id/term_usage"
+                android:layout_alignBottom="@id/term_and_condition"
                 android:layout_marginEnd="40dp"
                 android:src="@drawable/icon_signature" />
 
@@ -253,7 +255,7 @@
                 android:id="@+id/sixth_divider"
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
-                android:layout_below="@id/term_usage"
+                android:layout_below="@id/term_and_condition"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="40dp"
@@ -272,6 +274,7 @@
                 android:layout_below="@id/sixth_divider"/>
 
             <ImageView
+                android:id="@+id/privacy_policy_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

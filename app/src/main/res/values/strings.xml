@@ -121,4 +121,8 @@
     <string name="solfiti">Solfiti</string>
     <string name="uova">Uova</string>
     <string name="zuccheri_aggiunti">Zuccheri aggiunti</string>
+    <string name="terms_link_it">https://www.sliceat.it/nuovoSito/termini-e-condizioni/</string>
+    <string name="privacy_link_it">https://www.sliceat.it/nuovoSito/privacy-policy-sliceat/</string>
+    <string name="invite_your_friends">invite your friends</string>
+    <string name="mail_description">Finalmente si può viaggiare in Italia. Scopri le novità che ti propone Sliceat. 17 lug 2020</string>
 </resources>
