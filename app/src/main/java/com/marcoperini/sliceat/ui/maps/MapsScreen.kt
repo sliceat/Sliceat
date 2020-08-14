@@ -164,7 +164,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,P
             navigator.goToSettingsScreen()
         }
         filter.setOnClickListener {
-            navigator.goToFiltersScreens()
+            navigator.goToFiltersScreen()
         }
     }
 

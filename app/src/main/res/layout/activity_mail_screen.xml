@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mail.MailScreen">
+    tools:context=".ui.mail.MailsScreen">
 
     <include
         android:id="@+id/include_custom_toolbar"
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/include_custom_toolbar"
         android:layout_margin="18dp"
-        tools:listitem="@layout/item_filter_card"
+        tools:listitem="@layout/item_mail_card"
         tools:itemCount="3"/>
 
 </RelativeLayout>

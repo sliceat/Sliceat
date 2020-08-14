@@ -22,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="n">
-        <activity android:name=".ui.mail.MailScreen"></activity>
+        <activity android:name=".ui.mail.MailsScreen"></activity>
         <activity android:name=".ui.filters.FiltersScreen" />
         <activity android:name=".ui.LetterManagersScreen" />
         <activity android:name=".ui.settings.SettingsScreen" />
