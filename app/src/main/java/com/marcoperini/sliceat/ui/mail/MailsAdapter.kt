@@ -26,9 +26,9 @@ class MailsAdapter(val mailCard: List<CardMail>, val resources : Resources) : Re
 
 class MailsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val cardImage: ImageView = itemView.findViewById(R.id.card_mail)
-    private val title: TextView = itemView.findViewById(R.id.mail_tilte)
+    private val title: TextView = itemView.findViewById(R.id.mail_title)
     private val data: TextView = itemView.findViewById(R.id.mail_data)
-    private val divider: ImageView = itemView.findViewById(R.id.divider)
+    private val divider: View = itemView.findViewById(R.id.divider)
 
     fun bind(mail: CardMail, resources: Resources) {
         title.text = resources.getString(mail.mailDescription)
