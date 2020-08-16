@@ -4,7 +4,6 @@ import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -28,9 +27,11 @@ class MailsAdapter(val mailCard: List<CardMail>, val resources : Resources) : Re
 class MailsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val cardImage: ImageView = itemView.findViewById(R.id.card_mail)
     private val title: TextView = itemView.findViewById(R.id.mail_tilte)
+    private val data: TextView = itemView.findViewById(R.id.mail_data)
 
-    fun bind(mailCard: CardMail, resources: Resources) {
-        title.text = resources.getString(mailCard.mailDescription)
-        cardImage.setImageDrawable(resources.getDrawable(mailCard.imageMail))
+    fun bind(mail: CardMail, resources: Resources) {
+        title.text = resources.getString(mail.mailDescription)
+        cardImage.setImageDrawable(resources.getDrawable(mail.imageMail))
+        data.text = resources.getString(mail.dataMail)
     }
 }

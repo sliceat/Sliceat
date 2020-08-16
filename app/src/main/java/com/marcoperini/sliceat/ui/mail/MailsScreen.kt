@@ -33,7 +33,7 @@ class MailsScreen : AppCompatActivity() {
     private fun setupView() {
         recyclerView = findViewById(R.id.recyclerView)
         listElementsMail = mutableListOf()
-        listElementsMail.add(CardMail(R.drawable.image_mail, R.string.mail_description))
+        listElementsMail.add(CardMail(R.drawable.image_mail, R.string.mail_description, R.string.data_mail))
         recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@MailsScreen)
