@@ -12,7 +12,7 @@ import com.marcoperini.sliceat.R
 
 class MailsAdapter(val mailCard: List<CardMail>, val resources : Resources) : RecyclerView.Adapter<MailsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MailsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_filter_card, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_mail_card, parent, false)
         return MailsViewHolder(view)
     }
 
@@ -26,8 +26,8 @@ class MailsAdapter(val mailCard: List<CardMail>, val resources : Resources) : Re
 }
 
 class MailsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val cardImage: ImageView = itemView.findViewById(R.id.card_filter)
-    private val title: TextView = itemView.findViewById(R.id.card_tilte)
+    private val cardImage: ImageView = itemView.findViewById(R.id.card_mail)
+    private val title: TextView = itemView.findViewById(R.id.mail_tilte)
 
     fun bind(mailCard: CardMail, resources: Resources) {
         title.text = resources.getString(mailCard.mailDescription)
