@@ -9,30 +9,36 @@
     android:weightSum="1"
     tools:context=".ui.maps.MapsScreen">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <include
+        android:id="@+id/include_custom_toolbar"
+        layout="@layout/toolbar_with_indicator" />
 
-        <fragment
-            android:id="@+id/autocomplete_fragment"
-            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/card_view_fragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
 
-    </androidx.cardview.widget.CardView>
+<!--        <fragment-->
+<!--            android:id="@+id/autocomplete_fragment"-->
+<!--            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+
+<!--    </androidx.cardview.widget.CardView>-->
 
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/include_custom_toolbar"/>
 
     <SearchView
         android:id="@+id/sv_location"
+        android:layout_alignBottom="@id/include_custom_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginEnd="48dp"
         android:background="@drawable/bg_round"
         android:elevation="5dp"
         android:iconifiedByDefault="false"
@@ -41,7 +47,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/card_view_fragment"
         android:gravity="bottom|start"
         android:orientation="vertical">
 
@@ -72,7 +77,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/card_view_fragment"
         android:orientation="vertical"
         android:gravity="bottom|end">
 
@@ -103,11 +107,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/card_view_fragment"
         android:orientation="vertical"
         android:gravity="bottom|center_horizontal">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/qr_code"
             android:layout_width="82dp"
             android:layout_height="44dp"

@@ -13,6 +13,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
@@ -34,6 +36,7 @@ import com.google.android.libraries.places.api.model.RectangularBounds
 import com.google.android.libraries.places.api.model.TypeFilter
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+import com.google.zxing.integration.android.IntentIntegrator
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -46,6 +49,7 @@ import com.marcoperini.sliceat.utils.Constants.Companion.ZOOM_CAMERA
 import com.marcoperini.sliceat.utils.sharedpreferences.Key
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import com.marcoperini.sliceat.utils.transformImageToRoundImage
+import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_title
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 import java.io.IOException
@@ -64,12 +68,15 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,P
     private val navigator: Navigator by inject()
 
     private lateinit var photo: ImageView
+    private lateinit var qrCode: ImageButton
     private lateinit var filter: ImageView
     private lateinit var googleMap: GoogleMap
     private lateinit var searchView: SearchView
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var location: Location
     private lateinit var autocompleteFragment: AutocompleteSupportFragment
+    private var qrScanIntegrator: IntentIntegrator? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,9 +85,14 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,P
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.include_custom_toolbar)
+        setSupportActionBar(toolbar)
+        toolbar.toolbar_title.text = resources.getString(R.string.empty)
+
         setupView()
 
-        clickListener()
+        setupListener()
 
         searchQuery()
 
@@ -123,22 +135,22 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,P
         })
     }
 
-    private fun setupAutocompleteSearch() {
-        if (!Places.isInitialized()) {
-            Places.initialize(applicationContext,"AIzaSyAerZEakQJJI2afAIUQg9TaP_cHL3TkHy4")
-            Places.createClient(this)
-        }
-
-        autocompleteFragment = supportFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
-
-        autocompleteFragment.setTypeFilter(TypeFilter.ESTABLISHMENT)
-        autocompleteFragment.setLocationBias(RectangularBounds.newInstance(LatLng(-33.880490, 151.184363),LatLng(-33.858754, 151.229596)))
-        autocompleteFragment.setCountries("IT")
-        autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME))
-
-        // Specify the types of place data to return.
-        autocompleteFragment.setOnPlaceSelectedListener(this)
-    }
+//    private fun setupAutocompleteSearch() {
+//        if (!Places.isInitialized()) {
+//            Places.initialize(applicationContext,"AIzaSyAerZEakQJJI2afAIUQg9TaP_cHL3TkHy4")
+//            Places.createClient(this)
+//        }
+//
+//        autocompleteFragment = supportFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
+//
+//        autocompleteFragment.setTypeFilter(TypeFilter.ESTABLISHMENT)
+//        autocompleteFragment.setLocationBias(RectangularBounds.newInstance(LatLng(-33.880490, 151.184363),LatLng(-33.858754, 151.229596)))
+//        autocompleteFragment.setCountries("IT")
+//        autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME))
+//
+//        // Specify the types of place data to return.
+//        autocompleteFragment.setOnPlaceSelectedListener(this)
+//    }
 
     private fun setupView() {
         fusedLocationProviderClient = FusedLocationProviderClient(this)
@@ -146,6 +158,10 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,P
         searchView = findViewById(R.id.sv_location)
         photo = findViewById(R.id.profilePhoto)
         filter = findViewById(R.id.filter_icon)
+        qrCode = findViewById(R.id.qr_code)
+
+        qrScanIntegrator = IntentIntegrator(this)
+
 
         // for upload profile image
         val uriPhoto = prefs.getString(Key.SAVE_URI_PHOTO, "")
@@ -159,14 +175,22 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener,P
         }
     }
 
-    private fun clickListener() {
+    private fun setupListener() {
         photo.setOnClickListener {
             navigator.goToSettingsScreen()
         }
         filter.setOnClickListener {
             navigator.goToFiltersScreen()
         }
+        qrCode!!.setOnClickListener { performAction() }
+
     }
+
+    private fun performAction() {
+        qrScanIntegrator?.initiateScan()
+
+    }
+
 
     @SuppressLint("BinaryOperationInTimber")
     override fun onPlaceSelected(place: Place) {
