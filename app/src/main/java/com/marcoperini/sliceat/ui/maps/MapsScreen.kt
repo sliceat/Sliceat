@@ -1,7 +1,6 @@
 package com.marcoperini.sliceat.ui.maps
 
 import android.Manifest
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -10,17 +9,16 @@ import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
+import android.util.Patterns
 import android.view.MenuInflater
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
-import androidx.fragment.app.Fragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -43,8 +41,6 @@ import com.marcoperini.sliceat.utils.Constants.Companion.ZOOM_CAMERA
 import com.marcoperini.sliceat.utils.sharedpreferences.Key
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import com.marcoperini.sliceat.utils.transformImageToRoundImage
-import org.json.JSONException
-import org.json.JSONObject
 import org.koin.android.ext.android.inject
 import java.io.IOException
 import java.util.*
@@ -82,11 +78,8 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         mapFragment.getMapAsync(this)
 
         setupView()
-
-        showPopup()
-
+        changeMapTypeView()
         setupListener()
-
         searchQuery()
 
 //        setupAutocompleteSearch() need the credit card to autocomplete search
@@ -119,6 +112,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
                 }
                 return false
             }
+
             override fun onQueryTextChange(newText: String?): Boolean {
                 return false
             }
@@ -163,11 +157,9 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
 
     private fun performAction() {
         qrScanIntegrator?.initiateScan()
-        qrScanIntegrator = IntentIntegrator(this)
-        qrScanIntegrator?.setOrientationLocked(false)
     }
 
-    private fun showPopup() {
+    private fun changeMapTypeView() {
         popupMenu.setOnClickListener {
             val popup = PopupMenu(this, popupMenu)
             val inflater: MenuInflater = popup.menuInflater
@@ -281,32 +273,33 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {
             // If QRCode has no data.
-            if (result.contents == null) {
-                Toast.makeText(this, getString(R.string.result_not_found), Toast.LENGTH_LONG).show()
-            } else {
+            if (result.contents != null) {
                 // If QRCode contains data.
-                try {
-                    // Converting the data to json format
-                    val obj = JSONObject(result.contents)
-
+                if (Patterns.WEB_URL.matcher(result.contents).matches()) {
+                    // Open URL
+                    val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(result.contents))
+                    startActivity(browserIntent)
+                } else {
                     // Show values in UI.
-//                    txtName?.text = obj.getString("name")
-//                    txtSiteName?.text = obj.getString("site_name")
-
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-
-                    // Data not in the expected format. So, whole object as toast message.
-                    Toast.makeText(this, result.contents, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, result.contents + " " + getString(R.string.result_not_found), Toast.LENGTH_LONG).show()
                 }
-
+                // Data not in the expected format. So, whole object as toast message.
+            } else {
+                Toast.makeText(this, getString(R.string.result_not_found), Toast.LENGTH_LONG).show()
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
-
+    private fun getLocation(location: Location) {
+        location.getCurrentLocation(object : Location.LocationService {
+            override fun getLastLocationInterface() {
+                getLastLocation()
+            }
+        })
+    }
+}
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //
 //        when (requestCode) {
@@ -318,14 +311,6 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
 //        }
 //        super.onActivityResult(requestCode, resultCode, data)
 //    }
-
-    private fun getLocation(location: Location) {
-        location.getCurrentLocation(object : Location.LocationService {
-            override fun getLastLocationInterface() {
-                getLastLocation()
-            }
-        })
-    }
 
 //    private fun setupAutocompleteSearch() {
 //        if (!Places.isInitialized()) {
@@ -355,4 +340,3 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
 //
 //        Toast.makeText(this, "Place selection failed: " + status.statusMessage, Toast.LENGTH_SHORT).show();
 //    }
-}
