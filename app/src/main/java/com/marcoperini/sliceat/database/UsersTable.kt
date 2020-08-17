@@ -28,5 +28,6 @@ data class UsersTable(
     @ColumnInfo(name = CODICE_RECUPERO) val recovery_code: String?,
     @ColumnInfo(name = DATA_REGISTRAZIONE) val dateOfRegistration: String?
 ) {
-    @PrimaryKey(autoGenerate = true) var id: Int = 0
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
 }

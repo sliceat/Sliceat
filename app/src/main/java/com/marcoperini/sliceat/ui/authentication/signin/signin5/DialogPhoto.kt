@@ -8,7 +8,7 @@ import android.view.Gravity
 import android.widget.Button
 import com.marcoperini.sliceat.R
 
-class DialogPhoto  {
+class DialogPhoto {
     interface ResultReceiver {
         fun takePhoto()
         fun choosePhoto()

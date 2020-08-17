@@ -1,12 +1,10 @@
 package com.marcoperini.sliceat.utils
 
-import androidx.annotation.VisibleForTesting
 import timber.log.Timber
 import java.security.MessageDigest
 
-class HashClass {
-    companion object{
-
+class HashClass private constructor(){
+    companion object {
         fun transformStringToHash(base: String): String? {
             return try {
                 val digest: MessageDigest = MessageDigest.getInstance("SHA-256")
@@ -23,6 +21,5 @@ class HashClass {
                 throw RuntimeException(ex)
             }
         }
-
     }
 }

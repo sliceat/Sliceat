@@ -18,7 +18,6 @@ import com.marcoperini.sliceat.database.UsersTable
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.authentication.signin.signin5.StartCamera.StartCameraReceiver
 import com.marcoperini.sliceat.utils.Constants
-import com.marcoperini.sliceat.utils.HashClass
 import com.marcoperini.sliceat.utils.exhaustive
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_DATA
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_DATA_REGISTRATION
@@ -147,14 +146,10 @@ class SignInScreen5 : AppCompatActivity() {
         requestCode: Int, resultCode: Int,
         data: Intent?
     ) {
-        if (resultCode == Activity.RESULT_OK
-            && requestCode == Constants.TAKE_PHOTO_REQUEST
-        ) {
+        if (resultCode == Activity.RESULT_OK && requestCode == Constants.TAKE_PHOTO_REQUEST) {
             //photo from camera and display the photo on the  photo
             savePhoto()
-        } else if (resultCode == Activity.RESULT_OK
-            && requestCode == Constants.PICK_PHOTO_REQUEST
-        ) {
+        } else if (resultCode == Activity.RESULT_OK && requestCode == Constants.PICK_PHOTO_REQUEST) {
             //photo from gallery
             fileUri = data?.data
             savePhoto()

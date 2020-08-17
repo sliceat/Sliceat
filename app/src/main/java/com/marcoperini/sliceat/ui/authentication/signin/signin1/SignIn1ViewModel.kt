@@ -9,8 +9,8 @@ import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 
 sealed class SignIn1Event {
     data class SaveFirstAndLastName(val firstName: String, val lastName: String) : SignIn1Event()
-    object LoginWithGoogle: SignIn1Event()
-    object LoginWithFacebook: SignIn1Event()
+    object LoginWithGoogle : SignIn1Event()
+    object LoginWithFacebook : SignIn1Event()
 //    data class SaveUser(val user: UsersTable) : SignIn1Event()
 
 }

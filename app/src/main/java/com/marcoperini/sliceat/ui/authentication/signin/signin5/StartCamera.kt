@@ -30,7 +30,6 @@ class StartCamera {
                         Toast.makeText(activity, "All permissions need to be granted to take photo", Toast.LENGTH_LONG).show()
                     }
                 }
-
                 override fun onPermissionRationaleShouldBeShown(
                     permissions: MutableList<com.karumi.dexter.listener.PermissionRequest>?,
                     token: PermissionToken?

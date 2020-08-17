@@ -1,6 +1,6 @@
 package com.marcoperini.sliceat.utils.sharedpreferences
 
-class Key {
+class Key private constructor(){
 
     companion object {
 
@@ -13,7 +13,5 @@ class Key {
         const val SAVE_DATA = "save_data"
         const val SAVE_URI_PHOTO = "save_uri_photo"
         const val SAVE_DATA_REGISTRATION = "save_data_registration"
-
     }
 }
-

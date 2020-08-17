@@ -18,7 +18,6 @@ import com.marcoperini.sliceat.utils.VolleyRequest
 import com.marcoperini.sliceat.utils.sharedpreferences.APIController
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorageFactory
 import com.marcoperini.sliceat.utils.sharedpreferences.ServiceInterface
-import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -50,6 +49,6 @@ val viewModels = module {
 }
 
 val volleyComponents = module {
-    single { VolleyRequest(context = get())}
-    single<ServiceInterface>{ APIController(get(), get()) }
+    single { VolleyRequest(context = get()) }
+    single<ServiceInterface> { APIController(get(), get()) }
 }

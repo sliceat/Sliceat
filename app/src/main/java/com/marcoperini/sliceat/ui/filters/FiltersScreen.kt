@@ -18,9 +18,9 @@ import org.koin.android.ext.android.inject
 
 class FiltersScreen : AppCompatActivity() {
 
-    private lateinit var toolbar : Toolbar
+    private lateinit var toolbar: Toolbar
     private lateinit var listElementFilter: MutableList<CardFilter>
-    private lateinit var recyclerView : RecyclerView
+    private lateinit var recyclerView: RecyclerView
 
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, FiltersScreen::class.java)

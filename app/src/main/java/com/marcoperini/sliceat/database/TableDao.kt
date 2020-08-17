@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.marcoperini.sliceat.CardFilter
 import com.marcoperini.sliceat.utils.Constants.Companion.TABLE_NAME
 
 @Dao

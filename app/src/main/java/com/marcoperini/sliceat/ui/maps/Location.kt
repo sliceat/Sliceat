@@ -77,7 +77,6 @@ class Location(private val context: Context) {
                     LocationSettingsStatusCodes.RESOLUTION_REQUIRED -> try {
                         val resolvable = exception as ResolvableApiException
                         resolvable.startResolutionForResult(context as Activity?, MapsScreen.REQUEST_LOCATION_PERMISSION)
-
                     } catch (e: IntentSender.SendIntentException) { /*empty block*/
                     }
                     LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> {

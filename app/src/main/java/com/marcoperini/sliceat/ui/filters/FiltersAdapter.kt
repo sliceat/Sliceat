@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.CardFilter
 import com.marcoperini.sliceat.R
 
-class FiltersAdapter(val filterCard: List<CardFilter>, val resources : Resources) : RecyclerView.Adapter<FiltersViewHolder>() {
+class FiltersAdapter(val filterCard: List<CardFilter>, val resources: Resources) : RecyclerView.Adapter<FiltersViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FiltersViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_filter_card, parent, false)
         return FiltersViewHolder(view)

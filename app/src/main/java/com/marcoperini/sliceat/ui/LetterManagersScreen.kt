@@ -2,12 +2,11 @@ package com.marcoperini.sliceat.ui
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.marcoperini.sliceat.R
-import kotlinx.android.synthetic.main.activity_filters_screen.view.include_custom_toolbar
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_back_button
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_close_button
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_title
@@ -15,7 +14,7 @@ import org.koin.android.ext.android.inject
 
 class LetterManagersScreen : AppCompatActivity() {
 
-    private lateinit var toolbar :Toolbar
+    private lateinit var toolbar: Toolbar
 
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, LetterManagersScreen::class.java)
@@ -36,7 +35,7 @@ class LetterManagersScreen : AppCompatActivity() {
         super.onResume()
         toolbar.toolbar_close_button.visibility = View.VISIBLE
     }
-    
+
     private fun setupToolbar() {
         toolbar = findViewById(R.id.include_custom_toolbar)
         toolbar.toolbar_back_button.visibility = View.INVISIBLE

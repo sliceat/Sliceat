@@ -10,17 +10,16 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.textfield.TextInputLayout
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.authentication.signin.signin1.DELAY_HIDE_ERROR
+import com.marcoperini.sliceat.utils.Constants.Companion.PASSWORD_PATTERN
 import com.marcoperini.sliceat.utils.exhaustive
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 import java.util.regex.Matcher
 import java.util.regex.Pattern
-import com.marcoperini.sliceat.utils.Constants.Companion.PASSWORD_PATTERN
-import timber.log.Timber
 
 class SignInScreen3 : AppCompatActivity() {
 
@@ -72,13 +71,12 @@ class SignInScreen3 : AppCompatActivity() {
             when (state) {
                 is SignIn3State.SavedPassword -> navigator.goToSignInScreen4()
             }.exhaustive
-
         }
     }
 
     private fun validateInputData() {
         val password = insertPassword.text.toString()
-        Timber.d("password %s" , password.length)
+        Timber.d("password %s", password.length)
         if (password.length < 8 || !isValidPassword(password)) {
             specialCharacter.visibility = View.VISIBLE
             Handler().postDelayed({ specialCharacter.visibility = View.GONE }, DELAY_HIDE_ERROR)

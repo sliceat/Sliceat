@@ -7,7 +7,6 @@ import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 
 sealed class SignIn2Event {
     data class SaveEmail(internal val email: String) : SignIn2Event()
-
 }
 
 sealed class SignIn2State {

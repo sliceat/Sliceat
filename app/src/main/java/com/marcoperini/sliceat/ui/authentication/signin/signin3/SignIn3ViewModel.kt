@@ -6,7 +6,6 @@ import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 
 sealed class SignIn3Event {
     data class SavePassword(val password: String) : SignIn3Event()
-
 }
 
 sealed class SignIn3State {

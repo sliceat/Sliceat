@@ -5,17 +5,13 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.view.MenuItem
-import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toolbar
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.hellmund.viewpager2indicator.ViewPager2Indicator
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
-import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import kotlinx.android.synthetic.main.onboarding_container.view_pager2
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_back_button
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_title
@@ -23,7 +19,7 @@ import org.koin.android.ext.android.inject
 
 class SettingsScreen : AppCompatActivity() {
     private val navigator: Navigator by inject()
-    private val prefs: KeyValueStorage by inject()
+//    private val prefs: KeyValueStorage by inject()
 
     private lateinit var pageIndicator: ViewPager2Indicator
     private lateinit var shareSliceat: ImageView

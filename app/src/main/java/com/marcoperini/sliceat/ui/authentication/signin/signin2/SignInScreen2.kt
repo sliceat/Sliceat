@@ -67,7 +67,6 @@ class SignInScreen2 : AppCompatActivity() {
             when (state) {
                 is SignIn2State.SavedEmail -> navigator.goToSignInScreen3()
             }.exhaustive
-
         }
     }
 

@@ -7,7 +7,6 @@ import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 
 sealed class SignIn4Event {
     data class Data(val data: String) : SignIn4Event()
-
 }
 
 sealed class SignIn4State {
