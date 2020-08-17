@@ -9,9 +9,6 @@
     android:weightSum="1"
     tools:context=".ui.maps.MapsScreen">
 
-    <include
-        android:id="@+id/include_custom_toolbar"
-        layout="@layout/toolbar_with_indicator" />
 
 <!--    <androidx.cardview.widget.CardView-->
 <!--        android:id="@+id/card_view_fragment"-->
@@ -26,16 +23,23 @@
 
 <!--    </androidx.cardview.widget.CardView>-->
 
+    <ImageButton
+        android:id="@+id/popup_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/popup_menu"
+        android:backgroundTint="@color/zxing_transparent"
+        android:layout_alignParentEnd="true"
+        android:elevation="5dp"/>
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/include_custom_toolbar"/>
+        android:layout_height="match_parent"/>
 
     <SearchView
         android:id="@+id/sv_location"
-        android:layout_alignBottom="@id/include_custom_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="48dp"
@@ -58,7 +62,7 @@
             android:layout_marginBottom="12dp"
             android:elevation="5dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/home_invita"
+            android:src="@drawable/home_invite"
             android:visibility="visible"/>
 
         <ImageView
@@ -116,7 +120,6 @@
             android:layout_height="44dp"
             android:layout_marginBottom="24dp"
             android:elevation="5dp"
-            android:scaleType="centerCrop"
             android:src="@drawable/qr_code"
             android:visibility="visible" />
 

@@ -31,6 +31,12 @@
         <activity android:name=".ui.authentication.signin.signin3.SignInScreen3" />
         <activity android:name=".ui.authentication.signin.signin2.SignInScreen2" />
         <activity android:name=".ui.authentication.signin.signin1.SignInScreen1" />
+
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
