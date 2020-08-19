@@ -3,6 +3,7 @@ package com.marcoperini.sliceat.ui
 import android.content.Context
 import android.content.Intent
 import androidx.core.content.ContextCompat
+import com.marcoperini.sliceat.notification.FirebasePushNotificationScreen
 import com.marcoperini.sliceat.ui.maps.MapsScreen
 import com.marcoperini.sliceat.ui.authentication.access.AccessScreen
 import com.marcoperini.sliceat.ui.authentication.firstscreen.FirstScreen
@@ -34,6 +35,7 @@ interface Navigator {
     fun goToLetterManagersScreen()
     fun goToFiltersScreen()
     fun goToMailScreen()
+    fun goToFirebasePushNotification()
 }
 
 class AppNavigator(private val context: Context) : Navigator {
@@ -100,6 +102,10 @@ class AppNavigator(private val context: Context) : Navigator {
 
     override fun goToMailScreen() {
         ContextCompat.startActivity(context, MailsScreen.getIntent(context), null)
+    }
+
+    override fun goToFirebasePushNotification() {
+        ContextCompat.startActivity(context, FirebasePushNotificationScreen.getIntent(context), null)
     }
 
     override fun goToMainScreen() {

@@ -22,7 +22,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="n">
-        <activity android:name=".ui.mail.MailsScreen"></activity>
+        <activity android:name=".notification.FirebasePushNotificationScreen"></activity>
+
+        <service
+            android:name=".notification.NotificationService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".ui.mail.MailsScreen" />
         <activity android:name=".ui.filters.FiltersScreen" />
         <activity android:name=".ui.LetterManagersScreen" />
         <activity android:name=".ui.settings.SettingsScreen" />
@@ -31,12 +41,10 @@
         <activity android:name=".ui.authentication.signin.signin3.SignInScreen3" />
         <activity android:name=".ui.authentication.signin.signin2.SignInScreen2" />
         <activity android:name=".ui.authentication.signin.signin1.SignInScreen1" />
-
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation" />
-
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
