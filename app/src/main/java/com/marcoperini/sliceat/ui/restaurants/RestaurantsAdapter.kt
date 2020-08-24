@@ -5,28 +5,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
 
-class RestaurantsAdapter(private val photoCard: List<CardRestaurantsPhoto>, val resources: Resources) : RecyclerView.Adapter<RestaurantsViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantsViewHolder {
+class RestaurantsAdapter(private val resources: Resources) : ListAdapter<CardRestaurantsPhoto, RestaurantsPhotoViewHolder>(
+    RestaurantsPhotoDiffCallback()
+) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantsPhotoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.uploaded_photos_item, parent, false)
-        return RestaurantsViewHolder(view)
+        return RestaurantsPhotoViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return photoCard.size
-    }
-
-    override fun onBindViewHolder(holder: RestaurantsViewHolder, position: Int) {
-        return holder.bind(photoCard[position], resources)
+    override fun onBindViewHolder(holder: RestaurantsPhotoViewHolder, listPosition: Int) {
+        val restaurantsPhoto = getItem(listPosition)
+        holder.bind(restaurantsPhoto, resources)
     }
 }
 
-class RestaurantsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val cardImage: ImageView = itemView.findViewById(R.id.cardview_restaurant_photo)
+class RestaurantsPhotoDiffCallback : DiffUtil.ItemCallback<CardRestaurantsPhoto>() {
+    override fun areItemsTheSame(oldItem: CardRestaurantsPhoto, newItem: CardRestaurantsPhoto): Boolean = oldItem.uid == newItem.uid
 
-    fun bind(photo: CardRestaurantsPhoto, resources: Resources) {
-        cardImage.setImageDrawable(resources.getDrawable(photo.imageRestaurants))
+    override fun areContentsTheSame(oldItem: CardRestaurantsPhoto, newItem: CardRestaurantsPhoto): Boolean = oldItem == newItem
+}
+
+class RestaurantsPhotoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+    private val housePhotoImage: ImageView = itemView.findViewById(R.id.cardview_restaurant_photo)
+    fun bind(housePhoto: CardRestaurantsPhoto, resources: Resources) {
+//        housePhotoImage.loadImageOrRemove(housePhoto.uri.toString())
+        housePhotoImage.setImageDrawable(resources.getDrawable(housePhoto.imageRestaurants))
     }
 }

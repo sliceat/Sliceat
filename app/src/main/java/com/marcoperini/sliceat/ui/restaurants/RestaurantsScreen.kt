@@ -16,7 +16,8 @@ class RestaurantsScreen : AppCompatActivity() {
 
     private lateinit var toolbar: Toolbar
     private lateinit var listPhotos: MutableList<CardRestaurantsPhoto>
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var photosRecyclerView: RecyclerView
+    private lateinit var photosAdapter: RestaurantsAdapter
 
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, RestaurantsScreen::class.java)
@@ -33,16 +34,19 @@ class RestaurantsScreen : AppCompatActivity() {
     }
 
     private fun setupView() {
-        recyclerView = findViewById(R.id.restaurants_photos)
+        photosRecyclerView = findViewById(R.id.restaurants_photos)
+        photosAdapter = RestaurantsAdapter(resources)
+
+        photosRecyclerView.adapter = photosAdapter
+
         listPhotos = mutableListOf()
-        listPhotos.add(CardRestaurantsPhoto(R.drawable.photo_restaurants))
-        listPhotos.add(CardRestaurantsPhoto(R.drawable.photo_restaurants))
-        listPhotos.add(CardRestaurantsPhoto(R.drawable.photo_restaurants))
-        recyclerView.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this@RestaurantsScreen)
-            adapter = RestaurantsAdapter(listPhotos, resources)
-        }
+
+        listPhotos.add(CardRestaurantsPhoto("1", R.drawable.photo_restaurants))
+        listPhotos.add(CardRestaurantsPhoto("2", R.drawable.photo_restaurants))
+        listPhotos.add(CardRestaurantsPhoto("3", R.drawable.photo_restaurants))
+
+        photosAdapter.submitList(listPhotos)
+
     }
 
     private fun setupToolbar() {

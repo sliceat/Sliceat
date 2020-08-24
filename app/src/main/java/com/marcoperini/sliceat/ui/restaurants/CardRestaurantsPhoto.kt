@@ -1,3 +1,3 @@
 package com.marcoperini.sliceat.ui.restaurants
 
-data class CardRestaurantsPhoto(val imageRestaurants: Int)
+data class CardRestaurantsPhoto(val uid: String, val imageRestaurants: Int)

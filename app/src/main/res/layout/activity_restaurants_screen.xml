@@ -13,7 +13,6 @@
 
     <ScrollView
         style="@style/ScrollView"
-        android:layout_marginTop="24dp"
         android:fadeScrollbars="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,8 +38,7 @@
                 android:textAlignment="viewStart"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_below="@id/restaurants_pizzeria"
                 android:text="@string/name_restaurant"
                 android:textColor="@color/black" />
@@ -50,10 +48,10 @@
                 android:textColor="@color/white"
                 android:backgroundTint="@color/orange"
                 android:layout_alignParentStart="true"
+                android:layout_marginTop="12dp"
                 android:layout_marginStart="40dp"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:layout_marginBottom="24dp"
                 style="@style/orangeButton"
                 android:text="@string/menu"
                 android:layout_below="@id/name_restaurant"/>
@@ -63,8 +61,9 @@
                 android:layout_below="@id/menu"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:layout_height="180dp"
-                android:layout_width="300dp"
+                android:layout_marginTop="12dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 tools:listitem="@layout/uploaded_photos_item"
                 tools:itemCount="3"/>
 
