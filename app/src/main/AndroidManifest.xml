@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="n">
-        <activity android:name=".notification.FirebasePushNotificationScreen"></activity>
+        <activity android:name=".ui.restaurants.RestaurantsScreen"></activity>
+        <activity android:name=".notification.FirebasePushNotificationScreen" />
 
         <service
             android:name=".notification.NotificationService"

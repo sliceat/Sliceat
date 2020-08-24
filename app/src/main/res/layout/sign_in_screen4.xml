@@ -57,7 +57,7 @@
 
     <Button
         android:id="@+id/continua"
-        style="@style/authenticationButton"
+        style="@style/orangeButton.authentication"
         android:backgroundTint="@color/graySoft"
         android:text="@string/continua"
         android:textColor="@color/white"

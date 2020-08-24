@@ -66,7 +66,7 @@
 
     <Button
         android:id="@+id/access"
-        style="@style/authenticationButton"
+        style="@style/orangeButton.authentication"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/orange"
         android:text="@string/accedi"

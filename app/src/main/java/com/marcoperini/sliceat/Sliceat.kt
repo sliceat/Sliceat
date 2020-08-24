@@ -33,20 +33,7 @@ class Sliceat : MultiDexApplication() {
         setupLogging()
 
         if (checkGooglePlayServices()) {
-            FirebaseInstanceId.getInstance().instanceId
-                .addOnCompleteListener(OnCompleteListener { task ->
-                    // 2
-                    if (!task.isSuccessful) {
-                        Timber.w("getInstanceId failed $task.exception")
-                        return@OnCompleteListener
-                    }
-                    // 3
-                    val token = task.result?.token
-
-                    // 4
-                    Timber.d(token)
-                    Toast.makeText(baseContext, token, Toast.LENGTH_LONG).show()
-                })
+            registerTokenFirebase()
         }
 
         NotificationHelper.registerDefaultNotificationChannel(
@@ -68,6 +55,23 @@ class Sliceat : MultiDexApplication() {
             Timber.i("Google play services updated")
             true
         }
+    }
+
+    private fun registerTokenFirebase() {
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener(OnCompleteListener { task ->
+                // 2
+                if (!task.isSuccessful) {
+                    Timber.w("getInstanceId failed $task.exception")
+                    return@OnCompleteListener
+                }
+                // 3
+                val token = task.result?.token
+
+                // 4
+                Timber.d(token)
+                Toast.makeText(baseContext, token, Toast.LENGTH_LONG).show()
+            })
     }
 
     private fun setupDI() {

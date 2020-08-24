@@ -64,7 +64,7 @@
 
     <Button
         android:id="@+id/goOn"
-        style="@style/authenticationButton"
+        style="@style/orangeButton.authentication"
         android:backgroundTint="@color/graySoft"
         android:text="@string/accedi"
         android:textColor="@color/white"
@@ -85,7 +85,7 @@
 
     <Button
         android:id="@+id/signInFacebook"
-        style="@style/authenticationButton"
+        style="@style/orangeButton.authentication"
         android:text="@string/accediConFb"
         android:textColor="@color/blue"
         app:layout_constraintBottom_toTopOf="@id/signInGoogle"
@@ -94,7 +94,7 @@
 
     <Button
         android:id="@+id/signInGoogle"
-        style="@style/authenticationButton"
+        style="@style/orangeButton.authentication"
         android:background="@drawable/ic_accedi_google"
         android:text="@string/accediConGoogle"
         android:textColor="@color/black"

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".ui.mail.MailsScreen">
 
@@ -17,6 +18,33 @@
         android:layout_below="@+id/include_custom_toolbar"
         android:layout_margin="18dp"
         tools:listitem="@layout/item_mail_card"
-        tools:itemCount="3"/>
+        tools:itemCount="3"
+        app:layout_constraintTop_toBottomOf="@id/include_custom_toolbar"/>
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/empty_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/empty_mail"
+        android:visibility="gone"
+        android:contentDescription="@string/empty_mail">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/empty_mail_placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/title"
+        android:textColor="@color/graySoft"
+        android:text="@string/al_momento_non_hai_nnessuna_notifica"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/empty_mail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="18dp">
+    </TextView>
+</androidx.constraintlayout.widget.ConstraintLayout>

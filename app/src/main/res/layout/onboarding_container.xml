@@ -27,7 +27,7 @@
 
     <Button
         android:id="@+id/start"
-        style="@style/authenticationButton"
+        style="@style/orangeButton.authentication"
         android:backgroundTint="@color/white"
         android:layout_marginBottom="32dp"
         android:text="@string/start"

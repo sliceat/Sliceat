@@ -3,6 +3,9 @@ package com.marcoperini.sliceat.ui.mail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +16,8 @@ import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_title
 class MailsScreen : AppCompatActivity() {
 
     private lateinit var toolbar: Toolbar
+    private lateinit var emptyMailIcon: ImageView
+    private lateinit var emptyMailIconPlaceholder: TextView
     private lateinit var listElementsMail: MutableList<CardMail>
     private lateinit var recyclerView: RecyclerView
 
@@ -32,14 +37,23 @@ class MailsScreen : AppCompatActivity() {
 
     private fun setupView() {
         recyclerView = findViewById(R.id.recyclerView)
+        emptyMailIcon = findViewById(R.id.empty_mail)
+        emptyMailIconPlaceholder = findViewById(R.id.empty_mail_placeholder)
         listElementsMail = mutableListOf()
-        listElementsMail.add(CardMail(R.drawable.image_mail, R.string.mail_description, R.string.data_mail))
-        listElementsMail.add(CardMail(R.drawable.image_mail, R.string.mail_description, R.string.data_mail))
-        listElementsMail.add(CardMail(R.drawable.image_mail, R.string.mail_description, R.string.data_mail))
+//        listElementsMail.add(CardMail(R.drawable.image_mail, R.string.mail_description, R.string.data_mail))
+//        listElementsMail.add(CardMail(R.drawable.image_mail, R.string.mail_description, R.string.data_mail))
+//        listElementsMail.add(CardMail(R.drawable.image_mail, R.string.mail_description, R.string.data_mail))
         recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@MailsScreen)
             adapter = MailsAdapter(listElementsMail, resources)
+        }
+        if (listElementsMail.isEmpty()) {
+            emptyMailIcon.visibility = View.VISIBLE
+            emptyMailIconPlaceholder.visibility = View.VISIBLE
+        } else {
+            emptyMailIcon.visibility = View.GONE
+            emptyMailIconPlaceholder.visibility = View.GONE
         }
     }
 

@@ -128,4 +128,10 @@
     <string name="data_mail">17 Marzo 2020</string>
     <string name="result_not_found">Nessun risultato</string>
     <string name="token_prefix">token</string>
+    <string name="al_momento_non_hai_nnessuna_notifica">Al momento non hai\nnessuna notifica</string>
+    <string name="empty_mail">empty_mail</string>
+    <string name="restaurants_pizzeria">ristorante - pizzeria</string>
+    <string name="name_restaurant">nome ristorante</string>
+    <string name="menu">menù</string>
+    <string name="photo_restaurants">photo restaurants</string>
 </resources>

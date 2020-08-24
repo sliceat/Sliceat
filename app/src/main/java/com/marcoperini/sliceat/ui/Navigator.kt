@@ -16,6 +16,7 @@ import com.marcoperini.sliceat.ui.launch.LaunchScreen2
 import com.marcoperini.sliceat.ui.mail.MailsScreen
 import com.marcoperini.sliceat.ui.main.MainScreen
 import com.marcoperini.sliceat.ui.onboarding.OnboardingScreen
+import com.marcoperini.sliceat.ui.restaurants.RestaurantsScreen
 import com.marcoperini.sliceat.ui.settings.SettingsScreen
 
 interface Navigator {
@@ -34,6 +35,7 @@ interface Navigator {
     fun goToLetterManagersScreen()
     fun goToFiltersScreen()
     fun goToMailScreen()
+    fun goToRestaurantsScreen()
 }
 
 class AppNavigator(private val context: Context) : Navigator {
@@ -100,6 +102,10 @@ class AppNavigator(private val context: Context) : Navigator {
 
     override fun goToMailScreen() {
         ContextCompat.startActivity(context, MailsScreen.getIntent(context), null)
+    }
+
+    override fun goToRestaurantsScreen() {
+        ContextCompat.startActivity(context, RestaurantsScreen.getIntent(context), null)
     }
 
     override fun goToMainScreen() {

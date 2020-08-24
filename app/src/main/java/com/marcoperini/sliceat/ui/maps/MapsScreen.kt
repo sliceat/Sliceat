@@ -60,6 +60,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
     private lateinit var mapView: View
     private lateinit var qrCode: ImageButton
     private lateinit var popupMenu: ImageButton
+    private lateinit var roundIconPlus: ImageView
     private lateinit var filter: ImageView
     private lateinit var myLocation: ImageView
     private lateinit var googleMap: GoogleMap
@@ -126,6 +127,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         searchView = findViewById(R.id.sv_location)
         photo = findViewById(R.id.profilePhoto)
         filter = findViewById(R.id.filter_icon)
+        roundIconPlus = findViewById(R.id.round_icon_plus)
         myLocation = findViewById(R.id.home_position)
         qrCode = findViewById(R.id.qr_code)
         popupMenu = findViewById(R.id.popup_menu)
@@ -147,6 +149,9 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
     private fun setupListener() {
         photo.setOnClickListener {
             navigator.goToSettingsScreen()
+        }
+        roundIconPlus.setOnClickListener {
+            navigator.goToRestaurantsScreen()
         }
         filter.setOnClickListener {
             navigator.goToFiltersScreen()
