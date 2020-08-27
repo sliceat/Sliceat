@@ -29,7 +29,7 @@ class EditTextDatePicker(context: Context, editTextViewID: Int, val prefs: KeyVa
 
         val pickerDialog = DatePickerDialog(
             context, R.style.style_date_picker_dialog,
-            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth -> // TODO Auto-generated method stub
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth -> // TODO Auto-generated method stub
                 calendar.set(Calendar.YEAR, year)
                 calendar.set(Calendar.MONTH, monthOfYear)
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)

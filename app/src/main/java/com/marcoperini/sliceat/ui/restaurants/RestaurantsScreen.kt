@@ -4,12 +4,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.filters.CardFilter
 import com.marcoperini.sliceat.ui.filters.FiltersAdapter
+import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_button
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_title
 
 class RestaurantsScreen : AppCompatActivity() {
@@ -34,6 +36,17 @@ class RestaurantsScreen : AppCompatActivity() {
         setupToolbar()
         setupRvPhoto()
         setupRvFilter()
+        setupListener()
+    }
+
+    private fun setupListener() {
+        toolbar.toolbar_button.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, "market://details?id=$packageName")
+            startActivity(Intent.createChooser(intent, resources.getString(R.string.invite_your_friends)), null)
+        }
     }
 
     private fun setupRvPhoto() {
@@ -68,6 +81,8 @@ class RestaurantsScreen : AppCompatActivity() {
 
     private fun setupToolbar() {
         toolbar = findViewById(R.id.include_custom_toolbar)
+        toolbar.toolbar_button.visibility = View.VISIBLE
+        toolbar.toolbar_button.setImageDrawable(resources.getDrawable(R.drawable.icon_share, null))
         toolbar.toolbar_title.text = resources.getString(R.string.empty)
     }
 }

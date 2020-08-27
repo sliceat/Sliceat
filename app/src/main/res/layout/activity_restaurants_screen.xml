@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.restaurants.RestaurantsScreen">
 
     <include
@@ -199,6 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
                 android:layout_below="@id/near_to_you"
                 android:src="@drawable/card_restaurant" />
 

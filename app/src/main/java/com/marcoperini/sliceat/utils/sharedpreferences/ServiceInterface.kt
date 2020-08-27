@@ -31,7 +31,7 @@ class APIController constructor(private val volleyRequest: VolleyRequest, val pr
                     e.printStackTrace()
                 }
             },
-            Response.ErrorListener { error -> Timber.i("TAG %s", "Error response ") }) {
+            Response.ErrorListener {  Timber.i("TAG %s", "Error response ") }) {
             override fun getParams(): Map<String, String> {
                 val params: MutableMap<String, String> = HashMap()
                 params[Constants.NOME] = prefs.getString(Key.SAVE_FIRST_NAME, "").toString()

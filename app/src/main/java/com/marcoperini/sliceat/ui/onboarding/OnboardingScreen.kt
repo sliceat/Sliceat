@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.hellmund.viewpager2indicator.ViewPager2Indicator
 import com.marcoperini.sliceat.R
@@ -41,13 +42,12 @@ class OnboardingScreen : AppCompatActivity() {
                 if (view_pager2.currentItem == 2) {
                     skipButton.visibility = View.GONE
                     entryButton.visibility = View.VISIBLE
-
-                    entryButton.setTextColor(resources.getColor(R.color.black))
+                    entryButton.setTextColor(ContextCompat.getColor(this@OnboardingScreen, R.color.black))
                 } else {
                     skipButton.visibility = View.VISIBLE
                     entryButton.visibility = View.GONE
 
-                    skipButton.setTextColor(resources.getColor(R.color.white))
+                    skipButton.setTextColor(ContextCompat.getColor(this@OnboardingScreen, R.color.white))
                 }
             }
         })

@@ -32,7 +32,7 @@ class MailsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(mail: CardMail, resources: Resources) {
         title.text = resources.getString(mail.mailDescription)
-        cardImage.setImageDrawable(resources.getDrawable(mail.imageMail))
+        cardImage.setImageResource(mail.imageMail)
         data.text = resources.getString(mail.dataMail)
     }
 }

@@ -11,27 +11,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.filters.CardFilter
 
-class FiltersAdapterRestaurant(val filterCard: List<CardFilter>, val resources: Resources) : RecyclerView.Adapter<FiltersViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FiltersViewHolder {
+class FiltersAdapterRestaurant(private val filterCard: List<CardFilter>, private val resources: Resources) : RecyclerView.Adapter<FiltersRestaurantViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FiltersRestaurantViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_filter_card_restaurant, parent, false)
-        return FiltersViewHolder(view)
+        return FiltersRestaurantViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return filterCard.size
     }
 
-    override fun onBindViewHolder(holder: FiltersViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FiltersRestaurantViewHolder, position: Int) {
         return holder.bind(filterCard[position], resources)
     }
 }
 
-class FiltersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val cardImage: ImageView = itemView.findViewById(R.id.card_filter)
-    private val title: TextView = itemView.findViewById(R.id.card_tilte)
+class FiltersRestaurantViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private val cardImage: ImageView = itemView.findViewById(R.id.card_filter_restaurant)
+    private val title: TextView = itemView.findViewById(R.id.carta_dei_vini)
 
     fun bind(filterCard: CardFilter, resources: Resources) {
         title.text = resources.getString(filterCard.descriptionCard)
-        cardImage.setImageDrawable(resources.getDrawable(filterCard.imageCard))
+        cardImage.setImageResource(filterCard.imageCard)
     }
 }

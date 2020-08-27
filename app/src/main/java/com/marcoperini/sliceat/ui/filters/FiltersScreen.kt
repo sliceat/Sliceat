@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_back_button
-import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_close_button
+import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_button
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_title
 import org.koin.android.ext.android.inject
 
@@ -72,16 +72,16 @@ class FiltersScreen : AppCompatActivity() {
 
     private fun setupToolbar() {
         toolbar = findViewById(R.id.include_custom_toolbar)
-        toolbar.toolbar_close_button.visibility = View.VISIBLE
-        toolbar.toolbar_close_button.setImageDrawable(resources.getDrawable(R.drawable.icon_cancel, null))
+        toolbar.toolbar_button.visibility = View.VISIBLE
+        toolbar.toolbar_button.setImageDrawable(resources.getDrawable(R.drawable.icon_cancel, null))
         toolbar.toolbar_title.text = resources.getString(R.string.help)
     }
 
     private fun clickListener() {
-        toolbar.toolbar_close_button.setOnClickListener {
+        toolbar.toolbar_button.setOnClickListener {
             navigator.goToMapsScreen()
             finish()
-            toolbar.toolbar_close_button.visibility = View.GONE
+            toolbar.toolbar_button.visibility = View.GONE
         }
 
         toolbar.toolbar_back_button.setOnClickListener {

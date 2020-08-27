@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
 
-class FiltersAdapter(val filterCard: List<CardFilter>, val resources: Resources) : RecyclerView.Adapter<FiltersViewHolder>() {
+class FiltersAdapter(private val filterCard: List<CardFilter>, private val resources: Resources) : RecyclerView.Adapter<FiltersViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FiltersViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_filter_card, parent, false)
         return FiltersViewHolder(view)
@@ -32,6 +32,7 @@ class FiltersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(filterCard: CardFilter, resources: Resources) {
         title.text = resources.getString(filterCard.descriptionCard)
-        cardImage.setImageDrawable(resources.getDrawable(filterCard.imageCard))
+        cardImage.setImageResource(filterCard.imageCard)
+        checkBox.visibility = View.VISIBLE
     }
 }

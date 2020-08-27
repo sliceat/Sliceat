@@ -21,7 +21,7 @@ class RestaurantsAdapter(private val resources: Resources) : ListAdapter<CardRes
 
     override fun onBindViewHolder(holder: RestaurantsPhotoViewHolder, listPosition: Int) {
         val restaurantsPhoto = getItem(listPosition)
-        holder.bind(restaurantsPhoto, resources)
+        holder.bind(restaurantsPhoto)
     }
 }
 
@@ -34,8 +34,8 @@ class RestaurantsPhotoDiffCallback : DiffUtil.ItemCallback<CardRestaurantsPhoto>
 class RestaurantsPhotoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val housePhotoImage: ImageView = itemView.findViewById(R.id.cardview_restaurant_photo)
-    fun bind(housePhoto: CardRestaurantsPhoto, resources: Resources) {
+    fun bind(housePhoto: CardRestaurantsPhoto) {
 //        housePhotoImage.loadImageOrRemove(housePhoto.uri.toString())
-        housePhotoImage.setImageDrawable(resources.getDrawable(housePhoto.imageRestaurants))
+        housePhotoImage.setImageResource(housePhoto.imageRestaurants)
     }
 }

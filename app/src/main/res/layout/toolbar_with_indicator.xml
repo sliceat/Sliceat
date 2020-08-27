@@ -29,7 +29,7 @@
         android:layout_margin="24dp"/>
 
     <ImageView
-        android:id="@+id/toolbar_close_button"
+        android:id="@+id/toolbar_button"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_gravity="end"
