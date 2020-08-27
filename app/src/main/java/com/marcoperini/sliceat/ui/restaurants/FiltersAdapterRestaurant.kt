@@ -1,4 +1,4 @@
-package com.marcoperini.sliceat.ui.filters
+package com.marcoperini.sliceat.ui.restaurants
 
 import android.content.res.Resources
 import android.view.LayoutInflater
@@ -9,10 +9,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
+import com.marcoperini.sliceat.ui.filters.CardFilter
 
-class FiltersAdapter(val filterCard: List<CardFilter>, val resources: Resources) : RecyclerView.Adapter<FiltersViewHolder>() {
+class FiltersAdapterRestaurant(val filterCard: List<CardFilter>, val resources: Resources) : RecyclerView.Adapter<FiltersViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FiltersViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_filter_card, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_filter_card_restaurant, parent, false)
         return FiltersViewHolder(view)
     }
 
@@ -28,7 +29,6 @@ class FiltersAdapter(val filterCard: List<CardFilter>, val resources: Resources)
 class FiltersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val cardImage: ImageView = itemView.findViewById(R.id.card_filter)
     private val title: TextView = itemView.findViewById(R.id.card_tilte)
-    private val checkBox: CheckBox = itemView.findViewById(R.id.first_checkbox)
 
     fun bind(filterCard: CardFilter, resources: Resources) {
         title.text = resources.getString(filterCard.descriptionCard)

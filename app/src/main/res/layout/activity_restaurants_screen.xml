@@ -67,6 +67,141 @@
                 tools:listitem="@layout/uploaded_photos_item"
                 tools:itemCount="3"/>
 
+            <ImageView
+                android:id="@+id/call_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:layout_below="@id/restaurants_photos"
+                android:src="@drawable/call_icon" />
+
+            <TextView
+                android:id="@+id/telephone_number"
+                style="@style/text"
+                android:layout_alignBottom="@+id/call_icon"
+                android:layout_toEndOf="@id/call_icon"
+                android:layout_marginStart="40dp"
+                android:text="@string/telephone_number"
+                android:textColor="@color/black"/>
+
+            <ImageView
+                android:id="@+id/clock_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:layout_below="@id/call_icon"
+                android:src="@drawable/clock_icon" />
+
+            <TextView
+                android:id="@+id/open_to_end"
+                style="@style/text"
+                android:layout_alignBottom="@+id/clock_icon"
+                android:layout_toEndOf="@id/call_icon"
+                android:layout_marginStart="40dp"
+                android:text="@string/open_to_end"
+                android:textColor="@color/black"/>
+
+            <ImageView
+                android:id="@+id/map_marker_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:layout_below="@id/clock_icon"
+                android:src="@drawable/map_marker_icon" />
+
+            <TextView
+                android:id="@+id/address"
+                style="@style/text"
+                android:layout_alignBottom="@+id/map_marker_icon"
+                android:layout_toEndOf="@id/call_icon"
+                android:layout_marginStart="40dp"
+                android:text="@string/address"
+                android:textColor="@color/black"/>
+
+            <View
+                android:id="@+id/first_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_below="@id/map_marker_icon"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/graySoft" />
+
+            <ImageView
+                android:id="@+id/chef_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="24dp"
+                android:layout_below="@id/first_divider"
+                android:src="@drawable/chef_photo" />
+
+            <TextView
+                android:id="@+id/message_chef"
+                style="@style/text"
+                android:layout_alignBottom="@+id/chef_photo"
+                android:layout_toEndOf="@id/call_icon"
+                android:layout_marginStart="40dp"
+                android:text="@string/message_chef"
+                android:textColor="@color/black"/>
+
+            <View
+                android:id="@+id/second_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_below="@id/chef_photo"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/graySoft" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/second_divider"
+                android:layout_margin="18dp"
+                tools:listitem="@layout/item_filter_card_restaurant"
+                tools:itemCount="3"/>
+
+            <View
+                android:id="@+id/third_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_below="@id/recyclerViewFilter"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/graySoft" />
+
+            <TextView
+                android:id="@+id/near_to_you"
+                style="@style/title"
+                android:layout_below="@id/third_divider"
+                android:layout_marginStart="40dp"
+                android:text="@string/near_to_you"
+                android:textColor="@color/black"/>
+
+            <ImageView
+                android:id="@+id/card_restaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="24dp"
+                android:layout_below="@id/near_to_you"
+                android:src="@drawable/card_restaurant" />
+
         </RelativeLayout>
 
     </ScrollView>

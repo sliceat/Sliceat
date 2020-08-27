@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.marcoperini.sliceat.CardFilter
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_back_button

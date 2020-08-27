@@ -8,8 +8,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
-import com.marcoperini.sliceat.ui.mail.CardMail
-import com.marcoperini.sliceat.ui.mail.MailsAdapter
+import com.marcoperini.sliceat.ui.filters.CardFilter
+import com.marcoperini.sliceat.ui.filters.FiltersAdapter
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_title
 
 class RestaurantsScreen : AppCompatActivity() {
@@ -18,6 +18,9 @@ class RestaurantsScreen : AppCompatActivity() {
     private lateinit var listPhotos: MutableList<CardRestaurantsPhoto>
     private lateinit var photosRecyclerView: RecyclerView
     private lateinit var photosAdapter: RestaurantsAdapter
+    private lateinit var filterRecyclerView: RecyclerView
+    private lateinit var filtersAdapterRestaurant: FiltersAdapterRestaurant
+    private lateinit var listElementFilter: MutableList<CardFilter>
 
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, RestaurantsScreen::class.java)
@@ -28,12 +31,12 @@ class RestaurantsScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurants_screen)
 
-        setupView()
         setupToolbar()
-//        clickListener()
+        setupRvPhoto()
+        setupRvFilter()
     }
 
-    private fun setupView() {
+    private fun setupRvPhoto() {
         photosRecyclerView = findViewById(R.id.restaurants_photos)
         photosAdapter = RestaurantsAdapter(resources)
 
@@ -46,7 +49,21 @@ class RestaurantsScreen : AppCompatActivity() {
         listPhotos.add(CardRestaurantsPhoto("3", R.drawable.photo_restaurants))
 
         photosAdapter.submitList(listPhotos)
+    }
 
+    private fun setupRvFilter() {
+        listElementFilter = mutableListOf()
+        filterRecyclerView = findViewById(R.id.recyclerViewFilter)
+
+        listElementFilter.add(CardFilter(R.drawable.solfiti, R.string.solfiti))
+        listElementFilter.add(CardFilter(R.drawable.icon_disabili, R.string.disabili))
+        listElementFilter.add(CardFilter(R.drawable.icon_vini, R.string.carta_dei_vini))
+
+        filterRecyclerView.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(this@RestaurantsScreen)
+            adapter = FiltersAdapter(listElementFilter, resources)
+        }
     }
 
     private fun setupToolbar() {

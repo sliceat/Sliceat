@@ -134,4 +134,11 @@
     <string name="name_restaurant">nome ristorante</string>
     <string name="menu">menù</string>
     <string name="photo_restaurants">photo restaurants</string>
+    <string name="telephone_number">388888888</string>
+    <string name="open_to_end">Aperto fino all 19:30</string>
+    <string name="address">Via Giovanni Verga 55</string>
+    <string name="message_chef">Vi dò il benvenuto nel mio locale.\nSentitevi a vostro agio nel mangiare…\nMario, Executive Chef</string>
+    <string name="disabili">Adatto per disabili</string>
+    <string name="carta_dei_vini">Carta dei vini</string>
+    <string name="near_to_you">Vicino a te</string>
 </resources>
