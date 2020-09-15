@@ -99,4 +99,9 @@ class SettingsScreen : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        navigator.goToMapsScreen()
+    }
 }

@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
+import com.marcoperini.sliceat.utils.sharedpreferences.Key
+import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 
 class FiltersAdapter(private val filterCard: List<CardFilter>, private val resources: Resources) : RecyclerView.Adapter<FiltersViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FiltersViewHolder {
@@ -33,15 +36,19 @@ class FiltersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(filterCard: CardFilter, resources: Resources) {
         title.text = resources.getString(filterCard.descriptionCard)
         cardImage.setImageResource(filterCard.imageCard)
-        checkBox.visibility = View.VISIBLE
+        
+        if(checkBox.isChecked) {
+            checkBox.setBackgroundResource(R.drawable.icon_full)
+        }
 
-        checkBox.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
+        checkBox.setOnCheckedChangeListener { _, isClicked ->
+            if (isClicked) {
                 checkBox.setBackgroundResource(R.drawable.icon_full)
+                checkBox.isChecked = true
             } else {
                 checkBox.setBackgroundResource(R.drawable.icon_empty)
+                checkBox.isChecked = false
             }
-
         }
     }
 }

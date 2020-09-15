@@ -9,10 +9,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
+import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.filters.CardFilter
-import com.marcoperini.sliceat.ui.filters.FiltersAdapter
+import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_back_button
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_button
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_title
+import org.koin.android.ext.android.inject
 
 class RestaurantsScreen : AppCompatActivity() {
 
@@ -21,8 +23,9 @@ class RestaurantsScreen : AppCompatActivity() {
     private lateinit var photosRecyclerView: RecyclerView
     private lateinit var photosAdapter: RestaurantsAdapter
     private lateinit var filterRecyclerView: RecyclerView
-    private lateinit var filtersAdapterRestaurant: FiltersAdapterRestaurant
     private lateinit var listElementFilter: MutableList<CardFilter>
+
+    private val navigator: Navigator by inject()
 
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, RestaurantsScreen::class.java)
@@ -46,6 +49,10 @@ class RestaurantsScreen : AppCompatActivity() {
             intent.type = "text/plain"
             intent.putExtra(Intent.EXTRA_TEXT, "market://details?id=$packageName")
             startActivity(Intent.createChooser(intent, resources.getString(R.string.invite_your_friends)), null)
+        }
+        toolbar.toolbar_back_button.setOnClickListener {
+            navigator.goToMapsScreen()
+            finish()
         }
     }
 
@@ -84,5 +91,10 @@ class RestaurantsScreen : AppCompatActivity() {
         toolbar.toolbar_button.visibility = View.VISIBLE
         toolbar.toolbar_button.setImageDrawable(resources.getDrawable(R.drawable.icon_share, null))
         toolbar.toolbar_title.text = resources.getString(R.string.empty)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        navigator.goToMapsScreen()
     }
 }

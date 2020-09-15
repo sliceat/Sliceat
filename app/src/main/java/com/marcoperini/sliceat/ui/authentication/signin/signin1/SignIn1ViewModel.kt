@@ -25,8 +25,8 @@ class SignIn1ViewModel(private val repository: UsersRepository, val prefs: KeyVa
     override fun send(event: SignIn1Event) {
         when (event) {
             is SignIn1Event.SaveFirstAndLastName -> saveFirstAndLAstName(event.firstName, event.lastName)
-            SignIn1Event.LoginWithGoogle -> TODO()
-            SignIn1Event.LoginWithFacebook -> TODO()
+            is SignIn1Event.LoginWithGoogle -> TODO()
+            is SignIn1Event.LoginWithFacebook -> TODO()
 //            is SignIn1Event.SaveUser -> saveUser(event.user)
         }.exhaustive
     }

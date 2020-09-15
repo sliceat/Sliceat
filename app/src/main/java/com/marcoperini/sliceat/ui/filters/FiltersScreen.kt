@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
+import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_back_button
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_button
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_title
@@ -21,12 +22,13 @@ class FiltersScreen : AppCompatActivity() {
     private lateinit var listElementFilter: MutableList<CardFilter>
     private lateinit var recyclerView: RecyclerView
 
+    private val navigator: Navigator by inject()
+
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, FiltersScreen::class.java)
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-    }
 
-    private val navigator: Navigator by inject()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,5 +90,10 @@ class FiltersScreen : AppCompatActivity() {
             navigator.goToMapsScreen()
             finish()
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        navigator.goToMapsScreen()
     }
 }

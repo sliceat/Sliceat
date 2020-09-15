@@ -149,12 +149,15 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
     private fun setupListener() {
         photo.setOnClickListener {
             navigator.goToSettingsScreen()
+            finish()
         }
         roundIconPlus.setOnClickListener {
             navigator.goToRestaurantsScreen()
+            finish()
         }
         filter.setOnClickListener {
             navigator.goToFiltersScreen()
+            finish()
         }
         qrCode.setOnClickListener { performAction() }
         myLocation.setOnClickListener { getLastLocation() }
