@@ -75,7 +75,7 @@ class RestaurantsScreen : AppCompatActivity() {
         filterRecyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@RestaurantsScreen)
-            adapter = FiltersAdapter(listElementFilter, resources)
+            adapter = FiltersAdapterRestaurant(listElementFilter, resources)
         }
     }
 

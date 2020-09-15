@@ -34,5 +34,14 @@ class FiltersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         title.text = resources.getString(filterCard.descriptionCard)
         cardImage.setImageResource(filterCard.imageCard)
         checkBox.visibility = View.VISIBLE
+
+        checkBox.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                checkBox.setBackgroundResource(R.drawable.icon_full)
+            } else {
+                checkBox.setBackgroundResource(R.drawable.icon_empty)
+            }
+
+        }
     }
 }
