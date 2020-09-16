@@ -54,6 +54,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
 
     private val prefs: KeyValueStorage by inject()
     private val navigator: Navigator by inject()
+    private val mapsViewModel: MapsViewModel by inject()
 
     private lateinit var photo: ImageView
     private lateinit var mapView: View
@@ -78,6 +79,10 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         mapFragment.getMapAsync(this)
 
         setupView()
+
+        mapsViewModel.send(MapsEvent.LoadLocals)
+        mapsViewModel.send(MapsEvent.LoadAllergie)
+
         changeMapTypeView()
         setupListener()
         searchQuery()

@@ -9,15 +9,14 @@ import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.Disposable
 
 sealed class MapsEvent {
-    object LoadNews : MapsEvent()
-    object LoadStore : MapsEvent()
+    object LoadLocals : MapsEvent()
+    object LoadAllergie : MapsEvent()
 }
 
 sealed class MapsState {
-    object InProgressNews : MapsState()
-    object InProgressStore : MapsState()
-    data class LoadedNews(val news: List<LocalsResponse>) : MapsState()
-    data class LoadedStore(val store: List<AllergieResponse>) : MapsState()
+    object InProgress : MapsState()
+    data class LoadedLocals(val news: List<LocalsResponse>) : MapsState()
+    data class LoadedAllergie(val store: List<AllergieResponse>) : MapsState()
     data class Error(val error: Throwable) : MapsState()
 }
 
@@ -32,18 +31,18 @@ class MapsViewModel(
 
     override fun send(event: MapsEvent) {
         when(event) {
-            is MapsEvent.LoadNews -> loadLocals()
-            is MapsEvent.LoadStore -> loadAllergie()
+            is MapsEvent.LoadLocals -> loadLocals()
+            is MapsEvent.LoadAllergie -> loadAllergie()
         }.exhaustive
     }
 
     private fun loadLocals() {
         if (newsSubscription.isDisposed) {
-            post(MapsState.InProgressNews)
+            post(MapsState.InProgress)
             newsSubscription = contract.getLocalsData()
                 .observeOn(scheduler)
                 .subscribe(
-                    { news -> post(MapsState.LoadedNews(news)) },
+                    { news -> post(MapsState.LoadedLocals(news)) },
                     { error -> post(MapsState.Error(error)) }
                 )
             disposables.add(newsSubscription)
@@ -52,11 +51,11 @@ class MapsViewModel(
 
     private fun loadAllergie() {
         if (storeSubscription.isDisposed) {
-            post(MapsState.InProgressStore)
+            post(MapsState.InProgress)
             storeSubscription = contract.getAllergieData()
                 .observeOn(scheduler)
                 .subscribe(
-                    { store -> post(MapsState.LoadedStore(store)) },
+                    { store -> post(MapsState.LoadedAllergie(store)) },
                     { error -> post(MapsState.Error(error)) }
                 )
             disposables.add(storeSubscription)

@@ -125,7 +125,7 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
 
     // QR Code
-    implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
+    implementation 'com.journeyapps:zxing-android-embedded:3.6.0' //non aggiornare questa libreria(si spacca tutto)
     implementation 'me.dm7.barcodescanner:zxing:1.9.13'
 
     //Firebase
