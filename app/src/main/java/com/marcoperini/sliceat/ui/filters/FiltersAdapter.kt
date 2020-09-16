@@ -13,7 +13,8 @@ import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.utils.sharedpreferences.Key
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 
-class FiltersAdapter(private val filterCard: List<CardFilter>, private val resources: Resources) : RecyclerView.Adapter<FiltersViewHolder>() {
+class FiltersAdapter(private val filterCard: List<CardFilter>, private val resources: Resources, private val prefs: KeyValueStorage) :
+    RecyclerView.Adapter<FiltersViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FiltersViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_filter_card, parent, false)
         return FiltersViewHolder(view)
@@ -24,7 +25,7 @@ class FiltersAdapter(private val filterCard: List<CardFilter>, private val resou
     }
 
     override fun onBindViewHolder(holder: FiltersViewHolder, position: Int) {
-        return holder.bind(filterCard[position], resources)
+        return holder.bind(filterCard[position], resources, prefs)
     }
 }
 
@@ -33,21 +34,21 @@ class FiltersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val title: TextView = itemView.findViewById(R.id.card_tilte)
     private val checkBox: CheckBox = itemView.findViewById(R.id.first_checkbox)
 
-    fun bind(filterCard: CardFilter, resources: Resources) {
+    fun bind(filterCard: CardFilter, resources: Resources, prefs: KeyValueStorage) {
         title.text = resources.getString(filterCard.descriptionCard)
         cardImage.setImageResource(filterCard.imageCard)
-        
-        if(checkBox.isChecked) {
+
+        if (prefs.getBoolean(title.text.toString(), false)) {
             checkBox.setBackgroundResource(R.drawable.icon_full)
         }
 
-        checkBox.setOnCheckedChangeListener { _, isClicked ->
-            if (isClicked) {
+        checkBox.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked && !prefs.getBoolean(title.text.toString(), true)) {
                 checkBox.setBackgroundResource(R.drawable.icon_full)
-                checkBox.isChecked = true
+                prefs.putBoolean(title.text.toString(), true)
             } else {
                 checkBox.setBackgroundResource(R.drawable.icon_empty)
-                checkBox.isChecked = false
+                prefs.putBoolean(title.text.toString(), false)
             }
         }
     }
