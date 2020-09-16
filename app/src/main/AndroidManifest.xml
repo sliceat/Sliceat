@@ -59,7 +59,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".ui.maps.MapsScreen"
+            android:name=".ui.maps.ui.MapsScreen"
             android:label="@string/title_activity_maps_screen" />
         <activity android:name=".ui.authentication.access.AccessScreen" />
         <activity android:name=".ui.launch.LaunchScreen1">

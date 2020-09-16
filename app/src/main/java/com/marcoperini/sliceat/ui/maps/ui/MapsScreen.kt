@@ -1,10 +1,9 @@
-package com.marcoperini.sliceat.ui.maps
+package com.marcoperini.sliceat.ui.maps.ui
 
 import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
@@ -24,7 +23,6 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
@@ -37,6 +35,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
+import com.marcoperini.sliceat.ui.maps.Location
 import com.marcoperini.sliceat.utils.Constants.Companion.ZOOM_CAMERA
 import com.marcoperini.sliceat.utils.sharedpreferences.Key
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
@@ -86,40 +85,6 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
 //        setupAutocompleteSearch() need the credit card to autocomplete search
     }
 
-    private fun searchQuery() {
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                val location = searchView.query.toString()
-
-                if (location == "") {
-                    return false
-                }
-                val geocoder = Geocoder(this@MapsScreen)
-
-                try {
-                    val addressList = geocoder.getFromLocationName(location, 1)
-                    if (addressList.size == 0) {
-                        Toast.makeText(this@MapsScreen, "adresse not found", Toast.LENGTH_LONG).show()
-                    } else if (addressList.size > 0) {
-                        val address = addressList[0]
-                        val latLng = LatLng(address.latitude, address.longitude)
-                        googleMap.addMarker(latLng.let { MarkerOptions().position(it).title(location) })
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10F))
-                    }
-
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
-            }
-        })
-    }
-
     private fun setupView() {
         fusedLocationProviderClient = FusedLocationProviderClient(this)
         location = Location(this)
@@ -161,6 +126,40 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         }
         qrCode.setOnClickListener { performAction() }
         myLocation.setOnClickListener { getLastLocation() }
+    }
+
+    private fun searchQuery() {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                val location = searchView.query.toString()
+
+                if (location == "") {
+                    return false
+                }
+                val geocoder = Geocoder(this@MapsScreen)
+
+                try {
+                    val addressList = geocoder.getFromLocationName(location, 1)
+                    if (addressList.size == 0) {
+                        Toast.makeText(this@MapsScreen, "adresse not found", Toast.LENGTH_LONG).show()
+                    } else if (addressList.size > 0) {
+                        val address = addressList[0]
+                        val latLng = LatLng(address.latitude, address.longitude)
+                        googleMap.addMarker(latLng.let { MarkerOptions().position(it).title(location) })
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10F))
+                    }
+
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
     }
 
     private fun performAction() {
@@ -263,10 +262,9 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
-                val icon = BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(this.resources, R.drawable.ic_pickup))
                 googleMap.addMarker(
                     MarkerOptions().position(LatLng(mLastLocation!!.latitude, mLastLocation.longitude)).title("Current Location").snippet(address)
-                        .icon(icon)
+
                 )
                 val cameraPosition = CameraPosition.Builder()
                     .target(LatLng(mLastLocation.latitude, mLastLocation.longitude)).zoom(ZOOM_CAMERA).build()

@@ -1,6 +1,7 @@
 package com.marcoperini.sliceat.utils
 
 import androidx.lifecycle.ViewModel
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
@@ -9,6 +10,8 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 abstract class BaseViewModel<S, E> : ViewModel() {
+
+    protected val disposables = CompositeDisposable()
 
     protected open val channel: Channel<S> = Channel()
 

@@ -3,7 +3,7 @@ package com.marcoperini.sliceat.ui
 import android.content.Context
 import android.content.Intent
 import androidx.core.content.ContextCompat
-import com.marcoperini.sliceat.ui.maps.MapsScreen
+import com.marcoperini.sliceat.ui.maps.ui.MapsScreen
 import com.marcoperini.sliceat.ui.authentication.access.AccessScreen
 import com.marcoperini.sliceat.ui.authentication.firstscreen.FirstScreen
 import com.marcoperini.sliceat.ui.authentication.signin.signin4.SignInScreen4
