@@ -1,7 +1,7 @@
 package com.marcoperini.sliceat.ui.authentication.signin.signin5
 
 import androidx.lifecycle.viewModelScope
-import com.marcoperini.sliceat.database.UsersRepository
+import com.marcoperini.sliceat.database.AppRepository
 import com.marcoperini.sliceat.database.UsersTable
 import com.marcoperini.sliceat.utils.BaseViewModel
 import com.marcoperini.sliceat.utils.exhaustive
@@ -15,7 +15,7 @@ sealed class SignIn5State {
     object SaveUser : SignIn5State()
 }
 
-class SignIn5ViewModel(private val repository: UsersRepository) : BaseViewModel<SignIn5State, SignIn5Event>() {
+class SignIn5ViewModel(private val repository: AppRepository) : BaseViewModel<SignIn5State, SignIn5Event>() {
 
     override fun send(event: SignIn5Event) {
         when (event) {

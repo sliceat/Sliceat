@@ -4,7 +4,7 @@ import androidx.room.Room
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.marcoperini.sliceat.database.AppDatabase
-import com.marcoperini.sliceat.database.UsersRepository
+import com.marcoperini.sliceat.database.AppRepository
 import com.marcoperini.sliceat.ui.AppNavigator
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.authentication.firstscreen.AuthenticationViewModel
@@ -52,7 +52,7 @@ val databaseComponents = module {
     single { get<AppDatabase>().allergieDao() }
 
     //repository
-    single { UsersRepository(get()) }
+    single { AppRepository(get()) }
 }
 
 val viewModels = module {
@@ -64,7 +64,7 @@ val viewModels = module {
     viewModel { SignIn3ViewModel(prefs = get()) }
     viewModel { SignIn4ViewModel(prefs = get()) }
     viewModel { SignIn5ViewModel(repository = get()) }
-    viewModel { MapsViewModel(scheduler = AndroidSchedulers.mainThread(), contract = get()) }
+    viewModel { MapsViewModel(scheduler = AndroidSchedulers.mainThread(), contract = get(), repository = get()) }
 }
 
 val volleyComponents = module {

@@ -1,6 +1,6 @@
 package com.marcoperini.sliceat.database
 
-class UsersRepository(private val userDao: TableDao) {
+class AppRepository(private val userDao: TableDao) {
 
     suspend fun insert(value: UsersTable) = userDao.insertUsers(value)
 

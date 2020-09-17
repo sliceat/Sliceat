@@ -1,6 +1,6 @@
 package com.marcoperini.sliceat.ui.authentication.signin.signin1
 
-import com.marcoperini.sliceat.database.UsersRepository
+import com.marcoperini.sliceat.database.AppRepository
 import com.marcoperini.sliceat.utils.BaseViewModel
 import com.marcoperini.sliceat.utils.exhaustive
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_FIRST_NAME
@@ -20,7 +20,7 @@ sealed class SignIn1State {
 //    object SaveUser : SignIn1State()
 }
 
-class SignIn1ViewModel(private val repository: UsersRepository, val prefs: KeyValueStorage) : BaseViewModel<SignIn1State, SignIn1Event>() {
+class SignIn1ViewModel(private val repository: AppRepository, val prefs: KeyValueStorage) : BaseViewModel<SignIn1State, SignIn1Event>() {
 
     override fun send(event: SignIn1Event) {
         when (event) {
