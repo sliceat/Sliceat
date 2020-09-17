@@ -25,7 +25,7 @@ class SignIn5ViewModel(private val repository: AppRepository) : BaseViewModel<Si
 
     private fun loadName(user: UsersTable) {
         viewModelScope.launch {
-            repository.insert(user)
+            repository.insertUser(user)
         }
         post(SignIn5State.SaveUser)
     }

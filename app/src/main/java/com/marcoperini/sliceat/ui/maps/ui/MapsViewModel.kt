@@ -26,12 +26,13 @@ sealed class MapsState {
 
 //TODO -> Create newsContract class and newsbackend Class
 
-class MapsViewModel(private val scheduler: Scheduler, private val contract: Contract, private val repository: AppRepository) : BaseViewModel<MapsState, MapsEvent>() {
+class MapsViewModel(private val scheduler: Scheduler, private val contract: Contract, private val repository: AppRepository) :
+    BaseViewModel<MapsState, MapsEvent>() {
     private var newsSubscription = Disposable.disposed()
     private var storeSubscription = Disposable.disposed()
 
     override fun send(event: MapsEvent) {
-        when(event) {
+        when (event) {
             is MapsEvent.LoadLocals -> loadLocals()
             is MapsEvent.LoadAllergie -> loadAllergie()
         }.exhaustive
@@ -65,9 +66,10 @@ class MapsViewModel(private val scheduler: Scheduler, private val contract: Cont
 
     private fun loadAllergie(allergie: List<AllergieResponse>) {
         post(MapsState.LoadedAllergie(allergie))
-        val allergieTable = AllergieTable(allergie[0].toString(), allergie[1].toString(), allergie[2].toString())
+        lateinit var allergieTable: AllergieTable
         viewModelScope.launch {
-            repository.insert(allergieTable)
+            allergie.forEach { allergia -> allergieTable = AllergieTable(allergia.alid, allergia.allergia, allergia.idLocale) }
+                .also { repository.insertAllergie(allergieTable) }
         }
     }
 }

@@ -2,11 +2,11 @@ package com.marcoperini.sliceat.database
 
 class AppRepository(private val userDao: TableDao) {
 
-    suspend fun insert(value: UsersTable) = userDao.insertUsers(value)
+    suspend fun insertUser(value: UsersTable) = userDao.insertUsers(value)
 
-    suspend fun insert(value: LocalsTable) = userDao.insertLocals(value)
+    suspend fun insertLocals(value: LocalsTable) = userDao.insertLocals(value)
 
-    suspend fun insert(value: AllergieTable) = userDao.insertAllergie(value)
+    suspend fun insertAllergie(value: AllergieTable) = userDao.insertAllergie(value)
 
     suspend fun deleteAllUsers() = userDao.deleteAllUsers()
 
