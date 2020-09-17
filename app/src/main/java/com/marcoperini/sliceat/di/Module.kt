@@ -3,7 +3,7 @@ package com.marcoperini.sliceat.di
 import androidx.room.Room
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.marcoperini.sliceat.database.UsersDatabase
+import com.marcoperini.sliceat.database.AppDatabase
 import com.marcoperini.sliceat.database.UsersRepository
 import com.marcoperini.sliceat.ui.AppNavigator
 import com.marcoperini.sliceat.ui.Navigator
@@ -19,7 +19,7 @@ import com.marcoperini.sliceat.ui.maps.Contract
 import com.marcoperini.sliceat.ui.maps.Provider
 import com.marcoperini.sliceat.ui.maps.network.Backend
 import com.marcoperini.sliceat.ui.maps.ui.MapsViewModel
-import com.marcoperini.sliceat.utils.Constants.Companion.USER_DATABASE_NAME
+import com.marcoperini.sliceat.utils.Constants.Companion.DATABASE_NAME
 import com.marcoperini.sliceat.utils.VolleyRequest
 import com.marcoperini.sliceat.utils.sharedpreferences.APIController
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorageFactory
@@ -43,8 +43,15 @@ val appComponents = module {
 }
 
 val databaseComponents = module {
-    single { Room.databaseBuilder(androidContext(), UsersDatabase::class.java, USER_DATABASE_NAME).build() }
-    single { get<UsersDatabase>().userDao() } //TableDao()
+    //database.builder
+    single { Room.databaseBuilder(androidContext(), AppDatabase::class.java, DATABASE_NAME).build() }
+
+    //TableDao()
+    single { get<AppDatabase>().userDao() }
+    single { get<AppDatabase>().localsDao() }
+    single { get<AppDatabase>().allergieDao() }
+
+    //repository
     single { UsersRepository(get()) }
 }
 

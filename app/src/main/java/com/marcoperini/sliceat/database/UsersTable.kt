@@ -10,14 +10,14 @@ import com.marcoperini.sliceat.utils.Constants.Companion.DATA_REGISTRAZIONE
 import com.marcoperini.sliceat.utils.Constants.Companion.E_MAIL
 import com.marcoperini.sliceat.utils.Constants.Companion.NOME
 import com.marcoperini.sliceat.utils.Constants.Companion.PASSWORD
-import com.marcoperini.sliceat.utils.Constants.Companion.TABLE_NAME
+import com.marcoperini.sliceat.utils.Constants.Companion.USERS_TABLE_NAME
 import com.marcoperini.sliceat.utils.Constants.Companion.TIPO_REGISTRAZIONE
 
 /*(nome, cognome, email, password, datanascita,registrazione,percorsofoto,libero1,uscita,privacy )
 VALUES ('\(nomeVar)', '\(cognomeVar)', '\(emailVar)', '\(passwordVar)', '\(dataNascitaVar)',
 '\("SI")', '\(percorsoFotoVar)', '\("CL")', '\("NO")', '\("SI")')"
 */
-@Entity(tableName = TABLE_NAME)
+@Entity(tableName = USERS_TABLE_NAME)
 data class UsersTable(
     @ColumnInfo(name = NOME) var firstName: String?,
     @ColumnInfo(name = COGNOME) var lastName: String?,
