@@ -30,6 +30,7 @@ class Constants private constructor(){
 
         //Database Locals
         const val LOCALS_TABLE_NAME: String = "LocalsTable"
+        const val ADESIVO: String = "Adesivo"
 
         //Database Allergie
         const val ALLERGIE_TABLE_NAME: String = "AllergieTable"

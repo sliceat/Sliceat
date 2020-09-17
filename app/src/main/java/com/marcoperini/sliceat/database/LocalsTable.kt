@@ -7,7 +7,7 @@ import com.marcoperini.sliceat.utils.Constants
 
 @Entity(tableName = Constants.LOCALS_TABLE_NAME)
 data class LocalsTable(
-    @ColumnInfo(name = Constants.NOME) var firstName: String?
+    @ColumnInfo(name = Constants.ADESIVO) var adesivo: String?
 
 ) {
     @PrimaryKey(autoGenerate = true)
