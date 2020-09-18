@@ -5,9 +5,9 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [UsersTable::class, LocalsTable::class, AllergieTable::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun userDao(): TableDao
+    abstract fun userDao(): UsersDao
 
-    abstract fun localsDao(): TableDao
+    abstract fun localsDao(): LocalsDao
 
-    abstract fun allergieDao(): TableDao
+    abstract fun allergieDao(): AllergieDao
 }

@@ -1,22 +1,22 @@
 package com.marcoperini.sliceat.database
 
-class AppRepository(private val userDao: TableDao) {
+class AppRepository(private val userDao: UsersDao, private val localsDao: LocalsDao, private val allergieDao: AllergieDao) {
 
     suspend fun insertUser(value: UsersTable) = userDao.insertUsers(value)
 
-    suspend fun insertLocals(value: LocalsTable) = userDao.insertLocals(value)
+    suspend fun insertLocals(value: LocalsTable) = localsDao.insertLocals(value)
 
-    suspend fun insertAllergie(value: AllergieTable) = userDao.insertAllergie(value)
+    suspend fun insertAllergie(value: AllergieTable) = allergieDao.insertAllergie(value)
 
     suspend fun deleteAllUsers() = userDao.deleteAllUsers()
 
-    suspend fun deleteAllLocals() = userDao.deleteAllLocals()
+    suspend fun deleteAllLocals() = localsDao.deleteAllLocals()
 
-    suspend fun deleteAllAllergie() = userDao.deleteAllAllergie()
+    suspend fun deleteAllAllergie() = allergieDao.deleteAllAllergie()
 
     suspend fun getUsers() = userDao.findAllUsers()
 
-    suspend fun getLocals() = userDao.findAllLocals()
+    suspend fun getLocals() = localsDao.findAllLocals()
 
-    suspend fun getAllergie() = userDao.findAllAllergie()
+    suspend fun getAllergie() = allergieDao.findAllAllergie()
 }

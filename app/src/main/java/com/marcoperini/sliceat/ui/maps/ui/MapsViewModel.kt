@@ -66,10 +66,12 @@ class MapsViewModel(private val scheduler: Scheduler, private val contract: Cont
 
     private fun loadAllergie(allergie: List<AllergieResponse>) {
         post(MapsState.LoadedAllergie(allergie))
-        lateinit var allergieTable: AllergieTable
-        viewModelScope.launch {
-            allergie.forEach { allergia -> allergieTable = AllergieTable(allergia.alid, allergia.allergia, allergia.idLocale) }
-                .also { repository.insertAllergie(allergieTable) }
+        lateinit var allergiaTable: AllergieTable
+        allergie.forEach { allergia ->
+            viewModelScope.launch {
+                allergiaTable = AllergieTable(allergia.alid, allergia.allergia, allergia.idLocale)
+                repository.insertAllergie(allergiaTable)
+            }
         }
     }
 }

@@ -34,9 +34,9 @@ class Constants private constructor(){
 
         //Database Allergie
         const val ALLERGIE_TABLE_NAME: String = "AllergieTable"
-        const val ALLERGIA_1: String = "Allergia 1"
-        const val ALLERGIA_2: String = "Allergia 2"
-        const val ID_LOCALE: String = "Id locale"
+        const val ID_ALLERGIA: String = "id_allergia"
+        const val NAME_ALLERGIA: String = "name_allergia"
+        const val ID_LOCALE: String = "id_locale"
 
 
         //foto

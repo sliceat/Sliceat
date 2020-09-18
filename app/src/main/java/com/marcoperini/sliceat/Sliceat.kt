@@ -19,6 +19,7 @@ import org.koin.android.BuildConfig
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 import org.koin.dsl.module
 import timber.log.Timber
 
@@ -76,7 +77,8 @@ class Sliceat : MultiDexApplication() {
 
     private fun setupDI() {
         startKoin {
-            androidLogger()
+            androidLogger(Level.NONE)
+//            androidLogger()
             androidContext(this@Sliceat)
 
             val appSetupModule = module {

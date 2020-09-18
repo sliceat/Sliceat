@@ -46,13 +46,15 @@ val databaseComponents = module {
     //database.builder
     single { Room.databaseBuilder(androidContext(), AppDatabase::class.java, DATABASE_NAME).build() }
 
-    //TableDao()
+    //UsersDao()
     single { get<AppDatabase>().userDao() }
+    //LocalsDao()
     single { get<AppDatabase>().localsDao() }
+    //AllergieDao()
     single { get<AppDatabase>().allergieDao() }
 
     //repository
-    single { AppRepository(get()) }
+    single { AppRepository(get(), get(), get()) }
 }
 
 val viewModels = module {
