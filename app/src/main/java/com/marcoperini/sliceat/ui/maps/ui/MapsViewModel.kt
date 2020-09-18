@@ -3,6 +3,7 @@ package com.marcoperini.sliceat.ui.maps.ui
 import androidx.lifecycle.viewModelScope
 import com.marcoperini.sliceat.database.AllergieTable
 import com.marcoperini.sliceat.database.AppRepository
+import com.marcoperini.sliceat.database.LocalsTable
 import com.marcoperini.sliceat.ui.maps.Contract
 import com.marcoperini.sliceat.ui.maps.network.response.AllergieResponse
 import com.marcoperini.sliceat.ui.maps.network.response.LocalsResponse
@@ -44,10 +45,46 @@ class MapsViewModel(private val scheduler: Scheduler, private val contract: Cont
             newsSubscription = contract.getLocalsData()
                 .observeOn(scheduler)
                 .subscribe(
-                    { locals -> post(MapsState.LoadedLocals(locals)) },
+                    { locals -> saveLocals(locals) },
                     { error -> post(MapsState.Error(error)) }
                 )
             disposables.add(newsSubscription)
+        }
+    }
+
+    private fun saveLocals(locals: List<LocalsResponse>) {
+        post(MapsState.LoadedLocals(locals))
+        lateinit var localsTable: LocalsTable
+        locals.forEach { local ->
+            viewModelScope.launch {
+                localsTable = LocalsTable(
+                    adesivo = local.adesivo,
+                    cap = local.cap,
+                    catid = local.catid,
+                    citta = local.citta,
+                    civico = local.civico,
+                    confirmed = local.confirmed,
+                    facebook = local.facebook,
+                    instagram = local.instagram,
+                    keyhash = local.keyhash,
+                    lat = local.lat,
+                    locid = local.locid,
+                    lon = local.lon,
+                    mail = local.mail,
+                    nazione = local.nazione,
+                    nome = local.nome,
+                    percorsoFoto = local.percorsoFoto,
+                    portate = local.portate,
+                    prenotazione = local.prenotazione,
+                    prezzo = local.prezzo,
+                    provincia = local.provincia,
+                    telefono = local.telefono,
+                    twitter = local.twitter,
+                    via = local.via,
+                    website = local.website
+                )
+                repository.insertLocals(localsTable)
+            }
         }
     }
 
@@ -57,19 +94,23 @@ class MapsViewModel(private val scheduler: Scheduler, private val contract: Cont
             storeSubscription = contract.getAllergieData()
                 .observeOn(scheduler)
                 .subscribe(
-                    { allergie -> loadAllergie(allergie) },
+                    { allergie -> saveAllergie(allergie) },
                     { error -> post(MapsState.Error(error)) }
                 )
             disposables.add(storeSubscription)
         }
     }
 
-    private fun loadAllergie(allergie: List<AllergieResponse>) {
+    private fun saveAllergie(allergie: List<AllergieResponse>) {
         post(MapsState.LoadedAllergie(allergie))
         lateinit var allergiaTable: AllergieTable
         allergie.forEach { allergia ->
             viewModelScope.launch {
-                allergiaTable = AllergieTable(allergia.alid, allergia.allergia, allergia.idLocale)
+                allergiaTable = AllergieTable(
+                    alid = allergia.alid,
+                    allergia = allergia.allergia,
+                    idLocale = allergia.idLocale
+                )
                 repository.insertAllergie(allergiaTable)
             }
         }

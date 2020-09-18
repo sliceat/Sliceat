@@ -10,7 +10,6 @@ import com.marcoperini.sliceat.utils.Constants.Companion.USERS_TABLE_NAME
 
 @Dao
 interface UsersDao {
-
     @Query("SELECT * FROM $USERS_TABLE_NAME")
     suspend fun findAllUsers(): List<UsersTable>
 
@@ -22,5 +21,4 @@ interface UsersDao {
 
     @Query("DELETE FROM $USERS_TABLE_NAME")
     suspend fun deleteAllUsers()
-
 }

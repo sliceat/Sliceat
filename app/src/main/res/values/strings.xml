@@ -141,6 +141,5 @@
     <string name="disabili">Adatto per disabili</string>
     <string name="carta_dei_vini">Carta dei vini</string>
     <string name="near_to_you">Vicino a te</string>
-    <string name="base_url_allergie">https://www.sliceat.it/WebService/scaricoAllergie.php/</string>
-    <string name="base_url_locali">https://www.sliceat.it/WebService/scaricoLocali.php/</string>
+    <string name="base_url">https://www.sliceat.it/</string>
 </resources>

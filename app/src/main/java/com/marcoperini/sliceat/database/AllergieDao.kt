@@ -10,7 +10,6 @@ import com.marcoperini.sliceat.utils.Constants.Companion.USERS_TABLE_NAME
 
 @Dao
 interface AllergieDao {
-
     @Query("SELECT * FROM $ALLERGIE_TABLE_NAME")
     suspend fun findAllAllergie(): List<AllergieTable>
 

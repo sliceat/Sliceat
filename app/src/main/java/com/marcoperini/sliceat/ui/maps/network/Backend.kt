@@ -29,32 +29,24 @@ class Backend(
         .addInterceptor(httpLoggingInterceptor)
         .build()
 
-    private val apiLocali = Retrofit.Builder()
+    private val api = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(RxJava3CallAdapterFactory.createWithScheduler(networkThread))
-        .baseUrl(resources.getString(R.string.base_url_locali))
+        .baseUrl(resources.getString(R.string.base_url))
         .client(privateOkHttpClient)
         .build()
         .create(ListingApi::class.java)
 
-    private val apiAllergie = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .addCallAdapterFactory(RxJava3CallAdapterFactory.createWithScheduler(networkThread))
-        .baseUrl(resources.getString(R.string.base_url_allergie))
-        .client(privateOkHttpClient)
-        .build()
-        .create(ListingApi::class.java)
+    fun getLocalsData(): Single<List<LocalsResponse>> = api.getLocalsData()
 
-    fun getLocalsData(): Single<List<LocalsResponse>> = apiLocali.getLocalsData()
-
-    fun getAllergieData(): Single<List<AllergieResponse>> = apiAllergie.getAllergieData()
+    fun getAllergieData(): Single<List<AllergieResponse>> = api.getAllergieData()
 
     private interface ListingApi {
 
-        @GET("mobile/news")
+        @GET("WebService/scaricoLocali.php/")
         fun getLocalsData(): Single<List<LocalsResponse>>
 
-        @GET("mobile/news/{id}")
+        @GET("WebService/scaricoAllergie.php/")
         fun getAllergieData(): Single<List<AllergieResponse>>
     }
 }

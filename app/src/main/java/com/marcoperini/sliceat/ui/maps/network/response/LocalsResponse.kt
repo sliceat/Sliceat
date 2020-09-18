@@ -1,6 +1,6 @@
 package com.marcoperini.sliceat.ui.maps.network.response
 
-data class LocalsResponse(
+data class LocalsResponse (
     val adesivo: String,
     val cap: String,
     val catid: String,
@@ -26,4 +26,3 @@ data class LocalsResponse(
     val via: String,
     val website: String
 )
-

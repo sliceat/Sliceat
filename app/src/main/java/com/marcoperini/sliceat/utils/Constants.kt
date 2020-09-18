@@ -3,7 +3,6 @@ package com.marcoperini.sliceat.utils
 class Constants private constructor(){
 
     companion object {
-
         //Camera
         const val PICK_PHOTO_REQUEST = 2
         const val TAKE_PHOTO_REQUEST = 1
@@ -31,6 +30,28 @@ class Constants private constructor(){
         //Database Locals
         const val LOCALS_TABLE_NAME: String = "LocalsTable"
         const val ADESIVO: String = "Adesivo"
+        const val CAP: String = "Cap"
+        const val CAT_ID: String = "Cat_id"
+        const val CITTA: String = "Città"
+        const val CIVICO: String = "Civico"
+        const val CONFIRMED: String = "Confirmed"
+        const val FACEBOOK: String = "Facebook"
+        const val INSTAGRAM: String = "Instagram"
+        const val KEYHASH: String = "Keyhash"
+        const val LAT: String = "Lat"
+        const val LON: String = "Lon"
+        const val MAIL: String = "Mail"
+        const val NAZIONE: String = "Nazione"
+        const val NOME_LOCALE: String = "Nome_locale"
+        const val PERCORSO_FOTO_LOCALE: String = "Percorso_foto_locale"
+        const val PORTATE: String = "Portate"
+        const val PRENOTAZIONE: String = "Prenotazione"
+        const val PREZZO: String = "Prezzo"
+        const val PROVINCIA: String = "Provincia"
+        const val TELEFONO: String = "Telefono"
+        const val TWITTER: String = "Twitter"
+        const val VIA_LOCALE: String = "Via_locale"
+        const val WEBSITE: String = "Website"
 
         //Database Allergie
         const val ALLERGIE_TABLE_NAME: String = "AllergieTable"
