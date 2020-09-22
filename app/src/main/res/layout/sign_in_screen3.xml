@@ -113,7 +113,7 @@
 
     <Button
         android:id="@+id/continua"
-        style="@style/orangeButton.authentication"
+        style="@style/myButton.authentication"
         android:backgroundTint="@color/graySoft"
         android:text="@string/continua"
         android:textColor="@color/white"

@@ -142,4 +142,7 @@
     <string name="carta_dei_vini">Carta dei vini</string>
     <string name="near_to_you">Vicino a te</string>
     <string name="base_url">https://www.sliceat.it/</string>
+    <string name="offline_title">Sliceat e la mappa\nsono offline.</string>
+    <string name="offline_subtitle">Sliceat funziona anche offline e puoi\nfare quasi tutto.\nCerca per città, visualizza i locali,\nleggi le storie dei manager e\nscannerizza il codice QR.\nAppena la rete ritorna attiva verrà\ntutto aggiornato.</string>
+    <string name="thanks">Ok, grazie</string>
 </resources>

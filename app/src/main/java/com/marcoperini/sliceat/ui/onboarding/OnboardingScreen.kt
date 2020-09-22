@@ -42,7 +42,7 @@ class OnboardingScreen : AppCompatActivity() {
                 if (view_pager2.currentItem == 2) {
                     skipButton.visibility = View.GONE
                     entryButton.visibility = View.VISIBLE
-                    entryButton.setTextColor(ContextCompat.getColor(this@OnboardingScreen, R.color.black))
+                    entryButton.setTextColor(ContextCompat.getColor(this@OnboardingScreen, R.color.black80))
                 } else {
                     skipButton.visibility = View.VISIBLE
                     entryButton.visibility = View.GONE

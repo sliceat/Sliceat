@@ -41,7 +41,7 @@
     </style>
 
     <style name="authenticationTitle1">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/black80</item>
         <item name="android:gravity">center_horizontal|center_vertical</item>
         <item name="android:textSize">25sp</item>
         <item name="android:lineSpacingExtra">3.0sp</item>
@@ -52,7 +52,7 @@
     </style>
 
     <style name="authenticationText">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/black80</item>
         <item name="android:gravity">center_horizontal|center_vertical</item>
         <item name="android:textSize">14sp</item>
         <item name="android:lineSpacingExtra">2.1sp</item>
@@ -63,7 +63,7 @@
     </style>
 
 
-    <style name="orangeButton">
+    <style name="myButton">
         <item name="android:background">@drawable/ic_accedi_fb</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -74,7 +74,7 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <style name="orangeButton.authentication">
+    <style name="myButton.authentication">
         <item name="android:layout_margin">16dp</item>
     </style>
 

@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Patterns
 import android.view.MenuInflater
@@ -15,6 +16,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
@@ -37,11 +39,13 @@ import com.karumi.dexter.listener.single.PermissionListener
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.maps.Location
+import com.marcoperini.sliceat.utils.CheckConnection
 import com.marcoperini.sliceat.utils.Constants.Companion.ZOOM_CAMERA
 import com.marcoperini.sliceat.utils.sharedpreferences.Key
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import com.marcoperini.sliceat.utils.transformImageToRoundImage
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 import java.io.IOException
 import java.util.*
 
@@ -72,12 +76,16 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
 
     //    private lateinit var autocompleteFragment: AutocompleteSupportFragment
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps_screen)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        if(!CheckConnection.isOnline(this))
+            Toast.makeText(this@MapsScreen, "no connection", Toast.LENGTH_LONG).show()
 
         setupView()
 

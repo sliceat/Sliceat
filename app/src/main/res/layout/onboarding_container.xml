@@ -27,11 +27,11 @@
 
     <Button
         android:id="@+id/start"
-        style="@style/orangeButton.authentication"
+        style="@style/myButton.authentication"
         android:backgroundTint="@color/white"
         android:layout_marginBottom="32dp"
         android:text="@string/start"
-        android:textColor="@color/black"
+        android:textColor="@color/black80"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

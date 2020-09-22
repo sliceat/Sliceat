@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="10dp"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="320dp"
+    android:background="@color/black">
+
+    <ImageView
+        android:id="@+id/icon_cloud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_icon_offline_cloud"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/offline_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/offline_title"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:layout_margin="24dp"
+        android:fontFamily="@font/montserrat_bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/offline_subtitle"
+        android:layout_margin="24dp"
+        android:fontFamily="@font/montserrat"
+        android:textSize="16sp"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/thanks"
+        style="@style/myButton"
+        android:layout_margin="24dp"
+        android:background="@drawable/ic_accedi_google"
+        android:text="@string/thanks"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"/>
+
+</LinearLayout>
