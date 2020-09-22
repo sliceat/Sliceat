@@ -43,7 +43,7 @@ class FiltersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
 
         checkBox.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked && !prefs.getBoolean(title.text.toString(), true)) {
+            if (isChecked && !prefs.getBoolean(title.text.toString(), false)) {
                 checkBox.setBackgroundResource(R.drawable.icon_full)
                 prefs.putBoolean(title.text.toString(), true)
             } else {

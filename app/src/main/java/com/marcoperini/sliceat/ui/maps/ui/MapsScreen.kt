@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
+import androidx.core.view.isNotEmpty
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -94,7 +95,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         fusedLocationProviderClient = FusedLocationProviderClient(this)
         location = Location(this)
         mapView = findViewById(R.id.map)
-        searchView = findViewById(R.id.sv_location)
+        searchView = findViewById(R.id.search_bar)
         photo = findViewById(R.id.profilePhoto)
         filter = findViewById(R.id.filter_icon)
         roundIconPlus = findViewById(R.id.round_icon_plus)
@@ -139,7 +140,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
             override fun onQueryTextSubmit(query: String?): Boolean {
                 val location = searchView.query.toString()
 
-                if (location == "") {
+                if (location.isEmpty()) {
                     return false
                 }
                 val geocoder = Geocoder(this@MapsScreen)
@@ -162,6 +163,11 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                if (!newText.isNullOrBlank()) {
+                    popupMenu.visibility = View.GONE
+                } else {
+                    popupMenu.visibility = View.VISIBLE
+                }
                 return false
             }
         })
