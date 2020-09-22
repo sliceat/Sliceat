@@ -71,7 +71,7 @@ class Sliceat : MultiDexApplication() {
 
                 // 4
                 Timber.d(token)
-                Toast.makeText(baseContext, token, Toast.LENGTH_LONG).show()
+//                Toast.makeText(baseContext, token, Toast.LENGTH_LONG).show()
             })
     }
 
