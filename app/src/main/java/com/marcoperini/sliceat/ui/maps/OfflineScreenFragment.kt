@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.marcoperini.sliceat.R
 
 class OfflineScreenFragment : BottomSheetDialogFragment() {
 
+    private lateinit var okThanks : Button
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -18,26 +20,13 @@ class OfflineScreenFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        okThanks = view.findViewById(R.id.thanks)
         setupAction()
     }
 
     private fun setupAction() {
-//        binding.bottomDeleteHouseYesDelete.setOnClickListener {
-//            deleteHouseListener.deleteHouseDataPass()
-//        }
-//
-//        binding.bottomDeleteHouseChangedMyMind.setOnClickListener {
-//            this.dismiss()
-//        }
+        okThanks.setOnClickListener {
+            dismiss()
+        }
     }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-//        deleteHouseListener = context as DeleteHouseListener
-    }
-}
-
-interface DeleteHouseListener {
-    fun deleteHouseDataPass()
 }

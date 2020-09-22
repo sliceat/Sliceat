@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.PorterDuff
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
@@ -15,12 +16,15 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.SearchView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
-import androidx.core.view.isNotEmpty
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -39,13 +43,13 @@ import com.karumi.dexter.listener.single.PermissionListener
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.maps.Location
+import com.marcoperini.sliceat.ui.maps.OfflineScreenFragment
 import com.marcoperini.sliceat.utils.CheckConnection
 import com.marcoperini.sliceat.utils.Constants.Companion.ZOOM_CAMERA
 import com.marcoperini.sliceat.utils.sharedpreferences.Key
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import com.marcoperini.sliceat.utils.transformImageToRoundImage
 import org.koin.android.ext.android.inject
-import timber.log.Timber
 import java.io.IOException
 import java.util.*
 
@@ -84,8 +88,10 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        if(!CheckConnection.isOnline(this))
-            Toast.makeText(this@MapsScreen, "no connection", Toast.LENGTH_LONG).show()
+        if (!CheckConnection.isOnline(this)) {
+            val offlineScreenFragment = OfflineScreenFragment()
+            offlineScreenFragment.show(supportFragmentManager, offlineScreenFragment.tag)
+        }
 
         setupView()
 
@@ -156,7 +162,14 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
                 try {
                     val addressList = geocoder.getFromLocationName(location, 1)
                     if (addressList.size == 0) {
-                        Toast.makeText(this@MapsScreen, "adresse not found", Toast.LENGTH_LONG).show()
+                        val toast: Toast = Toast.makeText(this@MapsScreen, "adresse not found", Toast.LENGTH_LONG)
+                        val view = toast.view
+                        view.background.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                            ContextCompat.getColor(this@MapsScreen, R.color.black), BlendModeCompat.SRC_ATOP
+                        )
+                        val text: TextView = view.findViewById(android.R.id.message)
+                        text.setTextColor(ContextCompat.getColor(this@MapsScreen, R.color.white))
+                        toast.show()
                     } else if (addressList.size > 0) {
                         val address = addressList[0]
                         val latLng = LatLng(address.latitude, address.longitude)
