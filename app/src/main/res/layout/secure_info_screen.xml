@@ -6,6 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".ui.LetterManagersScreen">
 
+    <ImageButton
+        android:id="@+id/closeButton"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginBottom="4dp"
+        android:elevation="5dp"
+        android:background="@drawable/icon_close"
+        android:backgroundTint="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/roundIcon"
+        app:layout_constraintStart_toStartOf="@id/roundIcon"
+        app:layout_constraintBottom_toBottomOf="@id/roundIcon"
+        app:layout_constraintTop_toTopOf="@id/roundIcon" />
+
+    <Button
+        android:id="@+id/roundIcon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/ic_round_button"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         style="@style/ScrollView"
         android:fadeScrollbars="false"
