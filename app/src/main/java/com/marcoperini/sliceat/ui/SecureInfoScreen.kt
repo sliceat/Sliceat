@@ -25,29 +25,15 @@ class SecureInfoScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_letter_managers_screen)
+        setContentView(R.layout.secure_info_screen)
 
-        setupToolbar()
         clickListener()
     }
 
-    override fun onResume() {
-        super.onResume()
-        toolbar.toolbar_button.visibility = View.VISIBLE
-    }
-
-    private fun setupToolbar() {
-        toolbar = findViewById(R.id.include_custom_toolbar)
-        toolbar.toolbar_back_button.visibility = View.INVISIBLE
-        toolbar.toolbar_button.visibility = View.VISIBLE
-        toolbar.toolbar_button.setImageDrawable(resources.getDrawable(R.drawable.icon_close, null))
-        toolbar.toolbar_title.text = resources.getString(R.string.empty)
-    }
-
     private fun clickListener() {
-        toolbar.toolbar_button.setOnClickListener {
-            navigator.goToSettingsScreen()
-            finish()
-        }
+//        toolbar.toolbar_button.setOnClickListener {
+//            navigator.goToSettingsScreen()
+//            finish()
+//        }
     }
 }

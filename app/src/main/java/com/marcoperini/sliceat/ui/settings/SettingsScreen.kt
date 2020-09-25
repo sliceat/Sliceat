@@ -84,7 +84,7 @@ class SettingsScreen : AppCompatActivity() {
         }
 
         secureInformations.setOnClickListener {
-            navigator.goToMailScreen()
+            navigator.goToSecureInfoScreen()
             finish()
         }
 
