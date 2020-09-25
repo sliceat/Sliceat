@@ -24,6 +24,7 @@ class SettingsScreen : AppCompatActivity() {
     private lateinit var pageIndicator: ViewPager2Indicator
     private lateinit var shareSliceat: ImageView
     private lateinit var termsAndCondition: ImageView
+    private lateinit var secureInformations: ImageView
     private lateinit var privacyPolicy: ImageView
     private lateinit var mail: ImageView
 //    private lateinit var toolbarBack: ImageView
@@ -60,6 +61,7 @@ class SettingsScreen : AppCompatActivity() {
         pageIndicator = findViewById(R.id.indicator)
         pageIndicator.attachTo(view_pager2)
         mail = findViewById(R.id.mail_icon)
+        secureInformations = findViewById(R.id.icon_secure_informations)
         shareSliceat = findViewById(R.id.share_sliceat_icon)
         termsAndCondition = findViewById(R.id.term_and_condition_icon)
         privacyPolicy = findViewById(R.id.privacy_policy_icon)
@@ -77,6 +79,11 @@ class SettingsScreen : AppCompatActivity() {
 
     private fun setupListener() {
         mail.setOnClickListener {
+            navigator.goToMailScreen()
+            finish()
+        }
+
+        secureInformations.setOnClickListener {
             navigator.goToMailScreen()
             finish()
         }

@@ -11,7 +11,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
+import com.marcoperini.sliceat.ui.Navigator
+import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_back_button
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_title
+import org.koin.android.ext.android.inject
 
 class MailsScreen : AppCompatActivity() {
 
@@ -20,6 +23,8 @@ class MailsScreen : AppCompatActivity() {
     private lateinit var emptyMailIconPlaceholder: TextView
     private lateinit var listElementsMail: MutableList<CardMail>
     private lateinit var recyclerView: RecyclerView
+
+    private val navigator: Navigator by inject()
 
     companion object {
         fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, MailsScreen::class.java)
@@ -60,5 +65,14 @@ class MailsScreen : AppCompatActivity() {
     private fun setupToolbar() {
         toolbar = findViewById(R.id.include_custom_toolbar)
         toolbar.toolbar_title.text = resources.getString(R.string.mail)
+        toolbar.toolbar_back_button.setOnClickListener {
+            navigator.goToSettingsScreen()
+            finish()
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        navigator.goToSettingsScreen()
     }
 }

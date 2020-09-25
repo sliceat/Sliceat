@@ -36,9 +36,10 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="40dp"
                 android:text="@string/informazioni_sicure"
-                android:textColor="@color/black80" />
+                android:textColor="@color/black" />
 
             <ImageView
+                android:id="@+id/icon_secure_informations"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -56,7 +57,7 @@
                 android:layout_marginBottom="24dp"
                 android:layout_below="@id/secure_informations"
                 android:text="@string/description_informations"
-                android:textColor="@color/black80" />
+                android:textColor="@color/black" />
 
             <View
                 android:id="@+id/first_divider"
@@ -77,7 +78,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:text="@string/secure_eating"
-                android:textColor="@color/black80"
+                android:textColor="@color/black"
                 android:layout_below="@id/first_divider"/>
 
             <ImageView
@@ -118,7 +119,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:text="@string/mail"
-                android:textColor="@color/black80"
+                android:textColor="@color/black"
                 android:layout_below="@id/your_profile"/>
 
             <ImageView
@@ -169,7 +170,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:text="@string/share_sliceat"
-                android:textColor="@color/black80"
+                android:textColor="@color/black"
                 android:layout_below="@id/invite"/>
 
             <ImageView
@@ -199,7 +200,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="24dp"
                 android:text="@string/your_thinking"
-                android:textColor="@color/black80"
+                android:textColor="@color/black"
                 android:layout_below="@id/fourth_divider"/>
 
             <ImageView
@@ -240,7 +241,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:text="@string/term_usage"
-                android:textColor="@color/black80"
+                android:textColor="@color/black"
                 android:layout_below="@id/legal"/>
 
             <ImageView
@@ -271,7 +272,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:text="@string/privacy_policy"
-                android:textColor="@color/black80"
+                android:textColor="@color/black"
                 android:layout_below="@id/sixth_divider"/>
 
             <ImageView

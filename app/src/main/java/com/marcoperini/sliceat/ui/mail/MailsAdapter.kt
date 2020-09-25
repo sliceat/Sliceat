@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
 
-class MailsAdapter(val mailCard: List<CardMail>, val resources: Resources) : RecyclerView.Adapter<MailsViewHolder>() {
+class MailsAdapter(private val mailCard: List<CardMail>, private val resources: Resources) : RecyclerView.Adapter<MailsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MailsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_mail_card, parent, false)
         return MailsViewHolder(view)

@@ -110,7 +110,7 @@
         style="@style/myButton.authentication"
         android:background="@drawable/ic_accedi_google"
         android:text="@string/accediConGoogle"
-        android:textColor="@color/black80"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
