@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.LetterManagersScreen">
+
+    <ImageButton
+        android:id="@+id/closeButton"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/icon_close"
+        android:backgroundTint="@color/black"
+        android:elevation="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/roundIcon"
+        app:layout_constraintEnd_toEndOf="@id/roundIcon"
+        app:layout_constraintStart_toStartOf="@id/roundIcon"
+        app:layout_constraintTop_toTopOf="@id/roundIcon" />
+
+    <Button
+        android:id="@+id/roundIcon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/ic_round_button"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_covid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/intollerance_screen" />
+
+    <TextView
+        android:id="@+id/intollerance_title"
+        style="@style/authenticationTitle1"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/intollerance_title"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roundIcon" />
+
+    <TextView
+        android:id="@+id/intollerance_subtitle"
+        style="@style/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/intollerance_subtitle"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/intollerance_title" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/article_card"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/intollerance_subtitle">
+
+        <ScrollView
+            style="@style/ScrollView"
+            android:fadeScrollbars="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/card_intolerance"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <ImageView
+                    android:id="@+id/tree_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:src="@drawable/tree"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/subscription"
+                    style="@style/text"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/subscription"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tree_icon" />
+
+                <TextView
+                    android:id="@+id/subscription_description"
+                    style="@style/text"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:paddingEnd="40dp"
+                    android:text="@string/subscription_description"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/subscription" />
+
+                <TextView
+                    android:id="@+id/ten"
+                    style="@style/authenticationTitle1"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/ten"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/subscription_description" />
+
+                <TextView
+                    android:id="@+id/trees_planted"
+                    style="@style/text"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:paddingEnd="24dp"
+                    android:text="@string/trees_planted"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ten"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

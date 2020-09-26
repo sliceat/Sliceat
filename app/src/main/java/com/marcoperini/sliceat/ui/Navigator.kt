@@ -37,6 +37,7 @@ interface Navigator {
     fun goToMailScreen()
     fun goToRestaurantsScreen()
     fun goToSecureInfoScreen()
+    fun goToIntolleranceScreen()
 }
 
 class AppNavigator(private val context: Context) : Navigator {
@@ -111,6 +112,10 @@ class AppNavigator(private val context: Context) : Navigator {
 
     override fun goToSecureInfoScreen() {
         ContextCompat.startActivity(context, SecureInfoScreen.getIntent(context), null)
+    }
+
+    override fun goToIntolleranceScreen() {
+        ContextCompat.startActivity(context, IntolleranceScreen.getIntent(context), null)
     }
 
     override fun goToMainScreen() {

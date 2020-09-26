@@ -31,7 +31,7 @@ class SettingsAdapter(val context: Context, val navigator: Navigator, val activi
             val backgroundImage = BitmapFactory.decodeResource(resources, R.drawable.view_pager1_background)
             val mergedImages = createSingleImageFromMultipleImages(firstImage, backgroundImage)
 
-            ivImage.setImageBitmap(firstImage)
+            ivImage.setImageBitmap(mergedImages)
 
             ivImage.setOnClickListener {
                 navigator.goToLetterManagersScreen()
@@ -41,10 +41,15 @@ class SettingsAdapter(val context: Context, val navigator: Navigator, val activi
         if (position == 1) {
             title.text = context.getString(R.string.setting_title2)
             val secondImage = BitmapFactory.decodeResource(resources, R.drawable.view_pager2)
-//            val backgroundImage2 = BitmapFactory.decodeResource(resources, R.drawable.view_pager2_background)
-//            val mergedImages2 = createSingleImageFromMultipleImages(secondImage, backgroundImage2)
+            val backgroundImage2 = BitmapFactory.decodeResource(resources, R.drawable.view_pager2_background)
+            val mergedImages2 = createSingleImageFromMultipleImages(secondImage, backgroundImage2)
 
             ivImage.setImageBitmap(secondImage)
+
+            ivImage.setOnClickListener {
+                navigator.goToIntolleranceScreen()
+                activity.finish()
+            }
         }
     }
 
