@@ -47,7 +47,7 @@ class OnboardingScreen : AppCompatActivity() {
                     skipButton.visibility = View.VISIBLE
                     entryButton.visibility = View.GONE
 
-                    skipButton.setTextColor(ContextCompat.getColor(this@OnboardingScreen, R.color.white))
+                    skipButton.setTextColor(ContextCompat.getColor(this@OnboardingScreen, R.color.black))
                 }
             }
         })

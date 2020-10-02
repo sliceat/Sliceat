@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Sliceat</string>
     <string name="launchLogo">launchLogo</string>
-    <string name="skip_button">skip_button</string>
-    <string name="skip"><u>skip</u></string>
+    <string name="skip_button">Salta</string>
     <string name="entry"><u>entry</u></string>
     <string name="onboardingimage">onBoardingImage</string>
     <string name="onboardingText1">La mappa è la tua home.\nApri Sliceeat e scegli subito\ndove mangiare, modifica i filtri\ndi ricerca e presto potrai\n
