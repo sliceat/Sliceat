@@ -46,6 +46,8 @@ import com.marcoperini.sliceat.ui.maps.Location
 import com.marcoperini.sliceat.ui.maps.OfflineScreenFragment
 import com.marcoperini.sliceat.utils.CheckConnection
 import com.marcoperini.sliceat.utils.Constants.Companion.ZOOM_CAMERA
+import com.marcoperini.sliceat.utils.getLastLocation
+import com.marcoperini.sliceat.utils.searchLocation
 import com.marcoperini.sliceat.utils.sharedpreferences.Key
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import com.marcoperini.sliceat.utils.transformImageToRoundImage
@@ -145,42 +147,14 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
             finish()
         }
         qrCode.setOnClickListener { performAction() }
-        myLocation.setOnClickListener { getLastLocation() }
+        myLocation.setOnClickListener { getLastLocation(this@MapsScreen, fusedLocationProviderClient, googleMap) }
     }
 
     private fun searchQuery() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
-                val location = searchView.query.toString()
-
-                if (location.isEmpty()) {
-                    return false
-                }
-                val geocoder = Geocoder(this@MapsScreen)
-
-                try {
-                    val addressList = geocoder.getFromLocationName(location, 1)
-                    if (addressList.size == 0) {
-                        val toast: Toast = Toast.makeText(this@MapsScreen, "adresse not found", Toast.LENGTH_LONG)
-                        val view = toast.view
-                        view.background.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                            ContextCompat.getColor(this@MapsScreen, R.color.black), BlendModeCompat.SRC_ATOP
-                        )
-                        val text: TextView = view.findViewById(android.R.id.message)
-                        text.setTextColor(ContextCompat.getColor(this@MapsScreen, R.color.white))
-                        toast.show()
-                    } else if (addressList.size > 0) {
-                        val address = addressList[0]
-                        val latLng = LatLng(address.latitude, address.longitude)
-                        googleMap.addMarker(latLng.let { MarkerOptions().position(it).title(location) })
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10F))
-                    }
-
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-                return false
+                return searchLocation(this@MapsScreen, searchView, googleMap)
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -220,13 +194,8 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
     override fun onMapReady(map: GoogleMap?) {
         googleMap = map ?: return
         if (isPermissionGiven()) {
-            if (ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
             ) {
                 return
             }
@@ -268,44 +237,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         finish()
     }
 
-    private fun getLastLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return
-        }
-        fusedLocationProviderClient.lastLocation.addOnCompleteListener(this) { task ->
-            if (task.isSuccessful && task.result != null) {
-                val mLastLocation = task.result
-                var address = "No known address"
-                val gcd = Geocoder(this, Locale.getDefault())
-                val addresses: List<Address>
 
-                try {
-                    addresses = gcd.getFromLocation(mLastLocation!!.latitude, mLastLocation.longitude, 1)
-                    if (addresses.isNotEmpty()) {
-                        address = addresses[0].getAddressLine(0)
-                    }
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-                googleMap.addMarker(
-                    MarkerOptions().position(LatLng(mLastLocation!!.latitude, mLastLocation.longitude)).title("Current Location").snippet(address)
-
-                )
-                val cameraPosition = CameraPosition.Builder()
-                    .target(LatLng(mLastLocation.latitude, mLastLocation.longitude)).zoom(ZOOM_CAMERA).build()
-                googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
-            } else {
-                Toast.makeText(this, "No current location found", Toast.LENGTH_LONG).show()
-            }
-        }
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
@@ -333,7 +265,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
     private fun getLocation(location: Location) {
         location.getCurrentLocation(object : Location.LocationService {
             override fun getLastLocationInterface() {
-                getLastLocation()
+                getLastLocation(this@MapsScreen, fusedLocationProviderClient, googleMap)
             }
         })
     }
