@@ -4,9 +4,6 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.PorterDuff
-import android.location.Address
-import android.location.Geocoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -16,23 +13,15 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.SearchView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.BlendModeColorFilterCompat
-import androidx.core.graphics.BlendModeCompat
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.zxing.integration.android.IntentIntegrator
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
@@ -42,18 +31,18 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
+import com.marcoperini.sliceat.ui.ScanCustomScreen
+import com.marcoperini.sliceat.ui.filters.FiltersScreen
+import com.marcoperini.sliceat.ui.mail.MailsScreen
 import com.marcoperini.sliceat.ui.maps.Location
 import com.marcoperini.sliceat.ui.maps.OfflineScreenFragment
 import com.marcoperini.sliceat.utils.CheckConnection
-import com.marcoperini.sliceat.utils.Constants.Companion.ZOOM_CAMERA
 import com.marcoperini.sliceat.utils.getLastLocation
 import com.marcoperini.sliceat.utils.searchLocation
 import com.marcoperini.sliceat.utils.sharedpreferences.Key
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import com.marcoperini.sliceat.utils.transformImageToRoundImage
 import org.koin.android.ext.android.inject
-import java.io.IOException
-import java.util.*
 
 class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*, PlaceSelectionListener*/ {
 
@@ -169,6 +158,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
     }
 
     private fun performAction() {
+        qrScanIntegrator?.captureActivity = ScanCustomScreen::class.java
         qrScanIntegrator?.initiateScan()
     }
 

@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="n">
-        <activity android:name=".ui.IntolleranceScreen"></activity>
+        <activity android:name=".ui.ScanCustomScreen"></activity>
+        <activity android:name=".ui.IntolleranceScreen" />
         <activity android:name=".ui.restaurants.RestaurantsScreen" />
 
         <service

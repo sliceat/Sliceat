@@ -39,7 +39,7 @@
         android:elevation="5dp"
         android:outlineProvider="none"
         android:iconifiedByDefault="false"
-        android:queryHint="Search..."
+        android:queryHint="Cerca locali o città"
         android:queryBackground="@android:color/transparent"/>
 
     <ImageButton
