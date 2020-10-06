@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/zxing_transparent"
     tools:context=".ui.ScanCustomScreen">
 
@@ -11,8 +11,7 @@
         android:id="@+id/zxing_barcode_scanner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:zxing_scanner_layout="@layout/qrcode_custom">
-    </com.journeyapps.barcodescanner.DecoratedBarcodeView>
+        app:zxing_scanner_layout="@layout/qrcode_custom"/>
 
     <ImageButton
         android:id="@+id/switch_flashlight"
@@ -20,9 +19,38 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_flash"
+        android:layout_marginBottom="64dp"
         android:background="@color/zxing_transparent"
-        android:layout_marginBottom="64dp"/>
+        android:src="@drawable/ic_flash" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/closeButton"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/icon_close"
+            android:backgroundTint="@color/black"
+            android:elevation="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/roundIcon"
+            app:layout_constraintEnd_toEndOf="@id/roundIcon"
+            app:layout_constraintStart_toStartOf="@id/roundIcon"
+            app:layout_constraintTop_toTopOf="@id/roundIcon" />
+
+        <Button
+            android:id="@+id/roundIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/ic_round_button"
+            android:backgroundTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
 

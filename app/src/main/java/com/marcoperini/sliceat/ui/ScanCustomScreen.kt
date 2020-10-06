@@ -17,33 +17,52 @@ import androidx.core.content.ContextCompat
 import com.journeyapps.barcodescanner.CaptureManager
 import com.journeyapps.barcodescanner.DecoratedBarcodeView
 import com.marcoperini.sliceat.R
+import org.koin.android.ext.android.inject
 
 class ScanCustomScreen : AppCompatActivity(), DecoratedBarcodeView.TorchListener {
 
     private lateinit var capture: CaptureManager
     private lateinit var barcodeScannerView: DecoratedBarcodeView
     private lateinit var switchFlashlightButton: ImageButton
+    private lateinit var close: ImageButton
 
     private val cam = Camera.open()
     private val parameters: Camera.Parameters = cam.parameters
+
+    private val navigator: Navigator by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.scan_custom_screen)
 
-        barcodeScannerView = findViewById(R.id.zxing_barcode_scanner)
-        switchFlashlightButton = findViewById(R.id.switch_flashlight)
-        barcodeScannerView.setTorchListener(this)
+        setupView()
 
         if (!hasFlash()) {
             switchFlashlightButton.visibility = View.GONE
         }
 
+        barcodeScannerView.setTorchListener(this)
         capture = CaptureManager(this, barcodeScannerView)
         capture.initializeFromIntent(intent, savedInstanceState)
         capture.decode()
 
+        clickListener()
+
         switchFlashlight()
+    }
+
+    private fun setupView() {
+        barcodeScannerView = findViewById(R.id.zxing_barcode_scanner)
+        switchFlashlightButton = findViewById(R.id.switch_flashlight)
+        close = findViewById(R.id.closeButton)
+
+    }
+
+    private fun clickListener() {
+        close.setOnClickListener {
+            navigator.goToMapsScreen()
+            finish()
+        }
     }
 
     override fun onResume() {
