@@ -8,11 +8,15 @@ import android.graphics.Canvas
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import kotlinx.android.synthetic.main.item_page.view.ivImage
+import kotlinx.android.synthetic.main.item_page_settings.view.flag
+import kotlinx.android.synthetic.main.item_page_settings.view.subtitle
 import kotlinx.android.synthetic.main.item_page_settings.view.title
+import kotlinx.android.synthetic.main.item_page_settings.view.title2
 
 class SettingsAdapter(val context: Context, val navigator: Navigator, val activity: Activity) : RecyclerView.Adapter<PagerVH>() {
 
@@ -25,11 +29,11 @@ class SettingsAdapter(val context: Context, val navigator: Navigator, val activi
     //binding the screen with view
     override fun onBindViewHolder(holder: PagerVH, position: Int) = holder.itemView.run {
         if (position == 0) {
-//            title.text = context.getString(R.string.setting_title1)
+            title.text = context.getString(R.string.setting_title1)
+            subtitle.text = context.getString(R.string.setting_subtitle1)
+            title2.visibility = View.GONE
 
-            val firstImage = BitmapFactory.decodeResource(resources, R.drawable.view_pager_1)
-//            val backgroundImage = BitmapFactory.decodeResource(resources, R.drawable.view_pager1_background)
-//            val mergedImages = createSingleImageFromMultipleImages(firstImage, backgroundImage)
+            val firstImage = BitmapFactory.decodeResource(resources, R.drawable.view_pager_one)
 
             ivImage.setImageBitmap(firstImage)
 
@@ -39,10 +43,12 @@ class SettingsAdapter(val context: Context, val navigator: Navigator, val activi
             }
         }
         if (position == 1) {
-            title.text = context.getString(R.string.setting_title2)
+            title2.text = context.getString(R.string.setting_title2)
+            title.visibility = View.GONE
+            subtitle.visibility = View.GONE
+            flag.visibility = View.GONE
+
             val secondImage = BitmapFactory.decodeResource(resources, R.drawable.view_pager2)
-//            val backgroundImage2 = BitmapFactory.decodeResource(resources, R.drawable.view_pager2_background)
-//            val mergedImages2 = createSingleImageFromMultipleImages(secondImage, backgroundImage2)
 
             ivImage.setImageBitmap(secondImage)
 
@@ -51,14 +57,6 @@ class SettingsAdapter(val context: Context, val navigator: Navigator, val activi
                 activity.finish()
             }
         }
-    }
-
-    private fun createSingleImageFromMultipleImages(firstImage: Bitmap, secondImage: Bitmap): Bitmap? {
-        val result = Bitmap.createBitmap(firstImage.width, firstImage.height, firstImage.config)
-        val canvas = Canvas(result)
-        canvas.drawBitmap(firstImage, 0f, 0f, null)
-        canvas.drawBitmap(secondImage, 0f, 0f, null)
-        return result
     }
 }
 

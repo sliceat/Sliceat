@@ -8,14 +8,32 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         style="@style/title"
+        android:textColor="@color/black"
         android:elevation="5dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintTop_toTopOf="@id/ivImage"
-        app:layout_constraintBottom_toBottomOf="@id/ivImage"
-        app:layout_constraintStart_toStartOf="@id/ivImage"/>
+        app:layout_constraintStart_toStartOf="@id/ivImage"
+        app:layout_constraintEnd_toEndOf="@id/ivImage"/>
+
+    <TextView
+        android:id="@+id/title2"
+        style="@style/title"
+        android:textColor="@color/white"
+        android:elevation="5dp"
+        app:layout_constraintTop_toTopOf="@id/ivImage"
+        app:layout_constraintStart_toStartOf="@id/ivImage"
+        app:layout_constraintEnd_toEndOf="@id/ivImage"
+        app:layout_constraintBottom_toBottomOf="@id/ivImage"/>
+
+    <TextView
+        android:id="@+id/subtitle"
+        style="@style/text"
+        android:textColor="@color/black"
+        android:elevation="5dp"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="@id/ivImage"
+        app:layout_constraintEnd_toEndOf="@id/ivImage"/>
 
     <ImageView
         android:id="@+id/ivImage"
@@ -25,5 +43,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_bandiera_view_pager_1"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/ivImage"
+        app:layout_constraintStart_toStartOf="@+id/ivImage"
+        app:layout_constraintBottom_toBottomOf="@+id/ivImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
