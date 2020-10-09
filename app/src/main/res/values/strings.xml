@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">Sliceat</string>
     <string name="barcode_text">Scannerizza il codice QR\nin tutti i locali Sliceat.</string>
-    
+    <string name="app_name">Sliceat</string>
     <string name="launchLogo">launchLogo</string>
     <string name="skip_button">Salta</string>
     <string name="onboardingText1">La mappa è la tua home.\nApri Sliceeat e scegli subito\ndove mangiare, modifica i filtri\ndi ricerca e presto potrai\n
@@ -171,6 +170,8 @@
     <string name="subscription">Ogni abbonamento\n vale 1 albero.</string>
     <string name="subscription_description">Ogni volta che un locale e un manager attiva il proprio abbonamento con Sliceat - gratis fino a settembre 2021 - noi acquistiamo un albero. Siamo l’unica piattaforma italiana legata al food che converte un profilo analogico in digitale sostenendo l’ambiente.</string>
     <string name="ten">10</string>
+    <string name="ten1">10</string>
+    <string name="ten2">10</string>
     <string name="trees_planted">alberi piantati con Treeworld con\nultimo aggiornamento ieri</string>
     <string name="setting_subtitle1">Leggi la nostra dedica a chi\ndiventa parte di Sliceat.</string>
 </resources>
