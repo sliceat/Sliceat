@@ -5,7 +5,6 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/launchLogo"
         android:layout_width="166dp"
         android:layout_height="74dp"
         app:layout_constraintStart_toStartOf="parent"

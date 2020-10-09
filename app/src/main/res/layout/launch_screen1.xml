@@ -6,7 +6,6 @@
     android:background="@color/black">
 
     <ImageView
-        android:id="@+id/launchLogo"
         android:layout_width="60dp"
         android:layout_height="60dp"
         app:layout_constraintStart_toStartOf="parent"

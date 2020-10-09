@@ -16,7 +16,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/page_four"
         style="@style/title"
         android:layout_margin="16dp"
         android:text="@string/page_four"
@@ -77,7 +76,6 @@
         app:layout_constraintTop_toTopOf="@id/milano" />
 
     <TextView
-        android:id="@+id/invita_un_locale"
         style="@style/textTitle"
         android:elevation="1dp"
         android:text="@string/invita_un_locale"

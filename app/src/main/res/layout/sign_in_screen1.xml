@@ -15,7 +15,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/sliceat_is_in_rome"
         style="@style/textTitle"
         android:layout_margin="16dp"
         android:text="@string/sliceat_is_in_rome"
@@ -97,7 +96,6 @@
         app:layout_constraintBottom_toTopOf="@id/continua" />
 
     <Button
-        android:id="@+id/signInFacebook"
         style="@style/myButton.authentication"
         android:text="@string/accediConFb"
         android:textColor="@color/blue"

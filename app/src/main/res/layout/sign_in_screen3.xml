@@ -16,7 +16,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/page_three"
         style="@style/title"
         android:layout_margin="16dp"
         android:text="@string/page_three"
@@ -133,7 +132,6 @@
         app:layout_constraintTop_toTopOf="@id/firenze" />
 
     <TextView
-        android:id="@+id/intolleranze"
         style="@style/textTitle"
         android:elevation="1dp"
         android:text="@string/intolleranze"

@@ -2,8 +2,6 @@
     <string name="app_name">Sliceat</string>
     <string name="launchLogo">launchLogo</string>
     <string name="skip_button">Salta</string>
-    <string name="entry"><u>entry</u></string>
-    <string name="onboardingimage">onBoardingImage</string>
     <string name="onboardingText1">La mappa è la tua home.\nApri Sliceeat e scegli subito\ndove mangiare, modifica i filtri\ndi ricerca e presto potrai\n
         fare molto altro.\nSemplicità è la parola d’ordine!</string>
     <string name="onboardingText2">Premessa: Sliceat è pensata\nper tutti. Ma il nostro piatto\nforte è dedicato a chi ha\nproblemi di allergia o\n
@@ -19,14 +17,11 @@
     <string name="authenticationTitle1">Sentiti libero \ncon SlicEat+.</string>
     <string name="authenticationImage">authenticationImage</string>
     <string name="vaiAllaMappa">VaiAllaMappa</string>
-    <string name="prosegui">Prosegui</string>
     <string name="accediConFb">Accedi Con Facebook</string>
     <string name="accediConGoogle">Accedi Con Google</string>
     <string name="email">E-mail</string>
     <string name="password">Password</string>
-    <string name="scrivi_qui">Scrivi Qui</string>
     <string name="title_activity_maps_screen">Map</string>
-    <string name="action_settings">Settings</string>
     <string name="normal_map">Normal Map</string>
     <string name="hybrid_map">Hybrid Map</string>
     <string name="satellite_map">Satellite Map</string>
@@ -64,7 +59,6 @@
     <string name="spacial_character">La password non soddisfa tutti i requisiti!</string>
     <string name="same_password">Le password non coincidono!</string>
     <string name="take_or_select">Scatta o\n Scegli</string>
-    <string name="choise_photo_gallery">Scegli se scattare una foto o\nrecuperarla dalla galleria</string>
     <string name="take_photo">Scatta una foto</string>
     <string name="choise_photo">Scegli foto</string>
     <string name="start">Inizia</string>
@@ -126,7 +120,6 @@
     <string name="mail_description">Finalmente si può viaggiare in Italia.\nScopri le novità che ti propone Sliceat.</string>
     <string name="data_mail">17 Marzo 2020</string>
     <string name="result_not_found">Nessun risultato</string>
-    <string name="token_prefix">token</string>
     <string name="al_momento_non_hai_nnessuna_notifica">Al momento non hai\nnessuna notifica</string>
     <string name="empty_mail">empty_mail</string>
     <string name="restaurants_pizzeria">ristorante - pizzeria</string>

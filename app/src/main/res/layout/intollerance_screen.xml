@@ -30,7 +30,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/image_covid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/intollerance_screen" />
@@ -60,7 +59,6 @@
         app:layout_constraintTop_toBottomOf="@+id/intollerance_title" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/article_card"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="16dp"
@@ -78,7 +76,6 @@
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/card_intolerance"
                 android:layout_width="match_parent"
                 android:layout_height="0dp">
 
@@ -127,7 +124,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/subscription_description" />
 
                 <TextView
-                    android:id="@+id/trees_planted"
                     style="@style/text"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="12dp"

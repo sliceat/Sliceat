@@ -11,7 +11,6 @@
     android:background="@color/black">
 
     <ImageView
-        android:id="@+id/icon_cloud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_icon_offline_cloud"
@@ -19,7 +18,6 @@
         android:layout_gravity="center_horizontal"/>
 
     <TextView
-        android:id="@+id/offline_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/offline_title"

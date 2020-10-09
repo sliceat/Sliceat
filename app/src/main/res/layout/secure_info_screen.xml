@@ -49,13 +49,11 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/image_covid"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:background="@drawable/image_covid" />
 
                 <TextView
-                    android:id="@+id/image_covid_title"
                     style="@style/authenticationTitle1"
                     android:layout_height="wrap_content"
                     android:text="@string/title_covid19"
@@ -64,7 +62,6 @@
                     android:textColor="@color/white" />
 
                 <TextView
-                    android:id="@+id/image_covid_subtitle"
                     style="@style/textTitle"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
@@ -75,7 +72,6 @@
             </FrameLayout>
 
             <TextView
-                android:id="@+id/title_covid19_1"
                 style="@style/authenticationTitle1"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -87,7 +83,6 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/info_covid19_1"
                 style="@style/text"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -98,7 +93,6 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/title_covid19_2"
                 style="@style/authenticationTitle1"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -109,7 +103,6 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/info_covid19_2"
                 style="@style/text"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -120,7 +113,6 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/title_covid19_3"
                 style="@style/authenticationTitle1"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -131,7 +123,6 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/info_covid19_3"
                 style="@style/text"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -142,7 +133,6 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/title_covid19_4"
                 style="@style/authenticationTitle1"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -153,7 +143,6 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/info_covid19_4"
                 style="@style/text"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -164,7 +153,6 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/title_covid19_5"
                 style="@style/authenticationTitle1"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -175,7 +163,6 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/info_covid19_5"
                 style="@style/text"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -186,7 +173,6 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/title_covid19_6"
                 style="@style/authenticationTitle1"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -197,7 +183,6 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/info_covid19_6"
                 style="@style/text"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -208,7 +193,6 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/info_covid19_7"
                 style="@style/textTitle"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -224,7 +208,6 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/yes_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
@@ -236,7 +219,6 @@
                     android:textColor="@color/black" />
 
                 <Button
-                    android:id="@+id/no_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="24dp"

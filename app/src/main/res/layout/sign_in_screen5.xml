@@ -16,7 +16,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/page_five"
         style="@style/title"
         android:layout_margin="16dp"
         android:text="@string/page_five"
@@ -26,7 +25,6 @@
         app:layout_constraintTop_toTopOf="@id/backButton" />
 
     <TextView
-        android:id="@+id/smile"
         style="@style/title"
         android:layout_margin="16dp"
         android:text="@string/smile"

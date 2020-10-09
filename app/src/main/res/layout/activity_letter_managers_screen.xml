@@ -24,7 +24,6 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/letters_manager"
                 style="@style/text"
                 android:gravity="start"
                 android:layout_height="wrap_content"
