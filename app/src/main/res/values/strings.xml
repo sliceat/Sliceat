@@ -133,8 +133,11 @@
     <string name="disabili">Adatto per disabili</string>
     <string name="carta_dei_vini">Carta dei vini</string>
     <string name="near_to_you">Vicino a te</string>
+    <string name="title_covid19_wekfnwefjwneolfwnkeoflkwneowjn">3. Indossa la\nmascherina.</string>
     <string name="base_url">https://www.sliceat.it/</string>
     <string name="offline_title">Sliceat e la mappa\nsono offline.</string>
+    <string name="title_covid19_wekfnwefjwneolfwnkeoflkwneowfwefwejn">3. Indossa la\nmascherina.</string>
+
     <string name="offline_subtitle">Sliceat funziona anche offline e puoi\nfare quasi tutto.\nCerca per città, visualizza i locali,\nleggi le storie dei
         manager e\nscannerizza il codice QR.\nAppena la rete ritorna attiva verrà\ntutto aggiornato.</string>
     <string name="thanks">Ok, grazie</string>
@@ -147,9 +150,12 @@
         soddisfa i requisiti per rimanere aperto segnalano alla community in fase di votazione e chiama le autorità competenti.</string>
     <string name="title_covid19_1">Quali sono le linee\nguida?</string>
     <string name="title_covid19_2">2. Distanziamento\nsociale.</string>
+    
     <string name="info_covid19_2">Quanto ti trovi in un’area comune o in uno spazio condiviso, mantieni sempre la distanza di sicurezza da tutte le
         persone che non fanno parte del tuo tavolo. Ogni volta che hai un contatto con lo staff o con altre persone all’interno del locale - quando
         aspetti all’entrata del locale, quando sei alla cassa o quando aspetti la tua prenotazione a domicilio - tieni la distanza minima di 1,5 metri.
+    <string name="title_covid19">Regole\nanti Covid-19</string>
+
         Segui, comunque, le regole previste dal tuo paese.</string>
     <string name="title_covid19_3">3. Indossa la\nmascherina.</string>
     <string name="info_covid19_3">La mascherina è un mezzo fondamentale per proteggere te e gli altri. Togli la mascherina solo dopo che ti sei seduto al tavolo. Se hai necessità di alzarti prima, durante e dopo il pasto indossa sempre la mascherina. Segui, comunque, le regole previste dal tuo paese.</string>
@@ -162,7 +168,6 @@
     <string name="info_covid19_7"><b>Hai trovato utile questo articolo?</b></string>
     <string name="yes">si</string>
     <string name="no">no</string>
-    <string name="title_covid19">Regole\nanti Covid-19</string>
     <string name="subtitle_covid19">Prima di entrare rispetta le\nregole per combattere il virus.</string>
     <string name="intollerance_title">La nostra azienda\nè intollerante\nall’inquinamento.</string>
     <string name="intollerance_subtitle">Sliceat è una piattaforma italiana\npensata per il bene di tutti.</string>
