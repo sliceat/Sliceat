@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Sliceat</string>
     <string name="barcode_text">Scannerizza il codice QR\nin tutti i locali Sliceat.</string>
+    
     <string name="launchLogo">launchLogo</string>
     <string name="skip_button">Salta</string>
     <string name="onboardingText1">La mappa è la tua home.\nApri Sliceeat e scegli subito\ndove mangiare, modifica i filtri\ndi ricerca e presto potrai\n
