@@ -20,7 +20,6 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -91,6 +90,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         if (!CheckConnection.isOnline(this)) {
             val offlineScreenFragment = OfflineScreenFragment()
             offlineScreenFragment.show(supportFragmentManager, offlineScreenFragment.tag)
+            mapsViewModel.send(MapsEvent.SearchLocalsDatabase("San Benedetto Po"))//todo move this in another screen
         }
 
         setupView()
@@ -148,14 +148,14 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.home_pizza))
         if (latLon == null)
             latLon = LatLng(44.506, 11.308/*restaurant.lat.toDouble(), restaurant.lon.toDouble()*/)//defaultLocation first access
-            getLastLocation(this@MapsScreen, fusedLocationProviderClient, googleMap)
+        getLastLocation(this@MapsScreen, fusedLocationProviderClient, googleMap)
         restaurants.forEach { restaurant ->
             val restaurantLatLon = LatLng(44.506, 11.308/*restaurant.lat.toDouble(), restaurant.lon.toDouble()*/)
             val distance = SphericalUtil.computeDistanceBetween(latLon, restaurantLatLon)
-            if (distance < 10000){
+            if (distance < 10000) {
                 markerOptions.position(restaurantLatLon)
                 markerOptions.title(restaurant.nome)
-                val locationMarker =  googleMap.addMarker(markerOptions)
+                val locationMarker = googleMap.addMarker(markerOptions)
                 locationMarker.showInfoWindow()
                 googleMap.setOnMarkerClickListener {
                     val infoRestaurant = gson.toJson(restaurant)
@@ -272,8 +272,6 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         Toast.makeText(this, "Permission required for showing location", Toast.LENGTH_LONG).show()
         finish()
     }
-
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)

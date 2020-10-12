@@ -16,7 +16,7 @@ class AppRepository(private val userDao: UsersDao, private val localsDao: Locals
 
     suspend fun getUsers() = userDao.findAllUsers()
 
-    suspend fun getLocals() = localsDao.findAllLocals()
+    suspend fun getLocals(city: String) = localsDao.findAllLocals(city)
 
     suspend fun getAllergie() = allergieDao.findAllAllergie()
 }

@@ -9,6 +9,7 @@ import com.marcoperini.sliceat.ui.maps.network.response.AllergieResponse
 import com.marcoperini.sliceat.ui.maps.network.response.LocalsResponse
 import com.marcoperini.sliceat.utils.BaseViewModel
 import com.marcoperini.sliceat.utils.exhaustive
+import com.marcoperini.sliceat.utils.searchLocation
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.Disposable
 import kotlinx.coroutines.launch
@@ -16,6 +17,7 @@ import kotlinx.coroutines.launch
 sealed class MapsEvent {
     object LoadLocals : MapsEvent()
     object LoadAllergie : MapsEvent()
+    data class SearchLocalsDatabase(val location: String) : MapsEvent()
 }
 
 sealed class MapsState {
@@ -36,7 +38,15 @@ class MapsViewModel(private val scheduler: Scheduler, private val contract: Cont
         when (event) {
             is MapsEvent.LoadLocals -> loadLocals()
             is MapsEvent.LoadAllergie -> loadAllergies()
+            is MapsEvent.SearchLocalsDatabase -> searchLocationDatabase(event.location)
         }.exhaustive
+    }
+
+    private fun searchLocationDatabase(location: String) {
+        viewModelScope.launch {
+            val list = repository.getLocals(location)
+            val a = list
+        }
     }
 
     private fun loadLocals() {
