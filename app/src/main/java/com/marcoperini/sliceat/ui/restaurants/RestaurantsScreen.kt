@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_title
 import org.koin.android.ext.android.inject
 
 const val INFO_RESTAURANT = "info restaurant"
+
 class RestaurantsScreen : AppCompatActivity() {
 
     private lateinit var toolbar: Toolbar
