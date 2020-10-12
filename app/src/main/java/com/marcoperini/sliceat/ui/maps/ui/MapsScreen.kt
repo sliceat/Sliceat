@@ -27,6 +27,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.gson.Gson
 import com.google.maps.android.SphericalUtil
 import com.google.zxing.integration.android.IntentIntegrator
 import com.karumi.dexter.Dexter
@@ -63,6 +64,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
     private val prefs: KeyValueStorage by inject()
     private val navigator: Navigator by inject()
     private val mapsViewModel: MapsViewModel by inject()
+    private val gson: Gson by inject()
 
     private lateinit var photo: ImageView
     private lateinit var mapView: View
@@ -149,11 +151,19 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         if (latLon == null)
             getLastLocation(this@MapsScreen, fusedLocationProviderClient, googleMap)
         restaurants.forEach { restaurant ->
-            val restaurantLatLon = LatLng(restaurant.lat.toDouble(), restaurant.lon.toDouble())
+            val restaurantLatLon = LatLng(44.506, 11.308/*restaurant.lat.toDouble(), restaurant.lon.toDouble()*/)
             val distance = SphericalUtil.computeDistanceBetween(latLon, restaurantLatLon)
             if (distance < 10000){
                 markerOptions.position(restaurantLatLon)
-                googleMap.addMarker(markerOptions)
+                markerOptions.title(restaurant.nome)
+                val locationMarker =  googleMap.addMarker(markerOptions)
+                locationMarker.showInfoWindow()
+                googleMap.setOnMarkerClickListener {
+                    val infoRestaurant = gson.toJson(restaurant)
+                    navigator.goToRestaurantsScreen(infoRestaurant)
+                    finish()
+                    false
+                }
             }
         }
     }
@@ -168,10 +178,10 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
             navigator.goToSettingsScreen()
             finish()
         }
-        roundIconPlus.setOnClickListener {
-            navigator.goToRestaurantsScreen()
-            finish()
-        }
+//        roundIconPlus.setOnClickListener {
+//            navigator.goToRestaurantsScreen()
+//            finish()
+//        }
         filter.setOnClickListener {
             navigator.goToFiltersScreen()
             finish()

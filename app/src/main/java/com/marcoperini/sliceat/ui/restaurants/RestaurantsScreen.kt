@@ -8,14 +8,17 @@ import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.filters.CardFilter
+import com.marcoperini.sliceat.ui.maps.network.response.LocalsResponse
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_back_button
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_button
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_title
 import org.koin.android.ext.android.inject
 
+const val INFO_RESTAURANT = "info restaurant"
 class RestaurantsScreen : AppCompatActivity() {
 
     private lateinit var toolbar: Toolbar
@@ -24,17 +27,23 @@ class RestaurantsScreen : AppCompatActivity() {
     private lateinit var photosAdapter: RestaurantsAdapter
     private lateinit var filterRecyclerView: RecyclerView
     private lateinit var listElementFilter: MutableList<CardFilter>
+    private lateinit var infoRestaurantResponse : LocalsResponse
 
     private val navigator: Navigator by inject()
+    private val gson: Gson by inject()
 
     companion object {
-        fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, RestaurantsScreen::class.java)
+        fun getIntent(startingActivityContext: Context, infoRestaurant: String) = Intent(startingActivityContext, RestaurantsScreen::class.java)
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            .putExtra(INFO_RESTAURANT, infoRestaurant)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurants_screen)
+
+        val infoRestaurant = intent.getStringExtra(INFO_RESTAURANT)
+        infoRestaurantResponse = gson.fromJson(infoRestaurant, LocalsResponse::class.java)
 
         setupToolbar()
         setupRvPhoto()
