@@ -147,6 +147,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         val markerOptions = MarkerOptions()
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.home_pizza))
         if (latLon == null)
+            latLon = LatLng(44.506, 11.308/*restaurant.lat.toDouble(), restaurant.lon.toDouble()*/)//defaultLocation first access
             getLastLocation(this@MapsScreen, fusedLocationProviderClient, googleMap)
         restaurants.forEach { restaurant ->
             val restaurantLatLon = LatLng(44.506, 11.308/*restaurant.lat.toDouble(), restaurant.lon.toDouble()*/)
