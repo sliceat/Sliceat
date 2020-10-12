@@ -18,10 +18,16 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.maps.android.SphericalUtil
 import com.google.zxing.integration.android.IntentIntegrator
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
@@ -32,17 +38,19 @@ import com.karumi.dexter.listener.single.PermissionListener
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.ScanCustomScreen
-import com.marcoperini.sliceat.ui.filters.FiltersScreen
-import com.marcoperini.sliceat.ui.mail.MailsScreen
 import com.marcoperini.sliceat.ui.maps.Location
 import com.marcoperini.sliceat.ui.maps.OfflineScreenFragment
+import com.marcoperini.sliceat.ui.maps.network.response.LocalsResponse
 import com.marcoperini.sliceat.utils.CheckConnection
+import com.marcoperini.sliceat.utils.exhaustive
 import com.marcoperini.sliceat.utils.getLastLocation
+import com.marcoperini.sliceat.utils.latLon
 import com.marcoperini.sliceat.utils.searchLocation
 import com.marcoperini.sliceat.utils.sharedpreferences.Key
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import com.marcoperini.sliceat.utils.transformImageToRoundImage
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*, PlaceSelectionListener*/ {
 
@@ -86,6 +94,8 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
 
         setupView()
 
+        setupViewModel()
+
         mapsViewModel.send(MapsEvent.LoadLocals)
         mapsViewModel.send(MapsEvent.LoadAllergie)
 
@@ -120,6 +130,37 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         } else {
             return
         }
+    }
+
+    private fun setupViewModel() {
+        mapsViewModel.observe(lifecycleScope) {
+            when (it) {
+                is MapsState.InProgress -> Timber.i("loading restaurants")
+                is MapsState.LoadedLocals -> addMarkerToRestaurants(it.restaurants)
+                is MapsState.LoadedAllergie -> Timber.i("allergies loaded")
+                is MapsState.Error -> showError(it.error)
+            }.exhaustive
+        }
+    }
+
+    private fun addMarkerToRestaurants(restaurants: List<LocalsResponse>) {
+        val markerOptions = MarkerOptions()
+        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.home_pizza))
+        if (latLon == null)
+            getLastLocation(this@MapsScreen, fusedLocationProviderClient, googleMap)
+        restaurants.forEach { restaurant ->
+            val restaurantLatLon = LatLng(restaurant.lat.toDouble(), restaurant.lon.toDouble())
+            val distance = SphericalUtil.computeDistanceBetween(latLon, restaurantLatLon)
+            if (distance < 10000){
+                markerOptions.position(restaurantLatLon)
+                googleMap.addMarker(markerOptions)
+            }
+        }
+    }
+
+    private fun showError(error: Throwable) {
+        Timber.w("error in loading restaurants: $error")
+        Toast.makeText(this, "$error", Toast.LENGTH_SHORT).show()
     }
 
     private fun setupListener() {
@@ -167,7 +208,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
             val popup = PopupMenu(this, popupMenu)
             val inflater: MenuInflater = popup.menuInflater
             inflater.inflate(R.menu.map_options, popup.menu)
-            popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+            popup.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     // Change the map type based on the user's selection.
                     R.id.normal_map -> googleMap.mapType = GoogleMap.MAP_TYPE_NORMAL
@@ -176,7 +217,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
                     R.id.terrain_map -> googleMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
                 }
                 true
-            })
+            }
             popup.show()
         }
     }

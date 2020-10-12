@@ -20,8 +20,8 @@ sealed class MapsEvent {
 
 sealed class MapsState {
     object InProgress : MapsState()
-    data class LoadedLocals(val news: List<LocalsResponse>) : MapsState()
-    data class LoadedAllergie(val store: List<AllergieResponse>) : MapsState()
+    data class LoadedLocals(val restaurants: List<LocalsResponse>) : MapsState()
+    data class LoadedAllergie(val allergies: List<AllergieResponse>) : MapsState()
     data class Error(val error: Throwable) : MapsState()
 }
 
@@ -35,7 +35,7 @@ class MapsViewModel(private val scheduler: Scheduler, private val contract: Cont
     override fun send(event: MapsEvent) {
         when (event) {
             is MapsEvent.LoadLocals -> loadLocals()
-            is MapsEvent.LoadAllergie -> loadAllergie()
+            is MapsEvent.LoadAllergie -> loadAllergies()
         }.exhaustive
     }
 
@@ -88,28 +88,28 @@ class MapsViewModel(private val scheduler: Scheduler, private val contract: Cont
         }
     }
 
-    private fun loadAllergie() {
+    private fun loadAllergies() {
         if (storeSubscription.isDisposed) {
             post(MapsState.InProgress)
             storeSubscription = contract.getAllergieData()
                 .observeOn(scheduler)
                 .subscribe(
-                    { allergie -> saveAllergie(allergie) },
+                    { allergie -> saveAllergies(allergie) },
                     { error -> post(MapsState.Error(error)) }
                 )
             disposables.add(storeSubscription)
         }
     }
 
-    private fun saveAllergie(allergie: List<AllergieResponse>) {
-        post(MapsState.LoadedAllergie(allergie))
+    private fun saveAllergies(allergies: List<AllergieResponse>) {
+        post(MapsState.LoadedAllergie(allergies))
         lateinit var allergiaTable: AllergieTable
-        allergie.forEach { allergia ->
+        allergies.forEach { allergy ->
             viewModelScope.launch {
                 allergiaTable = AllergieTable(
-                    alid = allergia.alid,
-                    allergia = allergia.allergia,
-                    idLocale = allergia.idLocale
+                    alid = allergy.alid,
+                    allergia = allergy.allergia,
+                    idLocale = allergy.idLocale
                 )
                 repository.insertAllergie(allergiaTable)
             }

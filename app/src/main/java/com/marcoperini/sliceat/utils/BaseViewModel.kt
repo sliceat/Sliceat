@@ -9,6 +9,7 @@ import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
+@OptIn(ExperimentalCoroutinesApi::class)
 abstract class BaseViewModel<S, E> : ViewModel() {
 
     protected val disposables = CompositeDisposable()
@@ -20,7 +21,6 @@ abstract class BaseViewModel<S, E> : ViewModel() {
         channel.close(Throwable("channel closed in $this"))
     }
 
-    @ExperimentalCoroutinesApi
     fun observe(scope: CoroutineScope, observer: (S) -> Unit) {
         scope.launch {
             channel.consumeEach { it?.let(observer::invoke) }

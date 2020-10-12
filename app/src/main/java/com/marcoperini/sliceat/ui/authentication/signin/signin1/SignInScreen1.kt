@@ -14,7 +14,6 @@ import androidx.lifecycle.lifecycleScope
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.utils.exhaustive
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 
 const val DELAY_HIDE_ERROR = 2000L
@@ -36,7 +35,6 @@ class SignInScreen1 : AppCompatActivity() {
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
 
-    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_in_screen1)
@@ -64,7 +62,6 @@ class SignInScreen1 : AppCompatActivity() {
         }
     }
 
-    @ExperimentalCoroutinesApi
     private fun observer() {
         signIn1ViewModel.observe(lifecycleScope) { state ->
             when (state) {
