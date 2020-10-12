@@ -70,7 +70,6 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
     private lateinit var mapView: View
     private lateinit var qrCode: ImageButton
     private lateinit var popupMenu: ImageButton
-    private lateinit var roundIconPlus: ImageView
     private lateinit var filter: ImageView
     private lateinit var myLocation: ImageView
     private lateinit var googleMap: GoogleMap
@@ -115,7 +114,6 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         searchView = findViewById(R.id.search_bar)
         photo = findViewById(R.id.profilePhoto)
         filter = findViewById(R.id.filter_icon)
-        roundIconPlus = findViewById(R.id.round_icon_plus)
         myLocation = findViewById(R.id.home_position)
         qrCode = findViewById(R.id.qr_code)
         popupMenu = findViewById(R.id.popup_menu)
@@ -160,7 +158,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
                 locationMarker.showInfoWindow()
                 googleMap.setOnMarkerClickListener {
                     val infoRestaurant = gson.toJson(restaurant)
-                    navigator.goToRestaurantsScreen(infoRestaurant)
+                    navigator.goToRestaurantsScreen(this, infoRestaurant)
                     finish()
                     false
                 }
@@ -175,15 +173,11 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
 
     private fun setupListener() {
         photo.setOnClickListener {
-            navigator.goToSettingsScreen()
+            navigator.goToSettingsScreen(this)
             finish()
         }
-//        roundIconPlus.setOnClickListener {
-//            navigator.goToRestaurantsScreen()
-//            finish()
-//        }
         filter.setOnClickListener {
-            navigator.goToFiltersScreen()
+            navigator.goToFiltersScreen(this)
             finish()
         }
         qrCode.setOnClickListener { performAction() }

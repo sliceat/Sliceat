@@ -37,7 +37,7 @@ val androidComponents = module {
 
 val appComponents = module {
     single { createGson() }
-    single<Navigator> { AppNavigator(get()) }
+    single<Navigator> { AppNavigator() }
     single { Provider(backend = get()) } bind Contract::class
     single { Backend(gson = get(), resources = get()) }
 }

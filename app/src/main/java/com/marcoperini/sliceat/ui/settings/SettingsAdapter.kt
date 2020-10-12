@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.item_page_settings.view.subtitle
 import kotlinx.android.synthetic.main.item_page_settings.view.title
 import kotlinx.android.synthetic.main.item_page_settings.view.title2
 
-class SettingsAdapter(val context: Context, val navigator: Navigator, val activity: Activity) : RecyclerView.Adapter<PagerVH>() {
+class SettingsAdapter(val navigator: Navigator, val activity: Activity) : RecyclerView.Adapter<PagerVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerVH =
         PagerVH(LayoutInflater.from(parent.context).inflate(R.layout.item_page_settings, parent, false))
@@ -38,7 +38,7 @@ class SettingsAdapter(val context: Context, val navigator: Navigator, val activi
             ivImage.setImageBitmap(firstImage)
 
             ivImage.setOnClickListener {
-                navigator.goToLetterManagersScreen()
+                navigator.goToLetterManagersScreen(activity)
                 activity.finish()
             }
         }
@@ -53,7 +53,7 @@ class SettingsAdapter(val context: Context, val navigator: Navigator, val activi
             ivImage.setImageBitmap(secondImage)
 
             ivImage.setOnClickListener {
-                navigator.goToIntolleranceScreen()
+                navigator.goToIntolleranceScreen(activity)
                 activity.finish()
             }
         }

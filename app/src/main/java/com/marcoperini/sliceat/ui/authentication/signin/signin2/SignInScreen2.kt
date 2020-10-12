@@ -52,7 +52,7 @@ class SignInScreen2 : AppCompatActivity() {
 
     private fun setOnClickListener() {
         backButton.setOnClickListener {
-            navigator.goToSignInScreen1()
+            navigator.goToSignInScreen1(this)
         }
         continua.setOnClickListener {
             validateInputData()
@@ -62,7 +62,7 @@ class SignInScreen2 : AppCompatActivity() {
     private fun observer() {
         signIn2ViewModel.observe(lifecycleScope) { state ->
             when (state) {
-                is SignIn2State.SavedEmail -> navigator.goToSignInScreen3()
+                is SignIn2State.SavedEmail -> navigator.goToSignInScreen3(this)
             }.exhaustive
         }
     }

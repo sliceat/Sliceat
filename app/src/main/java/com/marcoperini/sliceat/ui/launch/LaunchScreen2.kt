@@ -34,12 +34,12 @@ class LaunchScreen2 : AppCompatActivity() {
 
     private fun goToMapsScreen() {
 //        navigator.goToAuthenticationScreen()
-        navigator.goToMapsScreen()
+        navigator.goToMapsScreen(this)
         finish()
     }
 
     private fun goToOnBoarding() {
-        navigator.goToOnBoarding()
+        navigator.goToOnBoarding(this)
         finish()
     }
 }

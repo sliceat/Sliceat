@@ -60,7 +60,7 @@ class RestaurantsScreen : AppCompatActivity() {
             startActivity(Intent.createChooser(intent, resources.getString(R.string.invite_your_friends)), null)
         }
         toolbar.toolbar_back_button.setOnClickListener {
-            navigator.goToMapsScreen()
+            navigator.goToMapsScreen(this)
             finish()
         }
     }
@@ -104,6 +104,6 @@ class RestaurantsScreen : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        navigator.goToMapsScreen()
+        navigator.goToMapsScreen(this)
     }
 }

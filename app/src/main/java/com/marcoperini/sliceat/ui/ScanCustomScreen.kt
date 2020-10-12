@@ -60,7 +60,7 @@ class ScanCustomScreen : AppCompatActivity(), DecoratedBarcodeView.TorchListener
 
     private fun clickListener() {
         close.setOnClickListener {
-            navigator.goToMapsScreen()
+            navigator.goToMapsScreen(this)
             finish()
         }
     }

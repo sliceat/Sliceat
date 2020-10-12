@@ -57,7 +57,7 @@ class SignInScreen3 : AppCompatActivity() {
 
     private fun setOnClickListener() {
         backButton.setOnClickListener {
-            navigator.goToSignInScreen2()
+            navigator.goToSignInScreen2(this)
         }
         continua.setOnClickListener {
             validateInputData()
@@ -67,7 +67,7 @@ class SignInScreen3 : AppCompatActivity() {
     private fun observer() {
         signIn3ViewModel.observe(lifecycleScope) { state ->
             when (state) {
-                is SignIn3State.SavedPassword -> navigator.goToSignInScreen4()
+                is SignIn3State.SavedPassword -> navigator.goToSignInScreen4(this)
             }.exhaustive
         }
     }

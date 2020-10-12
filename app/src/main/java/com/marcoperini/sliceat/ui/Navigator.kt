@@ -1,5 +1,6 @@
 package com.marcoperini.sliceat.ui
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.core.content.ContextCompat
@@ -20,116 +21,116 @@ import com.marcoperini.sliceat.ui.restaurants.RestaurantsScreen
 import com.marcoperini.sliceat.ui.settings.SettingsScreen
 
 interface Navigator {
-    fun goToMainScreen()
-    fun goToOnBoarding()
-    fun goToLaunchScreen2()
-    fun goToAuthenticationScreen()
-    fun goToAccessScreen()
-    fun goToSignInScreen1()
-    fun goToSignInScreen2()
-    fun goToSignInScreen3()
-    fun goToSignInScreen4()
-    fun goToSignInScreen5()
-    fun goToMapsScreen()
-    fun goToSettingsScreen()
-    fun goToLetterManagersScreen()
-    fun goToFiltersScreen()
-    fun goToMailScreen()
-    fun goToRestaurantsScreen(infoRestaurant: String)
-    fun goToSecureInfoScreen()
-    fun goToIntolleranceScreen()
+    fun goToMainScreen(activity: Activity)
+    fun goToOnBoarding(activity: Activity)
+    fun goToLaunchScreen2(activity: Activity)
+    fun goToAuthenticationScreen(activity: Activity)
+    fun goToAccessScreen(activity: Activity)
+    fun goToSignInScreen1(activity: Activity)
+    fun goToSignInScreen2(activity: Activity)
+    fun goToSignInScreen3(activity: Activity)
+    fun goToSignInScreen4(activity: Activity)
+    fun goToSignInScreen5(activity: Activity)
+    fun goToMapsScreen(activity: Activity)
+    fun goToSettingsScreen(activity: Activity)
+    fun goToLetterManagersScreen(activity: Activity)
+    fun goToFiltersScreen(activity: Activity)
+    fun goToMailScreen(activity: Activity)
+    fun goToRestaurantsScreen(activity: Activity, infoRestaurant: String)
+    fun goToSecureInfoScreen(activity: Activity)
+    fun goToIntolleranceScreen(activity: Activity)
 }
 
-class AppNavigator(private val context: Context) : Navigator {
+class AppNavigator() : Navigator {
 
 //    override fun goToSettings() {
 //        ContextCompat.startActivity(context, SettingsActivity.getIntent(context), null)
 //    }
 
-    override fun goToLaunchScreen2() {
+    override fun goToLaunchScreen2(activity: Activity) {
         ContextCompat.startActivity(
-            context,
-            Intent(context, LaunchScreen2::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+            activity,
+            Intent(activity, LaunchScreen2::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
             null
         )
     }
 
-    override fun goToAuthenticationScreen() {
+    override fun goToAuthenticationScreen(activity: Activity) {
         ContextCompat.startActivity(
-            context,
-            Intent(context, FirstScreen::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK),
+            activity,
+            Intent(activity, FirstScreen::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK),
             null
         )
     }
 
-    override fun goToAccessScreen() {
-        ContextCompat.startActivity(context, AccessScreen.getIntent(context), null)
+    override fun goToAccessScreen(activity: Activity) {
+        ContextCompat.startActivity(activity, AccessScreen.getIntent(activity), null)
     }
 
-    override fun goToSignInScreen1() {
-        ContextCompat.startActivity(context, SignInScreen1.getIntent(context), null)
+    override fun goToSignInScreen1(activity: Activity) {
+        ContextCompat.startActivity(activity, SignInScreen1.getIntent(activity), null)
     }
 
-    override fun goToSignInScreen2() {
-        ContextCompat.startActivity(context, SignInScreen2.getIntent(context), null)
+    override fun goToSignInScreen2(activity: Activity) {
+        ContextCompat.startActivity(activity, SignInScreen2.getIntent(activity), null)
     }
 
-    override fun goToSignInScreen3() {
-        ContextCompat.startActivity(context, SignInScreen3.getIntent(context), null)
+    override fun goToSignInScreen3(activity: Activity) {
+        ContextCompat.startActivity(activity, SignInScreen3.getIntent(activity), null)
     }
 
-    override fun goToSignInScreen4() {
-        ContextCompat.startActivity(context, SignInScreen4.getIntent(context), null)
+    override fun goToSignInScreen4(activity: Activity) {
+        ContextCompat.startActivity(activity, SignInScreen4.getIntent(activity), null)
     }
 
-    override fun goToSignInScreen5() {
-        ContextCompat.startActivity(context, SignInScreen5.getIntent(context), null)
+    override fun goToSignInScreen5(activity: Activity) {
+        ContextCompat.startActivity(activity, SignInScreen5.getIntent(activity), null)
     }
 
-    override fun goToMapsScreen() {
-        ContextCompat.startActivity(context, MapsScreen.getIntent(context), null)
+    override fun goToMapsScreen(activity: Activity) {
+        ContextCompat.startActivity(activity, MapsScreen.getIntent(activity), null)
     }
 
-    override fun goToSettingsScreen() {
-        ContextCompat.startActivity(context, SettingsScreen.getIntent(context), null)
+    override fun goToSettingsScreen(activity: Activity) {
+        ContextCompat.startActivity(activity, SettingsScreen.getIntent(activity), null)
     }
 
-    override fun goToLetterManagersScreen() {
-        ContextCompat.startActivity(context, LetterManagersScreen.getIntent(context), null)
+    override fun goToLetterManagersScreen(activity: Activity) {
+        ContextCompat.startActivity(activity, LetterManagersScreen.getIntent(activity), null)
     }
 
-    override fun goToFiltersScreen() {
-        ContextCompat.startActivity(context, FiltersScreen.getIntent(context), null)
+    override fun goToFiltersScreen(activity: Activity) {
+        ContextCompat.startActivity(activity, FiltersScreen.getIntent(activity), null)
     }
 
-    override fun goToMailScreen() {
-        ContextCompat.startActivity(context, MailsScreen.getIntent(context), null)
+    override fun goToMailScreen(activity: Activity) {
+        ContextCompat.startActivity(activity, MailsScreen.getIntent(activity), null)
     }
 
-    override fun goToRestaurantsScreen(infoRestaurant: String) {
-        ContextCompat.startActivity(context, RestaurantsScreen.getIntent(context, infoRestaurant), null)
+    override fun goToRestaurantsScreen(activity: Activity, infoRestaurant: String) {
+        ContextCompat.startActivity(activity, RestaurantsScreen.getIntent(activity, infoRestaurant), null)
     }
 
-    override fun goToSecureInfoScreen() {
-        ContextCompat.startActivity(context, SecureInfoScreen.getIntent(context), null)
+    override fun goToSecureInfoScreen(activity: Activity) {
+        ContextCompat.startActivity(activity, SecureInfoScreen.getIntent(activity), null)
     }
 
-    override fun goToIntolleranceScreen() {
-        ContextCompat.startActivity(context, IntolleranceScreen.getIntent(context), null)
+    override fun goToIntolleranceScreen(activity: Activity) {
+        ContextCompat.startActivity(activity, IntolleranceScreen.getIntent(activity), null)
     }
 
-    override fun goToMainScreen() {
+    override fun goToMainScreen(activity: Activity) {
         ContextCompat.startActivity(
-            context,
-            Intent(context, MainScreen::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK),
+            activity,
+            Intent(activity, MainScreen::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK),
             null
         )
     }
 
-    override fun goToOnBoarding() {
+    override fun goToOnBoarding(activity: Activity) {
         ContextCompat.startActivity(
-            context,
-            Intent(context, OnboardingScreen::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK),
+            activity,
+            Intent(activity, OnboardingScreen::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK),
             null
         )
     }

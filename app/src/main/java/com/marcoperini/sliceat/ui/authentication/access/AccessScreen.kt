@@ -39,7 +39,7 @@ class AccessScreen : AppCompatActivity() {
 
     private fun setOnClickListener() {
         backButton.setOnClickListener {
-            navigator.goToAuthenticationScreen()
+            navigator.goToAuthenticationScreen(this)
         }
     }
 }

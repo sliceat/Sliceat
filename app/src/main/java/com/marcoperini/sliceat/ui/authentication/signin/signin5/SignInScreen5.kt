@@ -73,7 +73,7 @@ class SignInScreen5 : AppCompatActivity() {
 
     private fun setOnClickListener() {
         backButton.setOnClickListener {
-            navigator.goToSignInScreen4()
+            navigator.goToSignInScreen4(this)
         }
         takeAPhoto.setOnClickListener {
             alertForPhoto()
@@ -106,7 +106,7 @@ class SignInScreen5 : AppCompatActivity() {
     private fun observer() {
         signIn5ViewModel.observe(lifecycleScope) { state ->
             when (state) {
-                SignIn5State.SaveUser -> navigator.goToMainScreen()
+                SignIn5State.SaveUser -> navigator.goToMainScreen(this)
             }.exhaustive
         }
     }
