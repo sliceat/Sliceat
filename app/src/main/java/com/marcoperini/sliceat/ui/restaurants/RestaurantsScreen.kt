@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +29,9 @@ class RestaurantsScreen : AppCompatActivity() {
     private lateinit var filterRecyclerView: RecyclerView
     private lateinit var listElementFilter: MutableList<CardFilter>
     private lateinit var infoRestaurantResponse : LocalsResponse
+    private lateinit var telephoneNumber : TextView
+    private lateinit var nameRestaurant : TextView
+    private lateinit var address : TextView
 
     private val navigator: Navigator by inject()
     private val gson: Gson by inject()
@@ -40,15 +44,25 @@ class RestaurantsScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_restaurants_screen)
+        setContentView(R.layout.restaurant_screen)
 
         val infoRestaurant = intent.getStringExtra(INFO_RESTAURANT)
         infoRestaurantResponse = gson.fromJson(infoRestaurant, LocalsResponse::class.java)
 
+        setupView()
         setupToolbar()
         setupRvPhoto()
         setupRvFilter()
         setupListener()
+    }
+
+    private fun setupView() {
+        nameRestaurant = findViewById(R.id.name_restaurant)
+        nameRestaurant.text = infoRestaurantResponse.nome
+        telephoneNumber = findViewById(R.id.telephone_number)
+        telephoneNumber.text = infoRestaurantResponse.telefono
+        address = findViewById(R.id.address)
+        address.text = ("${infoRestaurantResponse.via} ${infoRestaurantResponse.civico}, ${infoRestaurantResponse.citta}")
     }
 
     private fun setupListener() {
