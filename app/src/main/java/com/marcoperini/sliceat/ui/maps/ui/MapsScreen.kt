@@ -147,10 +147,10 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         val markerOptions = MarkerOptions()
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.home_pizza))
         if (latLon == null)
-            latLon = LatLng(44.506, 11.308/*restaurant.lat.toDouble(), restaurant.lon.toDouble()*/)//defaultLocation first access
+            latLon = LatLng(44.506, 11.308)//defaultLocation first access
         getLastLocation(this@MapsScreen, fusedLocationProviderClient, googleMap)
         restaurants.forEach { restaurant ->
-            val restaurantLatLon = LatLng(44.506, 11.308/*restaurant.lat.toDouble(), restaurant.lon.toDouble()*/)
+            val restaurantLatLon = LatLng(restaurant.lat.toDouble(), restaurant.lon.toDouble())
             val distance = SphericalUtil.computeDistanceBetween(latLon, restaurantLatLon)
             if (distance < 10000) {
                 markerOptions.position(restaurantLatLon)
