@@ -43,10 +43,6 @@ interface Navigator {
 
 class AppNavigator() : Navigator {
 
-    override fun goToSettings() {
-        ContextCompat.startActivity(context, SettingsActivity.getIntent(context), null)
-    }
-
     override fun goToLaunchScreen2(activity: Activity) {
         ContextCompat.startActivity(
             activity,
