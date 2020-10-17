@@ -38,7 +38,7 @@ class SettingsScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings_screen)
 
-        view_pager2.adapter = SettingsAdapter(this, navigator, this@SettingsScreen)
+        view_pager2.adapter = SettingsAdapter(navigator, this@SettingsScreen)
 
         setupToolbar()
         setupView()
@@ -72,19 +72,19 @@ class SettingsScreen : AppCompatActivity() {
         toolbar.toolbar_title.text = resources.getString(R.string.setting)
 
         toolbar.toolbar_back_button.setOnClickListener {
-            navigator.goToMapsScreen()
+            navigator.goToMapsScreen(this)
             finish()
         }
     }
 
     private fun setupListener() {
         mail.setOnClickListener {
-            navigator.goToMailScreen()
+            navigator.goToMailScreen(this)
             finish()
         }
 
         secureInformations.setOnClickListener {
-            navigator.goToSecureInfoScreen()
+            navigator.goToSecureInfoScreen(this)
             finish()
         }
 
@@ -109,6 +109,6 @@ class SettingsScreen : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        navigator.goToMapsScreen()
+        navigator.goToMapsScreen(this)
     }
 }

@@ -37,14 +37,14 @@ class IntolleranceScreen : AppCompatActivity() {
 
     private fun clickListener() {
         close.setOnClickListener {
-            navigator.goToSettingsScreen()
+            navigator.goToSettingsScreen(this)
             finish()
         }
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        navigator.goToSettingsScreen()
+        navigator.goToSettingsScreen(this)
     }
 }
 

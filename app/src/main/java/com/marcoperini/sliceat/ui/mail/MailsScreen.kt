@@ -66,13 +66,13 @@ class MailsScreen : AppCompatActivity() {
         toolbar = findViewById(R.id.include_custom_toolbar)
         toolbar.toolbar_title.text = resources.getString(R.string.mail)
         toolbar.toolbar_back_button.setOnClickListener {
-            navigator.goToSettingsScreen()
+            navigator.goToSettingsScreen(this)
             finish()
         }
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        navigator.goToSettingsScreen()
+        navigator.goToSettingsScreen(this)
     }
 }

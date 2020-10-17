@@ -28,7 +28,6 @@ import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_PASSWO
 import com.marcoperini.sliceat.utils.sharedpreferences.Key.Companion.SAVE_URI_PHOTO
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import com.marcoperini.sliceat.utils.sharedpreferences.ServiceInterface
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -54,7 +53,6 @@ class SignInScreen5 : AppCompatActivity() {
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
 
-    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_in_screen5)
@@ -75,7 +73,7 @@ class SignInScreen5 : AppCompatActivity() {
 
     private fun setOnClickListener() {
         backButton.setOnClickListener {
-            navigator.goToSignInScreen4()
+            navigator.goToSignInScreen4(this)
         }
         takeAPhoto.setOnClickListener {
             alertForPhoto()
@@ -105,11 +103,10 @@ class SignInScreen5 : AppCompatActivity() {
         }
     }
 
-    @ExperimentalCoroutinesApi
     private fun observer() {
         signIn5ViewModel.observe(lifecycleScope) { state ->
             when (state) {
-                SignIn5State.SaveUser -> navigator.goToMainScreen()
+                SignIn5State.SaveUser -> navigator.goToMainScreen(this)
             }.exhaustive
         }
     }

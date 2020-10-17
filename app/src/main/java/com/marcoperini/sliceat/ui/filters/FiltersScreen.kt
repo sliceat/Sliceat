@@ -86,19 +86,19 @@ class FiltersScreen : AppCompatActivity() {
 
     private fun clickListener() {
         toolbar.toolbar_button.setOnClickListener {
-            navigator.goToMapsScreen()
+            navigator.goToMapsScreen(this)
             finish()
             toolbar.toolbar_button.visibility = View.GONE
         }
 
         toolbar.toolbar_back_button.setOnClickListener {
-            navigator.goToMapsScreen()
+            navigator.goToMapsScreen(this)
             finish()
         }
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        navigator.goToMapsScreen()
+        navigator.goToMapsScreen(this)
     }
 }

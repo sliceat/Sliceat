@@ -5,16 +5,21 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.filters.CardFilter
+import com.marcoperini.sliceat.ui.maps.network.response.LocalsResponse
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_back_button
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_button
 import kotlinx.android.synthetic.main.toolbar_with_indicator.view.toolbar_title
 import org.koin.android.ext.android.inject
+
+const val INFO_RESTAURANT = "info restaurant"
 
 class RestaurantsScreen : AppCompatActivity() {
 
@@ -24,22 +29,41 @@ class RestaurantsScreen : AppCompatActivity() {
     private lateinit var photosAdapter: RestaurantsAdapter
     private lateinit var filterRecyclerView: RecyclerView
     private lateinit var listElementFilter: MutableList<CardFilter>
+    private lateinit var infoRestaurantResponse : LocalsResponse
+    private lateinit var telephoneNumber : TextView
+    private lateinit var nameRestaurant : TextView
+    private lateinit var address : TextView
 
     private val navigator: Navigator by inject()
+    private val gson: Gson by inject()
 
     companion object {
-        fun getIntent(startingActivityContext: Context) = Intent(startingActivityContext, RestaurantsScreen::class.java)
+        fun getIntent(startingActivityContext: Context, infoRestaurant: String) = Intent(startingActivityContext, RestaurantsScreen::class.java)
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            .putExtra(INFO_RESTAURANT, infoRestaurant)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_restaurants_screen)
+        setContentView(R.layout.restaurant_screen)
 
+        val infoRestaurant = intent.getStringExtra(INFO_RESTAURANT)
+        infoRestaurantResponse = gson.fromJson(infoRestaurant, LocalsResponse::class.java)
+
+        setupView()
         setupToolbar()
         setupRvPhoto()
         setupRvFilter()
         setupListener()
+    }
+
+    private fun setupView() {
+        nameRestaurant = findViewById(R.id.name_restaurant)
+        nameRestaurant.text = infoRestaurantResponse.nome
+        telephoneNumber = findViewById(R.id.telephone_number)
+        telephoneNumber.text = infoRestaurantResponse.telefono
+        address = findViewById(R.id.address)
+        address.text = ("${infoRestaurantResponse.via} ${infoRestaurantResponse.civico}, ${infoRestaurantResponse.citta}")
     }
 
     private fun setupListener() {
@@ -51,7 +75,7 @@ class RestaurantsScreen : AppCompatActivity() {
             startActivity(Intent.createChooser(intent, resources.getString(R.string.invite_your_friends)), null)
         }
         toolbar.toolbar_back_button.setOnClickListener {
-            navigator.goToMapsScreen()
+            navigator.goToMapsScreen(this)
             finish()
         }
     }
@@ -95,6 +119,6 @@ class RestaurantsScreen : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        navigator.goToMapsScreen()
+        navigator.goToMapsScreen(this)
     }
 }

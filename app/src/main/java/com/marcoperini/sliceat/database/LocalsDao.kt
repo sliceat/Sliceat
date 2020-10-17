@@ -10,8 +10,8 @@ import com.marcoperini.sliceat.utils.Constants.Companion.USERS_TABLE_NAME
 
 @Dao
 interface LocalsDao {
-    @Query("SELECT * FROM $LOCALS_TABLE_NAME")
-    suspend fun findAllLocals(): List<LocalsTable>
+    @Query("SELECT * FROM $LOCALS_TABLE_NAME WHERE Città LIKE :city")
+    suspend fun findAllLocals(city: String): List<LocalsTable>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLocals(value: LocalsTable)

@@ -16,7 +16,6 @@ import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.authentication.signin.signin1.DELAY_HIDE_ERROR
 import com.marcoperini.sliceat.utils.exhaustive
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 
 class SignInScreen4 : AppCompatActivity() {
@@ -34,7 +33,6 @@ class SignInScreen4 : AppCompatActivity() {
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
 
-    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_in_screen4)
@@ -55,18 +53,17 @@ class SignInScreen4 : AppCompatActivity() {
 
     private fun setOnClickListener() {
         backButton.setOnClickListener {
-            navigator.goToSignInScreen3()
+            navigator.goToSignInScreen3(this)
         }
         continua.setOnClickListener {
             validateInputData()
         }
     }
 
-    @ExperimentalCoroutinesApi
     private fun observer() {
         signIn4ViewModel.observe(lifecycleScope) { state ->
             when (state) {
-                SignIn4State.SavedData -> navigator.goToSignInScreen5()
+                SignIn4State.SavedData -> navigator.goToSignInScreen5(this)
             }.exhaustive
         }
     }

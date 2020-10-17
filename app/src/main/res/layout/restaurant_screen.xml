@@ -79,8 +79,9 @@
                 android:src="@drawable/call_icon" />
 
             <TextView
+                android:id="@+id/telephone_number"
                 style="@style/text"
-                android:layout_alignBottom="@+id/call_icon"
+                android:layout_alignTop="@+id/call_icon"
                 android:layout_toEndOf="@id/call_icon"
                 android:layout_marginStart="40dp"
                 android:text="@string/telephone_number"
@@ -98,7 +99,7 @@
 
             <TextView
                 style="@style/text"
-                android:layout_alignBottom="@+id/clock_icon"
+                android:layout_alignTop="@+id/clock_icon"
                 android:layout_toEndOf="@id/call_icon"
                 android:layout_marginStart="40dp"
                 android:text="@string/open_to_end"
@@ -115,8 +116,10 @@
                 android:src="@drawable/map_marker_icon" />
 
             <TextView
+                android:id="@+id/address"
                 style="@style/text"
-                android:layout_alignBottom="@+id/map_marker_icon"
+                android:layout_alignTop="@+id/map_marker_icon"
+                android:textAlignment="viewStart"
                 android:layout_toEndOf="@id/call_icon"
                 android:layout_marginStart="40dp"
                 android:text="@string/address"
@@ -145,7 +148,7 @@
 
             <TextView
                 style="@style/text"
-                android:layout_alignBottom="@+id/chef_photo"
+                android:layout_alignTop="@+id/chef_photo"
                 android:layout_toEndOf="@id/call_icon"
                 android:layout_marginStart="40dp"
                 android:text="@string/message_chef"

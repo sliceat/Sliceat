@@ -46,7 +46,7 @@ class LetterManagersScreen : AppCompatActivity() {
 
     private fun clickListener() {
         toolbar.toolbar_button.setOnClickListener {
-            navigator.goToSettingsScreen()
+            navigator.goToSettingsScreen(this)
             finish()
         }
     }

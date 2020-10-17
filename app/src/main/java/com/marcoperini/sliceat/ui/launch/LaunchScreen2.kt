@@ -8,7 +8,6 @@ import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.utils.Constants.Companion.DELAY_START_SCREEN
 import com.marcoperini.sliceat.utils.exhaustive
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 
 class LaunchScreen2 : AppCompatActivity() {
@@ -16,7 +15,6 @@ class LaunchScreen2 : AppCompatActivity() {
     private val launchViewModel: LaunchViewModel2 by inject()
     private val navigator: Navigator by inject()
 
-    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.launch_screen2)
@@ -24,7 +22,6 @@ class LaunchScreen2 : AppCompatActivity() {
         loading()
     }
 
-    @ExperimentalCoroutinesApi
     private fun loading() {
         launchViewModel.observe(lifecycleScope) { LaunchState ->
             when (LaunchState) {
@@ -37,12 +34,12 @@ class LaunchScreen2 : AppCompatActivity() {
 
     private fun goToMapsScreen() {
 //        navigator.goToAuthenticationScreen()
-        navigator.goToMapsScreen()
+        navigator.goToMapsScreen(this)
         finish()
     }
 
     private fun goToOnBoarding() {
-        navigator.goToOnBoarding()
+        navigator.goToOnBoarding(this)
         finish()
     }
 }

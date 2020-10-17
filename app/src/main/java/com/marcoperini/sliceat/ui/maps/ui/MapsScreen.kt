@@ -18,10 +18,16 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.gson.Gson
+import com.google.maps.android.SphericalUtil
 import com.google.zxing.integration.android.IntentIntegrator
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
@@ -32,17 +38,19 @@ import com.karumi.dexter.listener.single.PermissionListener
 import com.marcoperini.sliceat.R
 import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.ScanCustomScreen
-import com.marcoperini.sliceat.ui.filters.FiltersScreen
-import com.marcoperini.sliceat.ui.mail.MailsScreen
 import com.marcoperini.sliceat.ui.maps.Location
 import com.marcoperini.sliceat.ui.maps.OfflineScreenFragment
+import com.marcoperini.sliceat.ui.maps.network.response.LocalsResponse
 import com.marcoperini.sliceat.utils.CheckConnection
+import com.marcoperini.sliceat.utils.exhaustive
 import com.marcoperini.sliceat.utils.getLastLocation
+import com.marcoperini.sliceat.utils.latLon
 import com.marcoperini.sliceat.utils.searchLocation
 import com.marcoperini.sliceat.utils.sharedpreferences.Key
 import com.marcoperini.sliceat.utils.sharedpreferences.KeyValueStorage
 import com.marcoperini.sliceat.utils.transformImageToRoundImage
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*, PlaceSelectionListener*/ {
 
@@ -55,12 +63,12 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
     private val prefs: KeyValueStorage by inject()
     private val navigator: Navigator by inject()
     private val mapsViewModel: MapsViewModel by inject()
+    private val gson: Gson by inject()
 
     private lateinit var photo: ImageView
     private lateinit var mapView: View
     private lateinit var qrCode: ImageButton
     private lateinit var popupMenu: ImageButton
-    private lateinit var roundIconPlus: ImageView
     private lateinit var filter: ImageView
     private lateinit var myLocation: ImageView
     private lateinit var googleMap: GoogleMap
@@ -82,9 +90,12 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         if (!CheckConnection.isOnline(this)) {
             val offlineScreenFragment = OfflineScreenFragment()
             offlineScreenFragment.show(supportFragmentManager, offlineScreenFragment.tag)
+            mapsViewModel.send(MapsEvent.SearchLocalsDatabase("San Benedetto Po"))//todo move this in another screen
         }
 
         setupView()
+
+        setupViewModel()
 
         mapsViewModel.send(MapsEvent.LoadLocals)
         mapsViewModel.send(MapsEvent.LoadAllergie)
@@ -103,7 +114,6 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         searchView = findViewById(R.id.search_bar)
         photo = findViewById(R.id.profilePhoto)
         filter = findViewById(R.id.filter_icon)
-        roundIconPlus = findViewById(R.id.round_icon_plus)
         myLocation = findViewById(R.id.home_position)
         qrCode = findViewById(R.id.qr_code)
         popupMenu = findViewById(R.id.popup_menu)
@@ -122,17 +132,53 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         }
     }
 
+    private fun setupViewModel() {
+        mapsViewModel.observe(lifecycleScope) {
+            when (it) {
+                is MapsState.InProgress -> Timber.i("loading restaurants")
+                is MapsState.LoadedLocals -> addMarkerToRestaurants(it.restaurants)
+                is MapsState.LoadedAllergie -> Timber.i("allergies loaded")
+                is MapsState.Error -> showError(it.error)
+            }.exhaustive
+        }
+    }
+
+    private fun addMarkerToRestaurants(restaurants: List<LocalsResponse>) {
+        val markerOptions = MarkerOptions()
+        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.home_pizza))
+        if (latLon == null)
+            latLon = LatLng(44.506, 11.308)//defaultLocation first access
+        getLastLocation(this@MapsScreen, fusedLocationProviderClient, googleMap)
+        restaurants.forEach { restaurant ->
+            val restaurantLatLon = LatLng(restaurant.lat.toDouble(), restaurant.lon.toDouble())
+            val distance = SphericalUtil.computeDistanceBetween(latLon, restaurantLatLon)
+            if (distance < 10000) {
+                markerOptions.position(restaurantLatLon)
+                markerOptions.title(restaurant.nome)
+                val locationMarker = googleMap.addMarker(markerOptions)
+                locationMarker.showInfoWindow()
+                googleMap.setOnMarkerClickListener {
+                    val infoRestaurant = gson.toJson(restaurant)
+                    navigator.goToRestaurantsScreen(this, infoRestaurant)
+                    finish()
+                    false
+                }
+            }
+        }
+    }
+
+    private fun showError(error: Throwable) {
+        Timber.w("error in loading restaurants: $error")
+        Toast.makeText(this, "$error", Toast.LENGTH_SHORT).show()
+    }
+
     private fun setupListener() {
         photo.setOnClickListener {
-            navigator.goToSettingsScreen()
-            finish()
-        }
-        roundIconPlus.setOnClickListener {
-            navigator.goToRestaurantsScreen()
+            navigator.goToSettingsScreen(this)
             finish()
         }
         filter.setOnClickListener {
-            navigator.goToFiltersScreen()
+            navigator.goToFiltersScreen(this)
             finish()
         }
         qrCode.setOnClickListener { performAction() }
@@ -167,7 +213,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
             val popup = PopupMenu(this, popupMenu)
             val inflater: MenuInflater = popup.menuInflater
             inflater.inflate(R.menu.map_options, popup.menu)
-            popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+            popup.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     // Change the map type based on the user's selection.
                     R.id.normal_map -> googleMap.mapType = GoogleMap.MAP_TYPE_NORMAL
@@ -176,7 +222,7 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
                     R.id.terrain_map -> googleMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
                 }
                 true
-            })
+            }
             popup.show()
         }
     }
@@ -226,8 +272,6 @@ class MapsScreen : AppCompatActivity(), OnMapReadyCallback, PermissionListener/*
         Toast.makeText(this, "Permission required for showing location", Toast.LENGTH_LONG).show()
         finish()
     }
-
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)

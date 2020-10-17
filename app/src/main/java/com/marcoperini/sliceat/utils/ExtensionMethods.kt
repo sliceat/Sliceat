@@ -30,6 +30,8 @@ import java.util.*
 val <T> T.exhaustive: T
     get() = this
 
+var latLon : LatLng? = null
+
 fun ImageView.loadRoundImageFromUrl(imageUrl: String?) {
     imageUrl?.let {
         val httpsImageUrl = imageUrl.replace("http://", "https://")
@@ -84,8 +86,8 @@ fun getLastLocation(activity: Activity, fusedLocationProviderClient : FusedLocat
             }
             googleMap.addMarker(
                 MarkerOptions().position(LatLng(mLastLocation!!.latitude, mLastLocation.longitude)).title("Current Location").snippet(address)
-
             )
+            latLon = LatLng(mLastLocation.latitude, mLastLocation.longitude)
             val cameraPosition = CameraPosition.Builder()
                 .target(LatLng(mLastLocation.latitude, mLastLocation.longitude)).zoom(Constants.ZOOM_CAMERA).build()
             googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))

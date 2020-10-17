@@ -15,7 +15,6 @@ import com.marcoperini.sliceat.ui.Navigator
 import com.marcoperini.sliceat.ui.authentication.signin.signin1.DELAY_HIDE_ERROR
 import com.marcoperini.sliceat.utils.Constants.Companion.PASSWORD_PATTERN
 import com.marcoperini.sliceat.utils.exhaustive
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 import java.util.regex.Matcher
@@ -38,7 +37,6 @@ class SignInScreen3 : AppCompatActivity() {
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
 
-    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_in_screen3)
@@ -59,18 +57,17 @@ class SignInScreen3 : AppCompatActivity() {
 
     private fun setOnClickListener() {
         backButton.setOnClickListener {
-            navigator.goToSignInScreen2()
+            navigator.goToSignInScreen2(this)
         }
         continua.setOnClickListener {
             validateInputData()
         }
     }
 
-    @ExperimentalCoroutinesApi
     private fun observer() {
         signIn3ViewModel.observe(lifecycleScope) { state ->
             when (state) {
-                is SignIn3State.SavedPassword -> navigator.goToSignInScreen4()
+                is SignIn3State.SavedPassword -> navigator.goToSignInScreen4(this)
             }.exhaustive
         }
     }
